@@ -124,6 +124,6 @@
          </font>
       </Label>
       <JFXHamburger fx:id="btnMenu" layoutX="14.0" layoutY="31.0" prefHeight="37.0" prefWidth="47.0" />
-      <JFXDrawer fx:id="dwrSideMenu" defaultDrawerSize="1024.0" layoutY="98.0" prefHeight="670.0" prefWidth="1024.0" />
+      <JFXDrawer fx:id="dwrSideMenu" defaultDrawerSize="1024.0" layoutY="98.0" prefHeight="670.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="670.0" prefWidth="826.0" styleClass="anchor-color" stylesheets="@../css/SideMenuItem.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.menu.ManageCourseFormController">
+   <children>
+      <Label layoutX="365.0" layoutY="263.0" text="Manage Courses" />
+   </children>
+</AnchorPane>
