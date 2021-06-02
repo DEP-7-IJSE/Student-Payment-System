@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="loginForm" prefHeight="300.0" prefWidth="300.0" styleClass="anchor-color" stylesheets="@css/DashBoardStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/ijse.png" />
+         </image>
+      </ImageView>
+      <JFXPasswordField labelFloat="true" layoutX="9.0" layoutY="142.0" prefHeight="34.0" prefWidth="284.0" promptText="Password" />
+      <JFXButton buttonType="RAISED" defaultButton="true" layoutX="239.0" layoutY="204.0" onAction="#loginOnAction" styleClass="primaryColor" text="Login">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton layoutX="4.0" layoutY="204.0" onAction="#deleteUserOnAction" styleClass="defaultButtonsColor" text="Delete User">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton layoutX="106.0" layoutY="204.0" onAction="#addUserOnAction" styleClass="defaultButtonsColor" text="Add User">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <Hyperlink layoutX="4.0" layoutY="248.0" onAction="#resetPaswordOnAction" text="Forgot Password?" />
+      <JFXComboBox labelFloat="true" layoutX="12.0" layoutY="78.0" prefHeight="26.0" prefWidth="277.0" promptText="User Name" styleClass="combo-box-base" />
+   </children>
+</AnchorPane>
