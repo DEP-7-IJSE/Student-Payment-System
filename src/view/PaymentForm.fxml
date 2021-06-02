@@ -129,19 +129,13 @@
             <TableColumn prefWidth="302.0" text="Operation" />
         </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="22.0" layoutY="14.0" prefHeight="29.0" prefWidth="162.0" styleClass="defaultButtonsColor" text=" " AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="14.0">
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="48.0" prefWidth="0.0" styleClass="defaultButtonsColor" text="&lt;" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-         <graphic>
-            <ImageView fitHeight="23.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/Back-Arrow.png" />
-               </image></ImageView>
-         </graphic>
       </JFXButton>
    </children>
 </AnchorPane>

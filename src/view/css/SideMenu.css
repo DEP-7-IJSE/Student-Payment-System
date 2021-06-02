@@ -1,0 +1,11 @@
+.anchor-color{
+    -fx-background-color: #7f8c8d;
+}
+
+.label{
+    -fx-text-fill: #2c3e50;
+}
+.label:hover{
+    -fx-background-color: #576574;
+    -fx-cursor: hand;
+}
