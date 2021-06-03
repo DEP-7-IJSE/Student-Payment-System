@@ -2,10 +2,11 @@
     -fx-background-color: #7f8c8d;
 }
 
-.label{
+.side-label{
     -fx-text-fill: #2c3e50;
+    -fx-border-radius: 10px;
 }
-.label:hover{
+.side-label:hover{
     -fx-background-color: #576574;
     -fx-cursor: hand;
 }

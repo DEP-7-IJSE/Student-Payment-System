@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
@@ -38,5 +39,9 @@ public class DashBoardFormController {
                 dwrSideMenu.close();
             }
         });
+    }
+
+    public void paymentOnAction(ActionEvent actionEvent) {
+
     }
 }

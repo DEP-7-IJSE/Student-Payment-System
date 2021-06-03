@@ -1,3 +1,36 @@
 .anchor-color{
     -fx-background-color: #7f8c8d;
 }
+
+.button{
+    -fx-background-color: #576574;
+    -fx-text-fill: white;
+}
+
+.button:hover{
+    -fx-background-color: #2f3640;
+}
+
+.list-view{
+    -fx-background-color: transparent;
+    -fx-border-radius: 3px;
+    -fx-border-color: #2c3e50;
+}
+
+.list-view .list-cell{
+    -fx-padding: 2 0 2 10px;
+    -fx-text-fill: white;
+}
+
+.list-row-cell:hover {
+    -fx-background-color: #93f9b911;
+}
+
+.text-field{
+    -fx-text-fill: white;
+}
+.search-course{
+    -fx-background-color: transparent;
+    -fx-border-radius: 4px;
+    -fx-border-color: #2c3e50;
+}
