@@ -23,21 +23,6 @@ public class LoginFormController {
         login.show();
     }
 
-    public void deleteUserOnAction(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/DeleteUserForm.fxml"))));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-
-    }
-
-    public void addUserOnAction(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/AddUserForm.fxml"))));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-    }
-
     public void resetPaswordOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/ResetPasswordForm.fxml"))));

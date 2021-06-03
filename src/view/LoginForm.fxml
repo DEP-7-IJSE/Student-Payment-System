@@ -21,14 +21,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>
-      <JFXButton layoutX="4.0" layoutY="204.0" onAction="#deleteUserOnAction" styleClass="defaultButtonsColor" text="Delete User">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></JFXButton>
-      <JFXButton layoutX="106.0" layoutY="204.0" onAction="#addUserOnAction" styleClass="defaultButtonsColor" text="Add User">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></JFXButton>
       <Hyperlink layoutX="4.0" layoutY="248.0" onAction="#resetPaswordOnAction" text="Forgot Password?" />
       <JFXComboBox labelFloat="true" layoutX="12.0" layoutY="78.0" prefHeight="26.0" prefWidth="277.0" promptText="User Name" styleClass="combo-box-base" />
    </children>
