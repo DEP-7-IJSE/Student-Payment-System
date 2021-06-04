@@ -20,7 +20,7 @@
 
 <AnchorPane fx:id="dashBoard" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/DashBoardStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashBoardFormController">
    <children>
-      <Separator layoutX="14.0" layoutY="83.0" prefHeight="16.0" prefWidth="998.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+      <Separator layoutX="14.0" layoutY="83.0" prefHeight="16.0" prefWidth="998.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="83.0" />
       <TableView fixedCellSize="0.0" layoutX="22.0" layoutY="317.0" prefHeight="384.0" prefWidth="973.0" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="317.0">
          <columns>
             <TableColumn fx:id="idCol" prefWidth="175.0" text="Course ID" />

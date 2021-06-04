@@ -20,7 +20,7 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/PaymentFormStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentFormController">
    <children>
-      <JFXButton buttonType="RAISED" layoutX="848.0" layoutY="14.0" prefHeight="29.0" prefWidth="162.0" styleClass="defaultButtonsColor" text="+" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="14.0">
+      <JFXButton buttonType="RAISED" layoutX="840.0" layoutY="25.0" prefHeight="29.0" prefWidth="162.0" styleClass="defaultButtonsColor" text="+" AnchorPane.rightAnchor="22.0">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -28,12 +28,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label layoutX="52.0" layoutY="29.0" prefHeight="30.0" prefWidth="162.0" text="2021-05-28" AnchorPane.leftAnchor="52.0">
+      <Label fx:id="lblDate" layoutX="74.0" layoutY="35.0" prefHeight="30.0" prefWidth="162.0" text="2021-05-28" AnchorPane.leftAnchor="74.0">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" layoutX="410.0" layoutY="12.0" prefHeight="69.0" prefWidth="204.0" spacing="220.0" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="410.0">
+      <HBox alignment="CENTER" layoutX="410.0" layoutY="15.0" prefHeight="69.0" prefWidth="204.0" spacing="220.0" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="410.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -61,7 +61,6 @@
             </TextField>
          </children>
       </HBox>
-      <Separator layoutX="14.0" layoutY="64.0" prefHeight="48.0" prefWidth="994.0" />
       <HBox layoutX="22.0" layoutY="219.0" prefHeight="30.0" prefWidth="980.0" spacing="120.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0">
          <children>
             <JFXComboBox prefHeight="26.0" prefWidth="157.0" promptText="Course ID" />
@@ -129,7 +128,7 @@
             <TableColumn prefWidth="302.0" text="Operation" />
         </columns>
       </TableView>
-      <ImageView fx:id="imgBack" fitHeight="26.0" fitWidth="27.0" layoutX="14.0" layoutY="30.0" onMouseClicked="#imgBackClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="30.0">
+      <ImageView fx:id="imgBack" fitHeight="37.0" fitWidth="47.0" layoutX="14.0" layoutY="30.0" onMouseClicked="#imgBackClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="31.0">
          <image>
             <Image url="@../assets/White%20Back.png" />
          </image>
@@ -137,5 +136,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Separator layoutX="12.0" layoutY="88.0" prefHeight="16.0" prefWidth="998.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="83.0" />
    </children>
 </AnchorPane>
