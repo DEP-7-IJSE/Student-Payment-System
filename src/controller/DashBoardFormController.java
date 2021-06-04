@@ -6,10 +6,14 @@ import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class DashBoardFormController {
     public AnchorPane dashBoard;
@@ -19,6 +23,7 @@ public class DashBoardFormController {
     public TableColumn incomeCol;
     public JFXHamburger btnMenu;
     public JFXDrawer dwrSideMenu;
+    public Label lblDate;
 
     public void initialize(){
         try {
@@ -27,7 +32,7 @@ public class DashBoardFormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        lblDate.setText(String.valueOf(LocalDate.now()));
         HamburgerBasicCloseTransition bt = new HamburgerBasicCloseTransition(btnMenu);
         bt.setRate(-1);
         btnMenu.setOnMouseClicked(e ->{
@@ -41,7 +46,8 @@ public class DashBoardFormController {
         });
     }
 
-    public void paymentOnAction(ActionEvent actionEvent) {
-
+    public void paymentOnAction(ActionEvent actionEvent) throws IOException {
+        Stage pay = (Stage) lblDate.getScene().getWindow();
+        pay.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/PaymentForm.fxml"))));
     }
 }

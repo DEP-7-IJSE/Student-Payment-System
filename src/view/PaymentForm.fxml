@@ -28,7 +28,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label layoutX="33.0" layoutY="112.0" prefHeight="30.0" prefWidth="162.0" text="2021-05-28" AnchorPane.leftAnchor="33.0">
+      <Label layoutX="52.0" layoutY="29.0" prefHeight="30.0" prefWidth="162.0" text="2021-05-28" AnchorPane.leftAnchor="52.0">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -129,13 +129,13 @@
             <TableColumn prefWidth="302.0" text="Operation" />
         </columns>
       </TableView>
-      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="48.0" prefWidth="0.0" styleClass="defaultButtonsColor" text="&lt;" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="14.0">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
+      <ImageView fx:id="imgBack" fitHeight="26.0" fitWidth="27.0" layoutX="14.0" layoutY="30.0" onMouseClicked="#imgBackClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="30.0">
+         <image>
+            <Image url="@../assets/White%20Back.png" />
+         </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </JFXButton>
+      </ImageView>
    </children>
 </AnchorPane>

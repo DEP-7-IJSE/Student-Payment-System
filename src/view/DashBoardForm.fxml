@@ -110,7 +110,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label layoutX="74.0" layoutY="35.0" prefHeight="30.0" prefWidth="162.0" text="2021-05-28" AnchorPane.leftAnchor="74.0">
+      <Label fx:id="lblDate" layoutX="74.0" layoutY="35.0" prefHeight="30.0" prefWidth="162.0" text="2021-05-28" AnchorPane.leftAnchor="74.0">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
