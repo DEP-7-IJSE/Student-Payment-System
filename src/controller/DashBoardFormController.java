@@ -3,12 +3,15 @@ package controller;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.input.KeyCharacterCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -32,6 +35,15 @@ public class DashBoardFormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Platform.runLater(()->{
+            lblDate.getScene().getAccelerators().put(new KeyCharacterCombination("O", KeyCombination.CONTROL_ANY), () -> {
+                try {
+                    paymentOnAction(null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
         lblDate.setText(String.valueOf(LocalDate.now()));
         HamburgerBasicCloseTransition bt = new HamburgerBasicCloseTransition(btnMenu);
         bt.setRate(-1);

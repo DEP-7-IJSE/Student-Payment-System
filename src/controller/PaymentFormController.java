@@ -1,10 +1,13 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCharacterCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -18,6 +21,15 @@ public class PaymentFormController {
 
     public void initialize(){
         lblDate.setText(String.valueOf(LocalDate.now()));
+        Platform.runLater(()->{
+            lblDate.getScene().getAccelerators().put(new KeyCharacterCombination("b", KeyCombination.CONTROL_ANY), () -> {
+                try {
+                    imgBackClicked(null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
     }
 
     public void imgBackClicked(MouseEvent mouseEvent) throws IOException {
