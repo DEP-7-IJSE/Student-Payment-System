@@ -1,6 +1,8 @@
 package controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -18,6 +20,7 @@ public class PaymentFormController {
 
     public ImageView imgBack;
     public Label lblDate;
+    public JFXComboBox<String> cmbPaymentMethod;
 
     public void initialize(){
         lblDate.setText(String.valueOf(LocalDate.now()));
@@ -30,6 +33,10 @@ public class PaymentFormController {
                 }
             });
         });
+        ObservableList<String> items = cmbPaymentMethod.getItems();
+        items.add("Card Payment");
+        items.add("Online Transfer");
+        items.add("Cash");
     }
 
     public void imgBackClicked(MouseEvent mouseEvent) throws IOException {

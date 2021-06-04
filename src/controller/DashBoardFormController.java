@@ -62,4 +62,15 @@ public class DashBoardFormController {
         Stage pay = (Stage) lblDate.getScene().getWindow();
         pay.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/PaymentForm.fxml"))));
     }
+
+    public void btnLogoutOnAction(ActionEvent actionEvent) throws IOException {
+        ((Stage) lblDate.getScene().getWindow()).close();
+        Stage login= new Stage();
+        login.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/LoginForm.fxml"))));
+        login.sizeToScene();
+        login.setTitle("Login Form");
+        login.setResizable(false);
+        login.centerOnScreen();
+        login.show();
+    }
 }
