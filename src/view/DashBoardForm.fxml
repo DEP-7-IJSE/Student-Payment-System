@@ -29,14 +29,6 @@
             <TableColumn fx:id="incomeCol" prefWidth="297.0" text="Total Income" />
          </columns>
       </TableView>
-      <JFXButton layoutX="840.0" layoutY="706.0" prefHeight="29.0" prefWidth="162.0" styleClass="exit-button" text="Logout" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="22.0">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
       <HBox alignment="CENTER" layoutX="22.0" layoutY="99.0" prefHeight="203.0" prefWidth="980.0" spacing="180.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0">
          <children>
             <Group>
@@ -125,5 +117,13 @@
       </Label>
       <JFXHamburger fx:id="btnMenu" layoutX="14.0" layoutY="31.0" prefHeight="37.0" prefWidth="47.0" />
       <JFXDrawer fx:id="dwrSideMenu" defaultDrawerSize="1024.0" layoutY="98.0" prefHeight="670.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <JFXButton layoutX="840.0" layoutY="706.0" prefHeight="29.0" prefWidth="162.0" styleClass="exit-button" text="Logout" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="22.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

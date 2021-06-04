@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="826.0" styleClass="anchor-color" stylesheets="@../css/SideMenuItem.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.menu.ManagePaymentFormController">
    <children>
-      <TableView layoutX="14.0" layoutY="14.0" prefHeight="460.0" prefWidth="796.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
+      <TableView layoutX="14.0" layoutY="14.0" prefHeight="378.0" prefWidth="796.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
         <columns>
           <TableColumn prefWidth="110.0" text="Date" />
           <TableColumn prefWidth="104.0" text="Course ID" />
@@ -21,7 +21,7 @@
             <TableColumn prefWidth="154.0" text="Operation" />
         </columns>
       </TableView>
-      <VBox alignment="TOP_RIGHT" layoutX="50.0" layoutY="503.0" prefHeight="100.0" prefWidth="726.0" spacing="30.0" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+      <VBox alignment="TOP_RIGHT" layoutX="50.0" layoutY="444.0" prefHeight="100.0" prefWidth="726.0" spacing="30.0" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <children>
             <HBox prefHeight="39.0" prefWidth="726.0" spacing="100.0">
                <children>
