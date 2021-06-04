@@ -18,7 +18,7 @@
 
 .list-view .list-cell{
     -fx-padding: 2 0 2 10px;
-    -fx-text-fill: white;
+    //-fx-text-fill: white;  //////////////////////////////////////
 }
 
 .list-row-cell:hover {

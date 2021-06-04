@@ -11,13 +11,6 @@
     -fx-background-color: #2f3640;
 }
 
-.combo-box{
-    -fx-text-fill: white;
-}
-.combo-box-row-cell{
-    -fx-background-color: transparent;
- }
-
 .text-field{
     -fx-background-color: transparent;
     -fx-text-fill: white;
