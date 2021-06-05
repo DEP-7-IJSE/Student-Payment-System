@@ -28,21 +28,7 @@ public class SideMenuController {
     }
 
     public void managePaymentClicked(MouseEvent mouseEvent) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../view/menu/ManagePaymentForm.fxml"));
-            Scene scene = sideMenuContainer.getScene();
-            root.translateYProperty().set(scene.getHeight());
-            sideMenuContainer.getChildren().add(root);
-            Timeline timeline= new Timeline();
-            KeyValue kv = new KeyValue(root.translateYProperty(),0, Interpolator.EASE_IN);
-            KeyFrame kf=new KeyFrame(Duration.seconds(1),kv);
-            timeline.getKeyFrames().add(kf);
-            timeline.setOnFinished(event -> sideMenuContainer.getChildren().remove(sideMenuPane));
-            timeline.play();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //navigateMenuItem("ManagePaymentForm.fxml");
+        navigateMenuItem("ManagePaymentForm.fxml");
     }
 
     public void manageUsersClicked(MouseEvent mouseEvent) {
@@ -55,8 +41,20 @@ public class SideMenuController {
 
     private void navigateMenuItem(String location) {
         try {
-            sideMenuPane.getChildren().removeAll();
-            sideMenuPane.getChildren().add(FXMLLoader.load(this.getClass().getResource("/view/menu/"+location)));
+            if (sideMenuPane.getScene()!=null) {
+                Parent root = FXMLLoader.load(this.getClass().getResource("../view/menu/"+location));
+                Scene scene = sideMenuContainer.getScene();
+                root.translateXProperty().set(scene.getWidth());
+                sideMenuContainer.getChildren().add(root);
+                Timeline timeline = new Timeline();
+                KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+                KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+                timeline.getKeyFrames().add(kf);
+                timeline.play();
+            }else{
+                sideMenuPane.getChildren().removeAll();
+                sideMenuPane.getChildren().add(FXMLLoader.load(this.getClass().getResource("/view/menu/"+location)));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
