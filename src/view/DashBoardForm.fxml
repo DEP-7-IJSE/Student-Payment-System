@@ -38,25 +38,6 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffff00" height="175.0" layoutX="1.0" layoutY="-13.0" stroke="BLACK" strokeWidth="0.25" styleClass="boxeStyles" width="200.0">
-                     <effect>
-                        <BoxBlur />
-                     </effect>
-                  </Rectangle>
-                  <Label layoutX="66.0" layoutY="93.0" text="60">
-                     <font>
-                        <Font name="System Bold" size="50.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
-            <Group>
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.125" layoutY="2.125" prefHeight="92.0" prefWidth="200.0" styleClass="boxLabels" text="Total Income" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffff00" height="175.0" layoutY="2.0" stroke="BLACK" strokeWidth="0.25" styleClass="boxeStyles" width="199.0">
                      <effect>
                         <BoxBlur />
@@ -77,6 +58,25 @@
                      </font>
                   </Label>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffff00" height="175.0" layoutX="2.0" layoutY="1.0" stroke="BLACK" strokeWidth="0.25" styleClass="boxeStyles" width="200.0">
+                     <effect>
+                        <BoxBlur />
+                     </effect>
+                  </Rectangle>
+                  <Label layoutX="66.0" layoutY="93.0" text="60">
+                     <font>
+                        <Font name="System Bold" size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Group layoutX="207.0" layoutY="22.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.125" layoutY="2.125" prefHeight="92.0" prefWidth="200.0" styleClass="boxLabels" text="Total Income" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#ffffff00" height="175.0" layoutY="2.0" stroke="BLACK" strokeWidth="0.25" styleClass="boxeStyles" width="199.0">
                      <effect>
                         <BoxBlur />
                      </effect>

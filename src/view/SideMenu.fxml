@@ -10,6 +10,11 @@
    <children>
       <VBox prefHeight="670.0" prefWidth="200.0" spacing="30.0">
          <children>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Students">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
             <Label alignment="CENTER" onMouseClicked="#manageCourseClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Courses">
                <font>
                   <Font size="15.0" />
