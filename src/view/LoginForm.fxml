@@ -17,7 +17,7 @@
          </image>
       </ImageView>
       <JFXComboBox labelFloat="true" layoutX="9.0" layoutY="78.0" prefHeight="26.0" prefWidth="280.0" promptText="User Name" styleClass="combo-box-base" />
-      <JFXPasswordField labelFloat="true" layoutX="10.0" layoutY="119.0" prefHeight="34.0" prefWidth="280.0" promptText="Password" />
+      <JFXPasswordField labelFloat="true" layoutX="10.0" layoutY="128.0" prefHeight="34.0" prefWidth="280.0" promptText="Password" />
       <JFXButton buttonType="RAISED" defaultButton="true" layoutX="239.0" layoutY="179.0" onAction="#loginOnAction" styleClass="primaryColor" text="Login">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -27,7 +27,7 @@
          <image>
             <Image url="@../assets/User.png" />
          </image></ImageView>
-      <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="236.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="236.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Key.png" />
          </image></ImageView>

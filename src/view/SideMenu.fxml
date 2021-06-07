@@ -10,24 +10,24 @@
    <children>
       <VBox prefHeight="670.0" prefWidth="200.0" spacing="30.0">
          <children>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Students">
+            <Label fx:id="lblManageStudent" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Students">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" onMouseClicked="#manageCourseClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Courses">
+            <Label fx:id="lblManageCourse" alignment="CENTER" onMouseClicked="#manageCourseClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Courses">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Label alignment="CENTER" onMouseClicked="#managePaymentClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Payment">
+            <Label fx:id="lblManagePayment" alignment="CENTER" onMouseClicked="#managePaymentClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Payment">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Label alignment="CENTER" onMouseClicked="#manageUsersClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Users">
+            <Label fx:id="lblManageUsers" alignment="CENTER" onMouseClicked="#manageUsersClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Users">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Label alignment="CENTER" onMouseClicked="#getReportClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Get Report">
+            <Label fx:id="lblGetReport" alignment="CENTER" onMouseClicked="#getReportClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Get Report">
                <font>
                   <Font size="15.0" />
                </font></Label>
