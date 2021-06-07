@@ -79,3 +79,11 @@
 .table-view .virtual-flow .scroll-bar:horizontal .track-background {
     -fx-background-color: transparent;
 }
+
+.exit-button{
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
+.exit-button:hover{
+    -fx-background-color: #c0392b;
+}
