@@ -5,18 +5,13 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -32,34 +27,37 @@ public class SideMenuController {
     public Label lblGetReport;
 
     public void initialize() {
-        manageCourseClicked(null);
-        //changeColors();
+        manageStudentClicked(null);
     }
 
-    public void manageCourseClicked(MouseEvent mouseEvent){
+    public void manageStudentClicked(MouseEvent mouseEvent) {
+        navigateMenuItem("ManageStudentForm.fxml");
+        changeColors(lblManageStudent);
+    }
+    public void manageCourseClicked(MouseEvent mouseEvent) {
         navigateMenuItem("ManageCourseForm.fxml");
-        changeColors(lblManageCourse,lblManageUsers,lblManagePayment,lblGetReport,lblManageStudent);
+        changeColors(lblManageCourse);
     }
 
     public void managePaymentClicked(MouseEvent mouseEvent) {
         navigateMenuItem("ManagePaymentForm.fxml");
-        changeColors(lblManagePayment,lblManageCourse,lblManageUsers,lblGetReport,lblManageStudent);
+        changeColors(lblManagePayment);
     }
 
     public void manageUsersClicked(MouseEvent mouseEvent) {
         navigateMenuItem("ManageUsersForm.fxml");
-        changeColors(lblManageUsers,lblManagePayment,lblManageCourse,lblGetReport,lblManageStudent);
+        changeColors(lblManageUsers);
     }
 
     public void getReportClicked(MouseEvent mouseEvent) {
         navigateMenuItem("GetReport.fxml");
-        changeColors(lblGetReport,lblManageUsers,lblManagePayment,lblManageCourse,lblManageStudent);
+        changeColors(lblGetReport);
     }
 
     private void navigateMenuItem(String location) {
         try {
-            if (sideMenuPane.getScene()!=null) {
-                Parent root = FXMLLoader.load(this.getClass().getResource("../view/menu/"+location));
+            if (sideMenuPane.getScene() != null) {
+                Parent root = FXMLLoader.load(this.getClass().getResource("../view/menu/" + location));
                 Scene scene = sideMenuContainer.getScene();
                 root.translateXProperty().set(scene.getWidth());
                 sideMenuContainer.getChildren().add(root);
@@ -68,19 +66,22 @@ public class SideMenuController {
                 KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
                 timeline.getKeyFrames().add(kf);
                 timeline.play();
-            }else{
+            } else {
                 sideMenuPane.getChildren().removeAll();
-                sideMenuPane.getChildren().add(FXMLLoader.load(this.getClass().getResource("/view/menu/"+location)));
+                sideMenuPane.getChildren().add(FXMLLoader.load(this.getClass().getResource("/view/menu/" + location)));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void changeColors(Label lblSide, Label... lblIdle){
-        lblSide.setBackground(new Background(new BackgroundFill(Color.valueOf("#576574"),null,null)));
-        for (Label label : lblIdle) {
-            label.setBackground(new Background(new BackgroundFill(Color.valueOf("#7f8c8d"),null,null)));
+    private void changeColors(Label lblSide) {
+        lblSide.setBackground(new Background(new BackgroundFill(Color.valueOf("#576574"), new CornerRadii(10), null)));
+        Label[] allLabels = {lblGetReport, lblManageUsers, lblManagePayment, lblManageCourse, lblManageStudent};
+        for (Label label : allLabels) {
+            if (!label.equals(lblSide)) {
+                label.setBackground(new Background(new BackgroundFill(Color.valueOf("#7f8c8d"), null, null)));
+            }
         }
     }
 }

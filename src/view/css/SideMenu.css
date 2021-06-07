@@ -4,9 +4,7 @@
 
 .side-label{
     -fx-text-fill: #2c3e50;
-    -fx-border-radius: 10px;
 }
 .side-label:hover{
-    -fx-background-color: #576574;
-    -fx-cursor: hand;
+    -fx-text-fill: white;
 }
