@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -28,26 +29,31 @@ public class SideMenuController {
     public Label lblManageCourse;
     public Label lblManagePayment;
     public Label lblManageUsers;
+    public Label lblGetReport;
 
     public void initialize() {
         manageCourseClicked(null);
-        changeColors();
+        //changeColors();
     }
 
     public void manageCourseClicked(MouseEvent mouseEvent){
         navigateMenuItem("ManageCourseForm.fxml");
+        changeColors(lblManageCourse,lblManageUsers,lblManagePayment,lblGetReport,lblManageStudent);
     }
 
     public void managePaymentClicked(MouseEvent mouseEvent) {
         navigateMenuItem("ManagePaymentForm.fxml");
+        changeColors(lblManagePayment,lblManageCourse,lblManageUsers,lblGetReport,lblManageStudent);
     }
 
     public void manageUsersClicked(MouseEvent mouseEvent) {
         navigateMenuItem("ManageUsersForm.fxml");
+        changeColors(lblManageUsers,lblManagePayment,lblManageCourse,lblGetReport,lblManageStudent);
     }
 
     public void getReportClicked(MouseEvent mouseEvent) {
         navigateMenuItem("GetReport.fxml");
+        changeColors(lblGetReport,lblManageUsers,lblManagePayment,lblManageCourse,lblManageStudent);
     }
 
     private void navigateMenuItem(String location) {
@@ -71,15 +77,10 @@ public class SideMenuController {
         }
     }
 
-    private void changeColors(){
-        /*Canvas canvas = new Canvas(lblManageStudent.getPrefWidth(), lblManageStudent.getPrefHeight());
-        GraphicsContext ctx = canvas.getGraphicsContext2D();
-        lblManageStudent.*/
-        lblManageStudent.setOnMouseClicked(event -> {
-            lblManageCourse.setBackground(new Background(new BackgroundFill(Color.valueOf("#7f8c8d"),null,null)));
-            lblManageUsers.setBackground(new Background(new BackgroundFill(Color.valueOf("#7f8c8d"),null,null)));
-            lblManagePayment.setBackground(new Background(new BackgroundFill(Color.valueOf("#7f8c8d"),null,null)));
-            lblManageStudent.setBackground(new Background(new BackgroundFill(Color.valueOf("#576574"),null,null)));
-        });
+    private void changeColors(Label lblSide, Label... lblIdle){
+        lblSide.setBackground(new Background(new BackgroundFill(Color.valueOf("#576574"),null,null)));
+        for (Label label : lblIdle) {
+            label.setBackground(new Background(new BackgroundFill(Color.valueOf("#7f8c8d"),null,null)));
+        }
     }
 }
