@@ -77,10 +77,14 @@ public class SideMenuController {
 
     private void changeColors(Label lblSide) {
         lblSide.setBackground(new Background(new BackgroundFill(Color.valueOf("#576574"), new CornerRadii(10), null)));
+        lblSide.setTextFill(Color.WHITE);
         Label[] allLabels = {lblGetReport, lblManageUsers, lblManagePayment, lblManageCourse, lblManageStudent};
         for (Label label : allLabels) {
             if (!label.equals(lblSide)) {
                 label.setBackground(new Background(new BackgroundFill(Color.valueOf("#7f8c8d"), null, null)));
+                label.setTextFill(Color.valueOf("#2c3e50"));
+                /*label.setOnMouseEntered(event -> label.setTextFill(Color.WHITE));
+                label.setOnMouseExited(event -> label.setTextFill(Color.valueOf("#2c3e50")));*/
             }
         }
     }

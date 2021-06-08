@@ -11,7 +11,7 @@
    <children>
       <VBox prefHeight="670.0" prefWidth="200.0" spacing="30.0">
          <children>
-            <Label fx:id="lblManageStudent" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#manageStudentClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Students">
+            <Label fx:id="lblManageStudent" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#manageStudentClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Students" textFill="#2c3e50">
                <font>
                   <Font size="15.0" />
                </font>
@@ -19,28 +19,28 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="lblManageCourse" alignment="CENTER" onMouseClicked="#manageCourseClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Courses">
+            <Label fx:id="lblManageCourse" alignment="CENTER" onMouseClicked="#manageCourseClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Courses" textFill="#2c3e50">
                <font>
                   <Font size="15.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Label>
-            <Label fx:id="lblManagePayment" alignment="CENTER" onMouseClicked="#managePaymentClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Payment">
+            <Label fx:id="lblManagePayment" alignment="CENTER" onMouseClicked="#managePaymentClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Payment" textFill="#2c3e50">
                <font>
                   <Font size="15.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Label>
-            <Label fx:id="lblManageUsers" alignment="CENTER" onMouseClicked="#manageUsersClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Users">
+            <Label fx:id="lblManageUsers" alignment="CENTER" onMouseClicked="#manageUsersClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Manage Users" textFill="#2c3e50">
                <font>
                   <Font size="15.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Label>
-            <Label fx:id="lblGetReport" alignment="CENTER" onMouseClicked="#getReportClicked" prefHeight="36.0" prefWidth="201.0" styleClass="side-label" stylesheets="@css/SideMenu.css" text="Get Report">
+            <Label fx:id="lblGetReport" alignment="CENTER" onMouseClicked="#getReportClicked" prefHeight="36.0" prefWidth="201.0" stylesheets="@css/SideMenu.css" text="Get Report" textFill="#2c3e50">
                <font>
                   <Font size="15.0" />
                </font>
