@@ -18,7 +18,7 @@
             <TableColumn prefWidth="164.0" text="Student" />
             <TableColumn prefWidth="134.0" text="Amount" />
             <TableColumn prefWidth="129.0" text="Received By" />
-            <TableColumn prefWidth="154.0" text="Operation" />
+            <TableColumn prefWidth="160.0" text="Operation" />
         </columns>
       </TableView>
       <VBox alignment="TOP_RIGHT" layoutX="50.0" layoutY="444.0" prefHeight="100.0" prefWidth="726.0" spacing="30.0" AnchorPane.bottomAnchor="126.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
