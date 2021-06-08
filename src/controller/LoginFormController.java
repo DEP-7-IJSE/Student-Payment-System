@@ -27,6 +27,7 @@ public class LoginFormController {
     public void resetPaswordOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/ResetPasswordForm.fxml"))));
+        stage.setTitle("Reset Password");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
