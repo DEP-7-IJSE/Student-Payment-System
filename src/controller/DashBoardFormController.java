@@ -8,8 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +29,7 @@ public class DashBoardFormController {
     public JFXHamburger btnMenu;
     public JFXDrawer dwrSideMenu;
     public Label lblDate;
+    public TableView tblDashBoard;
 
     public void initialize(){
         try {
@@ -52,8 +55,10 @@ public class DashBoardFormController {
             bt.play();
             if(dwrSideMenu.isClosed()){
                 dwrSideMenu.open();
+                dwrSideMenu.setVisible(true);
             }else{
                 dwrSideMenu.close();
+                dwrSideMenu.setVisible(false);
             }
         });
     }
