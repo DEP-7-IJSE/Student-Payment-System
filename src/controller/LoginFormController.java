@@ -13,14 +13,15 @@ public class LoginFormController {
     public AnchorPane loginForm;
 
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
-        Stage login = (Stage) loginForm.getScene().getWindow();
-        login.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/DashBoardForm.fxml"))));
-        login.setMinWidth(1024);
-        login.setMinHeight(768);
-        login.setTitle("DashBoard");
-        login.setResizable(true);
-        login.centerOnScreen();
-        login.show();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/DashBoardForm.fxml"))));
+        stage.setMinWidth(1024);
+        stage.setMinHeight(768);
+        stage.setTitle("DashBoard");
+        stage.setResizable(true);
+        stage.centerOnScreen();
+        ((Stage) loginForm.getScene().getWindow()).close();
+        stage.show();
     }
 
     public void resetPaswordOnAction(ActionEvent actionEvent) throws IOException {
