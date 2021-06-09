@@ -46,7 +46,7 @@ public class PaymentFormController {
     }
 
     private void makeFadeIn() {
-        FadeTransition ft = new FadeTransition(Duration.millis(1000),secondPane);
+        FadeTransition ft = new FadeTransition(Duration.millis(500),secondPane);
         ft.setFromValue(0.5);
         ft.setToValue(1);
         ft.play();
