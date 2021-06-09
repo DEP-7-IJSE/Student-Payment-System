@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ public class PaymentFormController {
     public ImageView imgBack;
     public Label lblDate;
     public JFXComboBox<String> cmbPaymentMethod;
+    public StackPane secondPane;
 
     public void initialize(){
         lblDate.setText(String.valueOf(LocalDate.now()));

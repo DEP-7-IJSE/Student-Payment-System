@@ -3,9 +3,11 @@ package controller;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +17,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -30,6 +34,7 @@ public class DashBoardFormController {
     public JFXDrawer dwrSideMenu;
     public Label lblDate;
     public TableView tblDashBoard;
+    public StackPane rootPane;
 
     public void initialize(){
         try {
@@ -65,6 +70,7 @@ public class DashBoardFormController {
 
     public void paymentOnAction(ActionEvent actionEvent) throws IOException {
         Stage pay = (Stage) lblDate.getScene().getWindow();
+        FadeTransition ft =new FadeTransition(Duration.millis(1200));
         pay.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/PaymentForm.fxml"))));
     }
 

@@ -15,135 +15,141 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/PaymentFormStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentFormController">
+
+<StackPane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/PaymentFormStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentFormController">
    <children>
-      <JFXButton buttonType="RAISED" defaultButton="true" layoutX="840.0" layoutY="25.0" prefHeight="29.0" prefWidth="162.0" styleClass="defaultButtonsColor" text="+" AnchorPane.rightAnchor="22.0">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <Label fx:id="lblDate" layoutX="74.0" layoutY="35.0" prefHeight="30.0" prefWidth="162.0" text="2021-05-28" AnchorPane.leftAnchor="74.0">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Label>
-      <VBox layoutX="20.0" layoutY="112.0" prefHeight="310.0" prefWidth="984.0" spacing="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/PaymentFormStyle.css">
          <children>
-            <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
+            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="840.0" layoutY="25.0" prefHeight="29.0" prefWidth="162.0" styleClass="defaultButtonsColor" text="+" AnchorPane.rightAnchor="22.0">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label fx:id="lblDate" layoutX="74.0" layoutY="35.0" prefHeight="30.0" prefWidth="162.0" text="2021-05-28" AnchorPane.leftAnchor="74.0">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <VBox layoutX="20.0" layoutY="112.0" prefHeight="310.0" prefWidth="984.0" spacing="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <children>
-                  <TextField editable="false" prefHeight="31.0" prefWidth="163.0" promptText="Receipt Number">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <TextField prefHeight="31.0" prefWidth="227.0" promptText="NIC">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <TextField layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="354.0" promptText="Name">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
-               <children>
-                  <JFXComboBox prefHeight="26.0" prefWidth="157.0" promptText="Course ID" />
-                  <TextField prefHeight="31.0" prefWidth="393.0" promptText="Address">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <TextField layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="189.0" promptText="Contact">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
-               <children>
-                  <TextField prefHeight="31.0" prefWidth="305.0" promptText="E-mail">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <TextField prefHeight="31.0" prefWidth="560.0" promptText="Description">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="99.0" prefWidth="980.0" spacing="130.0">
-               <children>
-                  <VBox prefHeight="167.0" prefWidth="121.0" spacing="20.0">
+                  <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
                      <children>
-                        <JFXRadioButton text="Registration">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="whatFor" />
-                           </toggleGroup>
-                        </JFXRadioButton>
-                        <JFXRadioButton layoutX="10.0" layoutY="10.0" selected="true" text="Full Payment" toggleGroup="$whatFor" />
-                        <JFXRadioButton layoutX="10.0" layoutY="46.0" text="Installment" toggleGroup="$whatFor" />
+                        <TextField editable="false" prefHeight="31.0" prefWidth="163.0" promptText="Receipt Number">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField prefHeight="31.0" prefWidth="227.0" promptText="NIC">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="354.0" promptText="Name">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
                      </children>
-                  </VBox>
-                  <JFXComboBox fx:id="cmbPaymentMethod" prefHeight="26.0" prefWidth="157.0" promptText="Payment Method" />
-                  <TextField prefHeight="31.0" prefWidth="197.0" promptText="Amount">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <JFXButton buttonType="RAISED" defaultButton="true" prefHeight="36.0" prefWidth="119.0" text="Submit">
-                     <styleClass>
-                        <String fx:value="submit-button" />
-                        <String fx:value="button" />
-                     </styleClass>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </JFXButton>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
+                     <children>
+                        <JFXComboBox prefHeight="26.0" prefWidth="157.0" promptText="Course ID" />
+                        <TextField prefHeight="31.0" prefWidth="393.0" promptText="Address">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="189.0" promptText="Contact">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
+                     <children>
+                        <TextField prefHeight="31.0" prefWidth="305.0" promptText="E-mail">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField prefHeight="31.0" prefWidth="560.0" promptText="Description">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="99.0" prefWidth="980.0" spacing="130.0">
+                     <children>
+                        <VBox prefHeight="167.0" prefWidth="121.0" spacing="20.0">
+                           <children>
+                              <JFXRadioButton text="Registration">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="whatFor" />
+                                 </toggleGroup>
+                              </JFXRadioButton>
+                              <JFXRadioButton layoutX="10.0" layoutY="10.0" selected="true" text="Full Payment" toggleGroup="$whatFor" />
+                              <JFXRadioButton layoutX="10.0" layoutY="46.0" text="Installment" toggleGroup="$whatFor" />
+                           </children>
+                        </VBox>
+                        <JFXComboBox fx:id="cmbPaymentMethod" prefHeight="26.0" prefWidth="157.0" promptText="Payment Method" />
+                        <TextField prefHeight="31.0" prefWidth="197.0" promptText="Amount">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <JFXButton buttonType="RAISED" defaultButton="true" prefHeight="36.0" prefWidth="119.0" text="Submit">
+                           <styleClass>
+                              <String fx:value="submit-button" />
+                              <String fx:value="button" />
+                           </styleClass>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" layoutX="410.0" layoutY="15.0" prefHeight="69.0" prefWidth="204.0" spacing="220.0" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="410.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/ijse.png" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
-         </children></VBox>
-      <HBox alignment="CENTER" layoutX="410.0" layoutY="15.0" prefHeight="69.0" prefWidth="204.0" spacing="220.0" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="410.0">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <TableView layoutX="22.0" layoutY="423.0" prefHeight="278.0" prefWidth="980.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0">
+               <columns>
+                  <TableColumn prefWidth="296.0" text="Course ID" />
+                  <TableColumn prefWidth="378.0" text="NIC" />
+                  <TableColumn maxWidth="563.0" prefWidth="305.0" text="Amount" />
+               </columns>
+            </TableView>
+            <ImageView fx:id="imgBack" fitHeight="37.0" fitWidth="47.0" layoutX="14.0" layoutY="30.0" onMouseClicked="#imgBackClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="31.0">
                <image>
-                  <Image url="@../assets/ijse.png" />
+                  <Image url="@../assets/White%20Back.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
+            <Separator layoutX="12.0" layoutY="88.0" prefHeight="16.0" prefWidth="998.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="83.0" />
+            <JFXButton layoutX="872.0" layoutY="706.0" prefHeight="29.0" prefWidth="162.0" styleClass="exit-button" text="Logout" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="22.0">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </JFXButton>
          </children>
-      </HBox>
-      <TableView layoutX="22.0" layoutY="423.0" prefHeight="276.0" prefWidth="993.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="9.0">
-        <columns>
-          <TableColumn prefWidth="122.0" text="Course ID" />
-          <TableColumn prefWidth="294.0" text="NIC" />
-            <TableColumn prefWidth="273.0" text="Amount" />
-            <TableColumn prefWidth="302.0" text="Operation" />
-        </columns>
-      </TableView>
-      <ImageView fx:id="imgBack" fitHeight="37.0" fitWidth="47.0" layoutX="14.0" layoutY="30.0" onMouseClicked="#imgBackClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="31.0">
-         <image>
-            <Image url="@../assets/White%20Back.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <Separator layoutX="12.0" layoutY="88.0" prefHeight="16.0" prefWidth="998.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="83.0" />
-      <JFXButton layoutX="872.0" layoutY="706.0" prefHeight="29.0" prefWidth="162.0" styleClass="exit-button" text="Logout" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="22.0">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </JFXButton>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>
