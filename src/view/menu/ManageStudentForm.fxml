@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="826.0" styleClass="anchor-color" stylesheets="@../css/SideMenuItem.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.menu.ManageStudentFormController">
    <children>
-      <TextField layoutX="21.0" layoutY="14.0" promptText="Search  Courses" styleClass="search-course" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+      <TextField layoutX="21.0" layoutY="14.0" promptText="Search  Student" styleClass="search-course" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font size="15.0" />
          </font>
