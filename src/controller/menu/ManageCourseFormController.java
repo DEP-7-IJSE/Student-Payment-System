@@ -27,10 +27,7 @@ public class ManageCourseFormController {
     public Label lblCourseId;
     public TextField txtSearch;
     public TableView<Course> tblCourses;
-    public TableColumn colID;
-    public TableColumn colCourseFee;
-    public TableColumn colStudent;
-    public TableColumn colOperation;
+    public JFXButton btnSave;
 
     public void initialize() {
         tblCourses.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("CourseID"));
@@ -48,6 +45,19 @@ public class ManageCourseFormController {
                 return remove;
             }
         });
+        tblCourses.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue!=null){
+                if(newValue.getCourseID().charAt(3)=='P'){
+                    txtBatchNb.setText(newValue.getCourseID().substring(3));
+                    cmbProgramType.setValue("DEP");
+                }else{
+                    txtBatchNb.setText(newValue.getCourseID().substring(4));
+                }
+                txtCourseFee.setText(String.valueOf(newValue.getCourseFee()));
+                txtStudentCount.setText(String.valueOf(newValue.getStudentCount()));
+                btnSave.setText("Update");
+            }
+        });
         ObservableList<String> items = cmbProgramType.getItems();
         items.add("CMJD");
         items.add("DEP");
@@ -55,23 +65,26 @@ public class ManageCourseFormController {
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
-        MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
-        lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
-        loadAll();
-        refreshForm();
+        if(btnSave.getText().equalsIgnoreCase("Save")){
+            MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
+            lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
+            refreshForm();
+            loadAll();
+        }else{
+
+        }
     }
 
-    public void loadAll() {
+    private void loadAll() {
         tblCourses.getItems().clear();
         ArrayList<Course> all = MANAGE_COURSE_SERVICE.getAll();
         ObservableList<Course> items = tblCourses.getItems();
         items.addAll(all);
     }
 
-    public void refreshForm() {
+    private void refreshForm() {
         txtCourseFee.clear();
         txtBatchNb.clear();
         txtStudentCount.clear();
-        cmbProgramType.resetValidation();
     }
 }

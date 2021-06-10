@@ -27,7 +27,7 @@
          <font>
             <Font size="15.0" />
          </font></JFXTextField>
-      <JFXButton layoutX="735.0" layoutY="185.0" onAction="#btnSaveOnAction" text="Save" />
+      <JFXButton fx:id="btnSave" layoutX="735.0" layoutY="185.0" onAction="#btnSaveOnAction" text="Save" />
       <Label fx:id="lblCourseId" layoutX="386.0" layoutY="261.0" prefHeight="30.0" prefWidth="370.0" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="70.0">
          <font>
             <Font name="System Bold" size="25.0" />
