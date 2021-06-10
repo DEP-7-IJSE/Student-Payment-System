@@ -1,14 +1,12 @@
 package model;
 
 public class Course {
-    private String programType;
-    private int batchNumber;
+    private String courseID;
     private int courseFee;
     private int studentCount;
 
-    public Course(String programType, int batchNumber, int courseFee, int studentCount) {
-        this.programType = programType;
-        this.batchNumber = batchNumber;
+    public Course(String courseID, int courseFee, int studentCount) {
+        this.courseID = courseID;
         this.courseFee = courseFee;
         this.studentCount = studentCount;
     }
@@ -16,20 +14,12 @@ public class Course {
     public Course() {
     }
 
-    public String getProgramType() {
-        return programType;
+    public String getCourseID() {
+        return courseID;
     }
 
-    public void setProgramType(String programType) {
-        this.programType = programType;
-    }
-
-    public int getBatchNumber() {
-        return batchNumber;
-    }
-
-    public void setBatchNumber(int batchNumber) {
-        this.batchNumber = batchNumber;
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
     }
 
     public int getCourseFee() {
@@ -51,8 +41,7 @@ public class Course {
     @Override
     public String toString() {
         return "Course{" +
-                "programType='" + programType + '\'' +
-                ", batchNumber=" + batchNumber +
+                "courseID='" + courseID + '\'' +
                 ", courseFee=" + courseFee +
                 ", studentCount=" + studentCount +
                 '}';

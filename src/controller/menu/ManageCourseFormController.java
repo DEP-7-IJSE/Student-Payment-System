@@ -1,12 +1,16 @@
 package controller.menu;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import javafx.collections.FXCollections;
+import javafx.beans.value.ObservableValueBase;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import service.ManageCourseService;
@@ -14,15 +18,36 @@ import service.ManageCourseService;
 import java.util.ArrayList;
 
 public class ManageCourseFormController {
+    private final ManageCourseService MANAGE_COURSE_SERVICE = new ManageCourseService();
     public AnchorPane ManageCoursePane;
     public JFXComboBox<String> cmbProgramType;
     public JFXTextField txtBatchNb;
     public JFXTextField txtCourseFee;
     public JFXTextField txtStudentCount;
     public Label lblCourseId;
-    public JFXListView lstCourses;
+    public TextField txtSearch;
+    public TableView<Course> tblCourses;
+    public TableColumn colID;
+    public TableColumn colCourseFee;
+    public TableColumn colStudent;
+    public TableColumn colOperation;
 
-    public void initialize(){
+    public void initialize() {
+        tblCourses.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("CourseID"));
+        tblCourses.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("courseFee"));
+        tblCourses.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("studentCount"));
+        TableColumn<Course, JFXButton> lastCol = (TableColumn<Course, JFXButton>) tblCourses.getColumns().get(3);
+        lastCol.setCellValueFactory(param -> new ObservableValueBase<JFXButton>() {
+            @Override
+            public JFXButton getValue() {
+                JFXButton remove = new JFXButton("Delete");
+                remove.setOnAction(event -> {
+                    MANAGE_COURSE_SERVICE.deleteCourse(param.getValue().getCourseID());
+                    tblCourses.getItems().remove(param.getValue());
+                });
+                return remove;
+            }
+        });
         ObservableList<String> items = cmbProgramType.getItems();
         items.add("CMJD");
         items.add("DEP");
@@ -30,8 +55,23 @@ public class ManageCourseFormController {
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
-        ManageCourseService manageCourseService= new ManageCourseService();
-        manageCourseService.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()),Integer.parseInt(txtStudentCount.getText()));
-        lblCourseId.setText(cmbProgramType.getValue()+txtBatchNb.getText());
+        MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
+        lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
+        loadAll();
+        refreshForm();
+    }
+
+    public void loadAll() {
+        tblCourses.getItems().clear();
+        ArrayList<Course> all = MANAGE_COURSE_SERVICE.getAll();
+        ObservableList<Course> items = tblCourses.getItems();
+        items.addAll(all);
+    }
+
+    public void refreshForm() {
+        txtCourseFee.clear();
+        txtBatchNb.clear();
+        txtStudentCount.clear();
+        cmbProgramType.resetValidation();
     }
 }

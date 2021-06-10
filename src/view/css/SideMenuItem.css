@@ -53,6 +53,7 @@
     -fx-wrap-text: true;
     -fx-text-fill: white;
     -fx-cell-size: 25px;
+    -fx-alignment: center;
 }
 
 .table-cell:empty{
@@ -65,7 +66,7 @@
     -fx-padding: 0.0em;
 }
 .table-row-cell:filled:even{
-    -fx-background-color: #57606f;
+    -fx-background-color: #5d6676;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
