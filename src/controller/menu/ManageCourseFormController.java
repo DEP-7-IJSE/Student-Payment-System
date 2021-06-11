@@ -69,8 +69,8 @@ public class ManageCourseFormController {
         if (btnSave.getText().equalsIgnoreCase("Save")) {
             MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
             lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
-            refreshForm();
             loadAll();
+            refreshForm();
         } else {
 
         }

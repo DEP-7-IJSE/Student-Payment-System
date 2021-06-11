@@ -47,10 +47,11 @@
     -fx-background-color: transparent;
 }
 
-.cell{
+#tblPayment .cell{
     -fx-wrap-text: true;
     -fx-text-fill: white;
     -fx-cell-size: 25px;
+    -fx-alignment: center;
 }
 
 .table-cell:empty{
@@ -95,4 +96,14 @@
 }
 .exit-button:hover{
     -fx-background-color: #c0392b;
+}
+
+.list-cell{
+    -fx-background-color: #7f8c8d;
+    -fx-text-fill: white;
+
+}
+
+.list-cell:filled:hover{
+    -fx-background-color: #778182;
 }

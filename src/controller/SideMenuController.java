@@ -57,7 +57,8 @@ public class SideMenuController {
     private void navigateMenuItem(String location) {
         try {
             if (sideMenuPane.getScene() != null) {
-                Parent root = FXMLLoader.load(this.getClass().getResource("../view/menu/" + location));
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../view/menu/" + location));
+                Parent root = loader.load();
                 Scene scene = sideMenuContainer.getScene();
                 root.translateXProperty().set(scene.getWidth());
                 sideMenuContainer.getChildren().add(root);

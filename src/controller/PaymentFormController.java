@@ -21,13 +21,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Course;
 import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
 import service.PaymentFormService;
+import service.menu.ManageCourseService;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentFormController {
@@ -52,12 +55,17 @@ public class PaymentFormController {
     public TableView<PaymentFormTM> tblPayment;
 
     private final PaymentFormService paymentFormService = new PaymentFormService();
+    private final ManageCourseService manageCourseService= new ManageCourseService();
 
     public void initialize(){
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));
         tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("nic"));
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("amount"));
+
         lblDate.setText(String.valueOf(LocalDate.now()));
+
+        setCourseID();
+
         secondPane.setOpacity(0.5);
         makeFadeIn();
         Platform.runLater(()->{
@@ -73,6 +81,15 @@ public class PaymentFormController {
         items.add("Card Payment");
         items.add("Online Transfer");
         items.add("Cash");
+    }
+
+    private void setCourseID() {
+        ObservableList<String> courseID = cmbCourseID.getItems();
+        /*ArrayList<Course> all = manageCourseService.getAll();
+        for (Course course : all) {
+            courseID.add(course.getCourseID());
+        }*/
+        courseID.add("DEP7");
     }
 
     private void makeFadeIn() {

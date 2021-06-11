@@ -127,7 +127,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <TableView fx:id="tblPayment" layoutX="22.0" layoutY="423.0" prefHeight="278.0" prefWidth="980.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0">
+            <TableView id="tblPayment" fx:id="tblPayment" layoutX="22.0" layoutY="423.0" prefHeight="278.0" prefWidth="980.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0">
                <columns>
                   <TableColumn prefWidth="296.0" text="Course ID" />
                   <TableColumn prefWidth="378.0" text="NIC" />
