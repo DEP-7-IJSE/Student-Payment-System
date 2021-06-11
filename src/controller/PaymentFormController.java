@@ -1,12 +1,15 @@
 package controller;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXRadioButton;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCharacterCombination;
@@ -25,6 +28,18 @@ public class PaymentFormController {
     public Label lblDate;
     public JFXComboBox<String> cmbPaymentMethod;
     public StackPane secondPane;
+    public TextField txtReceipt;
+    public TextField txtnic;
+    public TextField txtName;
+    public JFXComboBox<String> cmbCourseID;
+    public TextField txtAddress;
+    public TextField txtContact;
+    public TextField txtEmail;
+    public TextField txtDescription;
+    public JFXRadioButton rdoRegistration;
+    public JFXRadioButton rdoFullPayment;
+    public JFXRadioButton rdoInstalment;
+    public TextField txtAmount;
 
     public void initialize(){
         lblDate.setText(String.valueOf(LocalDate.now()));
@@ -63,5 +78,9 @@ public class PaymentFormController {
 
     public void mouseExited(MouseEvent mouseEvent) {
         imgBack.setImage(new Image("assets/White Back.png"));
+    }
+
+    public void btnSubminOnAction(ActionEvent actionEvent) {
+
     }
 }

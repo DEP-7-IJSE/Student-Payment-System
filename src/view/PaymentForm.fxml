@@ -96,7 +96,7 @@
                                  </toggleGroup>
                               </JFXRadioButton>
                               <JFXRadioButton fx:id="rdoFullPayment" layoutX="10.0" layoutY="10.0" selected="true" text="Full Payment" toggleGroup="$whatFor" />
-                              <JFXRadioButton fx:id="rdoFullPayment" layoutX="10.0" layoutY="46.0" text="Installment" toggleGroup="$whatFor" />
+                              <JFXRadioButton fx:id="rdoInstalment" layoutX="10.0" layoutY="46.0" text="Installment" toggleGroup="$whatFor" />
                            </children>
                         </VBox>
                         <JFXComboBox fx:id="cmbPaymentMethod" prefHeight="26.0" prefWidth="157.0" promptText="Payment Method" />
