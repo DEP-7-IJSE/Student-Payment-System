@@ -19,7 +19,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/PaymentFormStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentFormController">
    <children>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/PaymentFormStyle.css">
@@ -41,32 +40,17 @@
                <children>
                   <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
                      <children>
-                        <TextField editable="false" prefHeight="31.0" prefWidth="163.0" promptText="Receipt Number">
+                        <TextField fx:id="txtReceipt" editable="false" prefHeight="31.0" prefWidth="163.0" promptText="Receipt Number">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <TextField prefHeight="31.0" prefWidth="227.0" promptText="NIC">
+                        <TextField fx:id="txtnic" prefHeight="31.0" prefWidth="227.0" promptText="NIC">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <TextField layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="354.0" promptText="Name">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
-                     <children>
-                        <JFXComboBox prefHeight="26.0" prefWidth="157.0" promptText="Course ID" />
-                        <TextField prefHeight="31.0" prefWidth="393.0" promptText="Address">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                        <TextField layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="189.0" promptText="Contact">
+                        <TextField fx:id="txtName" layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="354.0" promptText="Name">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -75,12 +59,27 @@
                   </HBox>
                   <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
                      <children>
-                        <TextField prefHeight="31.0" prefWidth="305.0" promptText="E-mail">
+                        <JFXComboBox fx:id="cmbCourseID" prefHeight="26.0" prefWidth="157.0" promptText="Course ID" />
+                        <TextField fx:id="txtAddress" prefHeight="31.0" prefWidth="393.0" promptText="Address">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <TextField prefHeight="31.0" prefWidth="560.0" promptText="Description">
+                        <TextField fx:id="txtContact" layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="189.0" promptText="Contact">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="980.0" spacing="120.0">
+                     <children>
+                        <TextField fx:id="txtEmail" prefHeight="31.0" prefWidth="305.0" promptText="E-mail">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtDescription" prefHeight="31.0" prefWidth="560.0" promptText="Description">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -91,22 +90,22 @@
                      <children>
                         <VBox prefHeight="167.0" prefWidth="121.0" spacing="20.0">
                            <children>
-                              <JFXRadioButton text="Registration">
+                              <JFXRadioButton fx:id="rdoRegistration" text="Registration">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="whatFor" />
                                  </toggleGroup>
                               </JFXRadioButton>
-                              <JFXRadioButton layoutX="10.0" layoutY="10.0" selected="true" text="Full Payment" toggleGroup="$whatFor" />
-                              <JFXRadioButton layoutX="10.0" layoutY="46.0" text="Installment" toggleGroup="$whatFor" />
+                              <JFXRadioButton fx:id="rdoFullPayment" layoutX="10.0" layoutY="10.0" selected="true" text="Full Payment" toggleGroup="$whatFor" />
+                              <JFXRadioButton fx:id="rdoFullPayment" layoutX="10.0" layoutY="46.0" text="Installment" toggleGroup="$whatFor" />
                            </children>
                         </VBox>
                         <JFXComboBox fx:id="cmbPaymentMethod" prefHeight="26.0" prefWidth="157.0" promptText="Payment Method" />
-                        <TextField prefHeight="31.0" prefWidth="197.0" promptText="Amount">
+                        <TextField fx:id="txtAmount" prefHeight="31.0" prefWidth="197.0" promptText="Amount">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <JFXButton buttonType="RAISED" defaultButton="true" prefHeight="36.0" prefWidth="119.0" text="Submit">
+                        <JFXButton buttonType="RAISED" defaultButton="true" onAction="#btnSubminOnAction" prefHeight="36.0" prefWidth="119.0" text="Submit">
                            <styleClass>
                               <String fx:value="submit-button" />
                               <String fx:value="button" />
@@ -128,7 +127,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <TableView layoutX="22.0" layoutY="423.0" prefHeight="278.0" prefWidth="980.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0">
+            <TableView fx:id="tblPayment" layoutX="22.0" layoutY="423.0" prefHeight="278.0" prefWidth="980.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0">
                <columns>
                   <TableColumn prefWidth="296.0" text="Course ID" />
                   <TableColumn prefWidth="378.0" text="NIC" />

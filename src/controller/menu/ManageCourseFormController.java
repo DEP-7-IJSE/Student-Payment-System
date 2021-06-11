@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
-import service.ManageCourseService;
+import service.menu.ManageCourseService;
 
 import java.util.ArrayList;
 
@@ -45,12 +45,12 @@ public class ManageCourseFormController {
                 return remove;
             }
         });
+
         tblCourses.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue!=null){
-                if(newValue.getCourseID().charAt(3)=='P'){
+            if (newValue != null) {
+                if (newValue.getCourseID().charAt(3) == 'P') {
                     txtBatchNb.setText(newValue.getCourseID().substring(3));
-                    cmbProgramType.setValue("DEP");
-                }else{
+                } else {
                     txtBatchNb.setText(newValue.getCourseID().substring(4));
                 }
                 txtCourseFee.setText(String.valueOf(newValue.getCourseFee()));
@@ -58,6 +58,7 @@ public class ManageCourseFormController {
                 btnSave.setText("Update");
             }
         });
+
         ObservableList<String> items = cmbProgramType.getItems();
         items.add("CMJD");
         items.add("DEP");
@@ -65,12 +66,12 @@ public class ManageCourseFormController {
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
-        if(btnSave.getText().equalsIgnoreCase("Save")){
+        if (btnSave.getText().equalsIgnoreCase("Save")) {
             MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
             lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
             refreshForm();
             loadAll();
-        }else{
+        } else {
 
         }
     }
