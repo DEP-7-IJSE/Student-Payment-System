@@ -83,8 +83,8 @@ public class PaymentFormController {
 
     private void setCourseID() {
         ObservableList<String> courseID = cmbCourseID.getItems();
-        /*ArrayList<Course> all = manageCourseService.getAll();
-        for (Course course : all) {
+        /*ArrayList<CourseTM> all = manageCourseService.getAll();
+        for (CourseTM course : all) {
             courseID.add(course.getCourseID());
         }*/
         courseID.add("DEP7");

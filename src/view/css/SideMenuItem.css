@@ -28,6 +28,7 @@
 .text-field{
     -fx-text-fill: white;
 }
+
 .search-course{
     -fx-background-color: transparent;
     -fx-border-radius: 4px;
