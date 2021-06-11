@@ -90,13 +90,13 @@
                      <children>
                         <VBox prefHeight="167.0" prefWidth="121.0" spacing="20.0">
                            <children>
-                              <JFXRadioButton fx:id="rdoRegistration" text="Registration">
+                              <JFXRadioButton fx:id="rdoRegistration" accessibleText="Registration" text="Registration">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="whatFor" />
                                  </toggleGroup>
                               </JFXRadioButton>
-                              <JFXRadioButton fx:id="rdoFullPayment" layoutX="10.0" layoutY="10.0" selected="true" text="Full Payment" toggleGroup="$whatFor" />
-                              <JFXRadioButton fx:id="rdoInstalment" layoutX="10.0" layoutY="46.0" text="Installment" toggleGroup="$whatFor" />
+                              <JFXRadioButton fx:id="rdoFullPayment" accessibleText="Full Payment" layoutX="10.0" layoutY="10.0" selected="true" text="Full Payment" toggleGroup="$whatFor" />
+                              <JFXRadioButton fx:id="rdoInstalment" accessibleText="Installment" layoutX="10.0" layoutY="46.0" text="Installment" toggleGroup="$whatFor" />
                            </children>
                         </VBox>
                         <JFXComboBox fx:id="cmbPaymentMethod" prefHeight="26.0" prefWidth="157.0" promptText="Payment Method" />
@@ -105,7 +105,7 @@
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <JFXButton buttonType="RAISED" defaultButton="true" onAction="#btnSubminOnAction" prefHeight="36.0" prefWidth="119.0" text="Submit">
+                        <JFXButton buttonType="RAISED" defaultButton="true" onAction="#btnSubmitOnAction" prefHeight="36.0" prefWidth="119.0" text="Submit">
                            <styleClass>
                               <String fx:value="submit-button" />
                               <String fx:value="button" />

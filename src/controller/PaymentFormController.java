@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCharacterCombination;
@@ -18,6 +19,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Payment;
+import model.Student;
+import service.PaymentFormService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -40,8 +44,12 @@ public class PaymentFormController {
     public JFXRadioButton rdoFullPayment;
     public JFXRadioButton rdoInstalment;
     public TextField txtAmount;
+    public ToggleGroup whatFor;
+
+    private PaymentFormService paymentFormService = new PaymentFormService();
 
     public void initialize(){
+
         lblDate.setText(String.valueOf(LocalDate.now()));
         secondPane.setOpacity(0.5);
         makeFadeIn();
@@ -80,7 +88,21 @@ public class PaymentFormController {
         imgBack.setImage(new Image("assets/White Back.png"));
     }
 
-    public void btnSubminOnAction(ActionEvent actionEvent) {
-
+    public void btnSubmitOnAction(ActionEvent actionEvent) {
+        Student student= new Student(
+                txtnic.getText(),
+                txtName.getText(),
+                txtAddress.getText(),
+                txtContact.getText(),
+                txtEmail.getText(),
+                txtDescription.getText()
+                );
+        Payment payment= new Payment(
+                txtnic.getText(),
+                cmbPaymentMethod.getValue(),
+                Integer.parseInt(txtAmount.getText()),
+                whatFor.getSelectedToggle().selectedProperty().getName()
+        );
+        paymentFormService.savePayments(student,payment);
     }
 }
