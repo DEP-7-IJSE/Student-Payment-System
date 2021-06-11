@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.Course;
 import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
@@ -30,11 +26,12 @@ import service.menu.ManageCourseService;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentFormController {
 
+    private final PaymentFormService paymentFormService = new PaymentFormService();
+    private final ManageCourseService manageCourseService = new ManageCourseService();
     public ImageView imgBack;
     public Label lblDate;
     public JFXComboBox<String> cmbPaymentMethod;
@@ -54,10 +51,7 @@ public class PaymentFormController {
     public ToggleGroup whatFor;
     public TableView<PaymentFormTM> tblPayment;
 
-    private final PaymentFormService paymentFormService = new PaymentFormService();
-    private final ManageCourseService manageCourseService= new ManageCourseService();
-
-    public void initialize(){
+    public void initialize() {
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));
         tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("nic"));
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("amount"));
@@ -68,7 +62,7 @@ public class PaymentFormController {
 
         secondPane.setOpacity(0.5);
         makeFadeIn();
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             lblDate.getScene().getAccelerators().put(new KeyCharacterCombination("b", KeyCombination.CONTROL_ANY), () -> {
                 try {
                     imgBackClicked(null);
@@ -93,7 +87,7 @@ public class PaymentFormController {
     }
 
     private void makeFadeIn() {
-        FadeTransition ft = new FadeTransition(Duration.millis(500),secondPane);
+        FadeTransition ft = new FadeTransition(Duration.millis(500), secondPane);
         ft.setFromValue(0.5);
         ft.setToValue(1);
         ft.play();
@@ -113,27 +107,51 @@ public class PaymentFormController {
     }
 
     public void btnSubmitOnAction(ActionEvent actionEvent) {
-        Student student= new Student(
-                txtnic.getText(),
-                txtName.getText(),
-                txtAddress.getText(),
-                txtContact.getText(),
-                txtEmail.getText(),
-                txtDescription.getText(),
-                cmbCourseID.getValue());
-        Payment payment= new Payment(
-                txtnic.getText(),
-                cmbPaymentMethod.getValue(),
-                Integer.parseInt(txtAmount.getText()),
-                whatFor.getSelectedToggle().selectedProperty().getName()
-        );
-        paymentFormService.savePayments(student,payment);
-        loadAllPayments();
+        try{
+            Student student = new Student(
+                    txtnic.getText(),
+                    txtName.getText(),
+                    txtAddress.getText(),
+                    txtContact.getText(),
+                    txtEmail.getText(),
+                    txtDescription.getText(),
+                    cmbCourseID.getValue());
+            Payment payment = new Payment(
+                    txtnic.getText(),
+                    cmbPaymentMethod.getValue(),
+                    Integer.parseInt(txtAmount.getText()),
+                    whatFor.getSelectedToggle().selectedProperty().getName()
+            );
+            boolean saved = paymentFormService.savePayments(student, payment);
+            if(saved) {
+                new Alert(Alert.AlertType.INFORMATION, "Saved Sccessfully", ButtonType.OK).show();
+                clearForm();
+                loadAllPayments();
+            }
+        }catch (RuntimeException e){
+            new Alert(Alert.AlertType.ERROR,"Error",ButtonType.CLOSE).show();
+            clearForm();
+        }
     }
 
-    private void loadAllPayments(){
+    private void loadAllPayments() {
         ObservableList<PaymentFormTM> items = tblPayment.getItems();
         List<PaymentFormTM> all = paymentFormService.findAll();
         items.addAll(all);
+    }
+
+    public void newOnAction(ActionEvent actionEvent) {
+        clearForm();
+    }
+
+    private void clearForm() {
+        txtnic.clear();
+        txtName.clear();
+        txtAddress.clear();
+        txtContact.clear();
+        txtEmail.clear();
+        txtDescription.clear();
+        txtnic.clear();
+        txtAmount.clear();
     }
 }

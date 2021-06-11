@@ -23,7 +23,7 @@
    <children>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/PaymentFormStyle.css">
          <children>
-            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="840.0" layoutY="25.0" prefHeight="29.0" prefWidth="162.0" styleClass="defaultButtonsColor" text="+" AnchorPane.rightAnchor="22.0">
+            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="840.0" layoutY="25.0" onAction="#newOnAction" prefHeight="29.0" prefWidth="162.0" styleClass="defaultButtonsColor" text="+" AnchorPane.rightAnchor="22.0">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>

@@ -11,9 +11,10 @@ public class PaymentFormService {
     private static final ArrayList<Student> STUDENT_LIST= new ArrayList<>();
     private static final ArrayList<Payment> PAYMENTS = new ArrayList<>();
 
-    public void savePayments(Student student, Payment payment){
-        STUDENT_LIST.add(student);
-        PAYMENTS.add(payment);
+    public boolean savePayments(Student student, Payment payment){
+        boolean addedStudent = STUDENT_LIST.add(student);
+        boolean addedPayment = PAYMENTS.add(payment);
+        return addedPayment && addedStudent;
     }
 
     public List<PaymentFormTM> findAll(){
