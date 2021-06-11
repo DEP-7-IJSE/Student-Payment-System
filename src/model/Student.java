@@ -7,14 +7,16 @@ public class Student {
     private String contact;
     private String email;
     private String description;
+    private String courseID;
 
-    public Student(String nic, String name, String address, String contact, String email, String description) {
+    public Student(String nic, String name, String address, String contact, String email, String description, String courseID) {
         this.nic = nic;
         this.name = name;
         this.address = address;
         this.contact = contact;
         this.email = email;
         this.description = description;
+        this.setCourseID(courseID);
     }
 
     public Student() {
@@ -68,6 +70,14 @@ public class Student {
         this.description = description;
     }
 
+    public String getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -77,6 +87,7 @@ public class Student {
                 ", contact='" + contact + '\'' +
                 ", email='" + email + '\'' +
                 ", description='" + description + '\'' +
+                ", courseID='" + courseID + '\'' +
                 '}';
     }
 }

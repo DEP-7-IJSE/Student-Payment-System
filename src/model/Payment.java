@@ -1,8 +1,5 @@
 package model;
 
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
-
 public class Payment {
     private String nic;
     private String paymentMethod;

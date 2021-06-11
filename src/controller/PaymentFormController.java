@@ -9,8 +9,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCharacterCombination;
@@ -21,10 +23,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Payment;
 import model.Student;
+import model.tm.PaymentFormTM;
 import service.PaymentFormService;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class PaymentFormController {
 
@@ -45,11 +49,14 @@ public class PaymentFormController {
     public JFXRadioButton rdoInstalment;
     public TextField txtAmount;
     public ToggleGroup whatFor;
+    public TableView<PaymentFormTM> tblPayment;
 
-    private PaymentFormService paymentFormService = new PaymentFormService();
+    private final PaymentFormService paymentFormService = new PaymentFormService();
 
     public void initialize(){
-
+        tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));
+        tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("nic"));
+        tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("amount"));
         lblDate.setText(String.valueOf(LocalDate.now()));
         secondPane.setOpacity(0.5);
         makeFadeIn();
@@ -95,8 +102,8 @@ public class PaymentFormController {
                 txtAddress.getText(),
                 txtContact.getText(),
                 txtEmail.getText(),
-                txtDescription.getText()
-                );
+                txtDescription.getText(),
+                cmbCourseID.getValue());
         Payment payment= new Payment(
                 txtnic.getText(),
                 cmbPaymentMethod.getValue(),
@@ -104,5 +111,12 @@ public class PaymentFormController {
                 whatFor.getSelectedToggle().selectedProperty().getName()
         );
         paymentFormService.savePayments(student,payment);
+        loadAllPayments();
+    }
+
+    private void loadAllPayments(){
+        ObservableList<PaymentFormTM> items = tblPayment.getItems();
+        List<PaymentFormTM> all = paymentFormService.findAll();
+        items.addAll(all);
     }
 }
