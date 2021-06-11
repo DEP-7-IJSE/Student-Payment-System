@@ -51,12 +51,16 @@ public class PaymentFormController {
     public ToggleGroup whatFor;
     public TableView<PaymentFormTM> tblPayment;
 
+    private int receiptNumber=1;
+
     public void initialize() {
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));
         tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("nic"));
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("amount"));
 
         lblDate.setText(String.valueOf(LocalDate.now()));
+
+        txtReceipt.setText(String.format("R%04d",receiptNumber));
 
         setCourseID();
 
@@ -124,6 +128,8 @@ public class PaymentFormController {
             );
             boolean saved = paymentFormService.savePayments(student, payment);
             if(saved) {
+                receiptNumber++;
+                txtReceipt.setText(String.format("R%04d",receiptNumber));
                 new Alert(Alert.AlertType.INFORMATION, "Saved Sccessfully", ButtonType.OK).show();
                 clearForm();
                 loadAllPayments();
@@ -141,6 +147,7 @@ public class PaymentFormController {
     }
 
     public void newOnAction(ActionEvent actionEvent) {
+        txtReceipt.setText(String.format("R%04d",receiptNumber));
         clearForm();
     }
 
