@@ -2,7 +2,10 @@ package controller;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
+import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +29,7 @@ import service.menu.ManageCourseService;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class PaymentFormController {
@@ -50,6 +54,7 @@ public class PaymentFormController {
     public TextField txtAmount;
     public ToggleGroup whatFor;
     public TableView<PaymentFormTM> tblPayment;
+    public Label lblTime;
 
     private int receiptNumber=1;
 
@@ -59,6 +64,12 @@ public class PaymentFormController {
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("amount"));
 
         lblDate.setText(String.valueOf(LocalDate.now()));
+        Timeline t1 = new Timeline(new KeyFrame(Duration.millis(900), event -> {
+            String time = String.format("%tT", new Date());
+            lblTime.setText(time);
+        }));
+        t1.setCycleCount(Animation.INDEFINITE);
+        t1.play();
 
         txtReceipt.setText(String.format("R%04d",receiptNumber));
 
