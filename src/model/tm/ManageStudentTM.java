@@ -4,7 +4,7 @@ public class ManageStudentTM {
 
     private String courseID;
     private String NIC;
-    private String Name;
+    private String name;
     private String contact;
     private String address;
     private String email;
@@ -12,7 +12,7 @@ public class ManageStudentTM {
     public ManageStudentTM(String courseID, String NIC, String name, String contact, String address, String email) {
         this.courseID = courseID;
         this.NIC = NIC;
-        Name = name;
+        this.name = name;
         this.contact = contact;
         this.address = address;
         this.email = email;
@@ -38,11 +38,11 @@ public class ManageStudentTM {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getContact() {
@@ -74,7 +74,7 @@ public class ManageStudentTM {
         return "ManageStudentTM{" +
                 "courseID='" + courseID + '\'' +
                 ", NIC='" + NIC + '\'' +
-                ", Name='" + Name + '\'' +
+                ", Name='" + name + '\'' +
                 ", contact='" + contact + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +

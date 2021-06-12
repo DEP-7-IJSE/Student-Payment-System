@@ -5,9 +5,11 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ObservableValueBase;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Course;
 import model.tm.ManagePaymentTM;
+import model.tm.ManageStudentTM;
 import service.menu.ManagePaymentService;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class ManagePaymentFormController {
     public JFXTextField txtStudent;
     public JFXTextField txtAmount;
     public JFXButton btnUpdate;
+    public TextField txtSearch;
 
     private final ManagePaymentService MANAGE_PAYMENT_SERVICE=new ManagePaymentService();
 
@@ -41,7 +44,9 @@ public class ManagePaymentFormController {
             }
         });
 
-        loadAllPaymentDetails();
+        loadAllPaymentDetails("");
+
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> loadAllPaymentDetails(newValue));
 
         tblPayment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
             txtCourseID.setText(newValue.getCourseID());
@@ -50,9 +55,11 @@ public class ManagePaymentFormController {
         });
     }
 
-    private void loadAllPaymentDetails() {
-        ArrayList<ManagePaymentTM> managePaymentTM = MANAGE_PAYMENT_SERVICE.loadAllPayments();
-        tblPayment.getItems().addAll(managePaymentTM);
+    private void loadAllPaymentDetails(String query) {
+        tblPayment.getItems().clear();
+        for (ManagePaymentTM tm : MANAGE_PAYMENT_SERVICE.loadAllPayments(query)) {
+            tblPayment.getItems().add(new ManagePaymentTM(tm.getDate(),tm.getCourseID(),tm.getStudentNIC(),tm.getAmount(),tm.getName()));
+        }
     }
 
 }

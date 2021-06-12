@@ -28,13 +28,17 @@ public class ManagePaymentService {
         STUDENT.add(s3);
     }
 
-    public ArrayList<ManagePaymentTM> loadAllPayments(){
+    public ArrayList<ManagePaymentTM> loadAllPayments(String query){
         ArrayList<ManagePaymentTM> getPayments= new ArrayList<>();
         for (Payment payment : PAYMENT) {
             for (Student student : STUDENT) {
-                if(payment.getNic().equals(student.getNic())){
-                    getPayments.add(new ManagePaymentTM(payment.getDate(), student.getCourseID(), student.getNic(), payment.getAmount(), payment.getLogin()));
-                    break;
+                if (payment.getNic().contains(query) || String.valueOf(payment.getAmount()).contains(query) ||
+                        payment.getDate().contains(query) || payment.getLogin().contains(query) ||
+                student.getCourseID().contains(query)) {
+                    if (payment.getNic().equals(student.getNic())) {
+                        getPayments.add(new ManagePaymentTM(payment.getDate(), student.getCourseID(), student.getNic(), payment.getAmount(), payment.getLogin()));
+                        break;
+                    }
                 }
             }
         }

@@ -21,10 +21,14 @@ public class ManageStudentFormService {
         STUDENT_LIST.add(s4);
     }
 
-    public List<ManageStudentTM> getAllStudent(){
+    public List<ManageStudentTM> getAllStudent(String query){
         List<ManageStudentTM> tm = new ArrayList<>();
         for (Student student : STUDENT_LIST) {
-            tm.add(new ManageStudentTM(student.getCourseID(),student.getNic(),student.getName(),student.getContact(),student.getAddress(),student.getEmail()));
+            if(student.getNic().contains(query) || student.getName().contains(query) || student.getAddress().contains(query) ||
+            student.getContact().contains(query) || student.getEmail().contains(query) ||
+            student.getDescription().contains(query) || student.getCourseID().contains(query)) {
+                tm.add(new ManageStudentTM(student.getCourseID(), student.getNic(), student.getName(), student.getContact(), student.getAddress(), student.getEmail()));
+            }
         }
         return tm;
     }

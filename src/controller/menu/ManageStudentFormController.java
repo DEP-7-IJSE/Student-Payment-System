@@ -29,7 +29,7 @@ public class ManageStudentFormController {
         tblStudent.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("address"));
         tblStudent.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        getAllStudents();
+        getAllStudents("");
 
         tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             lstStudent.getItems().clear();
@@ -44,19 +44,22 @@ public class ManageStudentFormController {
                 lstStudent.getItems().add(newValue.getEmail());
             }
         });
+
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> getAllStudents(newValue));
     }
 
-    private void getAllStudents() {
-        List<ManageStudentTM> allStudent = MANAGE_STUDENT_FORM_SERVICE.getAllStudent();
-        tblStudent.getItems().addAll(allStudent);
+    private void getAllStudents(String query) {
+        tblStudent.getItems().clear();
+        for (ManageStudentTM tm : MANAGE_STUDENT_FORM_SERVICE.getAllStudent(query)) {
+            tblStudent.getItems().add(new ManageStudentTM(tm.getCourseID(),tm.getNIC(),tm.getName(),tm.getContact(),tm.getAddress(),tm.getEmail()));
+        }
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
         Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are sure you want to delete this?", ButtonType.YES, ButtonType.NO).showAndWait();
         if(buttonType.get() == ButtonType.YES) {
             MANAGE_STUDENT_FORM_SERVICE.removeStudent(tblStudent.getSelectionModel().getSelectedItem());
-            tblStudent.getItems().clear();
-            getAllStudents();
+            getAllStudents("");
             lstStudent.getItems().clear();
             btnDelete.setVisible(false);
             btnSave.setVisible(false);
