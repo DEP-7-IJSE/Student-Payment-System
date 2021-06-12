@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="826.0" styleClass="anchor-color" stylesheets="@../css/SideMenuItem.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.menu.ManageStudentFormController">
    <children>
-      <TextField layoutX="21.0" layoutY="14.0" promptText="Search  Student" styleClass="search-course" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+      <TextField fx:id="txtSearch" layoutX="21.0" layoutY="14.0" promptText="Search  Student" styleClass="search-course" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TableView layoutX="14.0" layoutY="55.0" prefHeight="334.0" prefWidth="796.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+      <TableView fx:id="tblStudent" layoutX="14.0" layoutY="55.0" prefHeight="334.0" prefWidth="796.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
         <columns>
           <TableColumn prefWidth="87.0" text="Course ID" />
           <TableColumn prefWidth="128.0" text="NIC" />
@@ -24,7 +24,7 @@
             <TableColumn prefWidth="166.0" text="E-mail" />
         </columns>
       </TableView>
-      <ListView layoutX="269.0" layoutY="397.0" prefHeight="263.0" prefWidth="311.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
+      <ListView fx:id="lstStudent" editable="true" layoutX="269.0" layoutY="397.0" prefHeight="263.0" prefWidth="311.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
    </children>
 
 </AnchorPane>
