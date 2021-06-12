@@ -2,15 +2,14 @@ package controller.menu;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Student;
 import model.tm.ManageStudentTM;
 import service.menu.ManageStudentFormService;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ManageStudentFormController {
 
@@ -53,12 +52,15 @@ public class ManageStudentFormController {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
-        MANAGE_STUDENT_FORM_SERVICE.removeStudent(tblStudent.getSelectionModel().getSelectedItem());
-        tblStudent.getItems().clear();
-        getAllStudents();
-        lstStudent.getItems().clear();
-        btnDelete.setVisible(false);
-        btnSave.setVisible(false);
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are sure you want to delete this?", ButtonType.YES, ButtonType.NO).showAndWait();
+        if(buttonType.get() == ButtonType.YES) {
+            MANAGE_STUDENT_FORM_SERVICE.removeStudent(tblStudent.getSelectionModel().getSelectedItem());
+            tblStudent.getItems().clear();
+            getAllStudents();
+            lstStudent.getItems().clear();
+            btnDelete.setVisible(false);
+            btnSave.setVisible(false);
+        }
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
