@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="826.0" styleClass="anchor-color" stylesheets="@../css/SideMenuItem.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.menu.ManagePaymentFormController">
    <children>
-      <TableView layoutX="14.0" layoutY="14.0" prefHeight="378.0" prefWidth="796.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
+      <TableView fx:id="tblPayment" layoutX="14.0" layoutY="14.0" prefHeight="378.0" prefWidth="796.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
         <columns>
           <TableColumn prefWidth="110.0" text="Date" />
           <TableColumn prefWidth="104.0" text="Course ID" />
@@ -25,24 +25,24 @@
          <children>
             <HBox prefHeight="39.0" prefWidth="726.0" spacing="100.0">
                <children>
-                  <JFXTextField labelFloat="true" promptText="Course ID">
+                  <JFXTextField fx:id="txtCourseID" labelFloat="true" promptText="Course ID">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField labelFloat="true" promptText="Student">
+                  <JFXTextField fx:id="txtStudent" labelFloat="true" promptText="Student">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField labelFloat="true" promptText="Amount">
+                  <JFXTextField fx:id="txtAmount" labelFloat="true" promptText="Amount">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </JFXTextField>
                </children>
             </HBox>
-            <JFXButton text="Update" />
+            <JFXButton fx:id="btnUpdate" text="Update" />
          </children>
       </VBox>
    </children>

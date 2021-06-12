@@ -135,7 +135,9 @@ public class PaymentFormController {
                     txtnic.getText(),
                     cmbPaymentMethod.getValue(),
                     Integer.parseInt(txtAmount.getText()),
-                    whatFor.getSelectedToggle().selectedProperty().getName()
+                    whatFor.getSelectedToggle().selectedProperty().getName(),
+                    lblDate.getText(),
+                    "Logged"
             );
             boolean saved = paymentFormService.savePayments(student, payment);
             if(saved) {
@@ -155,11 +157,6 @@ public class PaymentFormController {
         ObservableList<PaymentFormTM> items = tblPayment.getItems();
         List<PaymentFormTM> all = paymentFormService.findAll();
         items.addAll(all);
-    }
-
-    public void newOnAction(ActionEvent actionEvent) {
-        txtReceipt.setText(String.format("R%04d",receiptNumber));
-        clearForm();
     }
 
     private void clearForm() {
