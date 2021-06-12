@@ -29,4 +29,12 @@ public class ManageStudentFormService {
         return tm;
     }
 
+    public void removeStudent(ManageStudentTM tm){
+        for (Student student : STUDENT_LIST) {
+            if(tm.getNIC().equals(student.getNic())){
+                STUDENT_LIST.remove(student);
+                break;
+            }
+        }
+    }
 }

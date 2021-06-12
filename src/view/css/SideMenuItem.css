@@ -93,10 +93,14 @@
     -fx-background-color: transparent;
 }
 
-.list-cell:filled{
+.list-cell{
     -fx-background-color: transparent;
 }
 
 .list-cell:filled:hover{
     -fx-background-color: #778182;
+}
+
+#deleteButton{
+    -fx-background-color: red;
 }

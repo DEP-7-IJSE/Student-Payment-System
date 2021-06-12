@@ -1,5 +1,7 @@
 package controller.menu;
 
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -14,7 +16,9 @@ public class ManageStudentFormController {
 
     public TextField txtSearch;
     public TableView<ManageStudentTM> tblStudent;
-    public ListView lstStudent;
+    public ListView<String> lstStudent;
+    public JFXButton btnDelete;
+    public JFXButton btnSave;
 
     private final ManageStudentFormService MANAGE_STUDENT_FORM_SERVICE = new ManageStudentFormService();
 
@@ -27,10 +31,36 @@ public class ManageStudentFormController {
         tblStudent.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("email"));
 
         getAllStudents();
+
+        tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            lstStudent.getItems().clear();
+            btnDelete.setVisible(true);
+            btnSave.setVisible(true);
+            if(newValue != null){
+                lstStudent.getItems().add(newValue.getCourseID());
+                lstStudent.getItems().add(newValue.getNIC());
+                lstStudent.getItems().add(newValue.getName());
+                lstStudent.getItems().add(newValue.getContact());
+                lstStudent.getItems().add(newValue.getAddress());
+                lstStudent.getItems().add(newValue.getEmail());
+            }
+        });
     }
 
     private void getAllStudents() {
         List<ManageStudentTM> allStudent = MANAGE_STUDENT_FORM_SERVICE.getAllStudent();
         tblStudent.getItems().addAll(allStudent);
+    }
+
+    public void btnDeleteOnAction(ActionEvent actionEvent) {
+        MANAGE_STUDENT_FORM_SERVICE.removeStudent(tblStudent.getSelectionModel().getSelectedItem());
+        tblStudent.getItems().clear();
+        getAllStudents();
+        lstStudent.getItems().clear();
+        btnDelete.setVisible(false);
+        btnSave.setVisible(false);
+    }
+
+    public void btnSaveOnAction(ActionEvent actionEvent) {
     }
 }

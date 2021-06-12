@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -24,7 +25,9 @@
             <TableColumn prefWidth="166.0" text="E-mail" />
         </columns>
       </TableView>
-      <ListView fx:id="lstStudent" editable="true" layoutX="269.0" layoutY="397.0" prefHeight="263.0" prefWidth="311.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
+      <ListView fx:id="lstStudent" editable="true" layoutX="269.0" layoutY="397.0" prefHeight="174.0" prefWidth="326.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
+      <JFXButton id="deleteButton" fx:id="btnDelete" layoutX="435.0" layoutY="582.0" onAction="#btnDeleteOnAction" text="Delete" visible="false" />
+      <JFXButton fx:id="btnSave" layoutX="512.0" layoutY="583.0" onAction="#btnSaveOnAction" text="Save" visible="false" />
    </children>
 
 </AnchorPane>
