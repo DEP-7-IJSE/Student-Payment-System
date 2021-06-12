@@ -40,7 +40,14 @@ public class ManagePaymentFormController {
                 return remove;
             }
         });
+
         loadAllPaymentDetails();
+
+        tblPayment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
+            txtCourseID.setText(newValue.getCourseID());
+            txtAmount.setText(String.valueOf(newValue.getAmount()));
+            txtStudent.setText(newValue.getStudentNIC());
+        });
     }
 
     private void loadAllPaymentDetails() {

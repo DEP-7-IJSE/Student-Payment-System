@@ -50,8 +50,7 @@ public class ManagePaymentService {
         }
     }
 
-    /*public List<ManagePaymentTM> loadPayment(String query){
-
+    /*public List<ManagePaymentTM> loadPayment(ManagePaymentTM managePaymentTM){
 
     }*/
 }
