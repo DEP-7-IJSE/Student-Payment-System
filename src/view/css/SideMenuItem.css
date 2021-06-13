@@ -57,6 +57,13 @@
     -fx-alignment: center;
 }
 
+#tblStudent .cell{
+    -fx-wrap-text: true;
+    -fx-text-fill: white;
+    -fx-cell-size: 30px;
+    -fx-alignment: center;
+}
+
 .table-cell:empty{
     -fx-border-color: transparent;
 }

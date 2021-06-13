@@ -15,7 +15,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <TableView fx:id="tblStudent" layoutX="14.0" layoutY="55.0" prefHeight="334.0" prefWidth="796.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+      <TableView id="tblStudent" fx:id="tblStudent" layoutX="14.0" layoutY="55.0" prefHeight="334.0" prefWidth="796.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
         <columns>
           <TableColumn prefWidth="87.0" text="Course ID" />
           <TableColumn prefWidth="128.0" text="NIC" />

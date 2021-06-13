@@ -46,6 +46,8 @@ public class ManageCourseFormController {
             }
         });
 
+        loadAll("");
+
         tblCourses.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 if (newValue.getCourseID().charAt(3) == 'P') {
@@ -63,24 +65,25 @@ public class ManageCourseFormController {
         items.add("CMJD");
         items.add("DEP");
         items.add("GDSE");
+
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> loadAll(newValue));
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
         if (btnSave.getText().equalsIgnoreCase("Save")) {
             MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
             lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
-            loadAll();
+            loadAll("");
             refreshForm();
         } else {
 
         }
     }
 
-    private void loadAll() {
+    private void loadAll(String query) {
         tblCourses.getItems().clear();
-        ArrayList<Course> all = MANAGE_COURSE_SERVICE.getAll();
         ObservableList<Course> items = tblCourses.getItems();
-        items.addAll(all);
+        items.addAll(MANAGE_COURSE_SERVICE.getAll(query));
     }
 
     private void refreshForm() {

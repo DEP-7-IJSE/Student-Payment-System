@@ -59,9 +59,7 @@ public class ManagePaymentService {
             for (Student student : STUDENT) {
                 if(tableNIC.equals(student.getNic()) && tableNIC.equals(payment.getNic())){
                     student.setCourseID(update[0]);
-                    student.setNic(update[1]);
-                    payment.setNic(update[1]);
-                    payment.setAmount(Integer.parseInt(update[2]));
+                    payment.setAmount(Integer.parseInt(update[1]));
                 }
             }
         }

@@ -4,29 +4,23 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ObservableValueBase;
 import javafx.event.ActionEvent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Course;
 import model.tm.ManagePaymentTM;
-import model.tm.ManageStudentTM;
 import service.menu.ManagePaymentService;
 
-import java.util.ArrayList;
+import java.util.Optional;
 
 public class ManagePaymentFormController {
 
+    private final ManagePaymentService MANAGE_PAYMENT_SERVICE = new ManagePaymentService();
     public TableView<ManagePaymentTM> tblPayment;
     public JFXTextField txtCourseID;
-    public JFXTextField txtStudent;
     public JFXTextField txtAmount;
     public JFXButton btnUpdate;
     public TextField txtSearch;
 
-    private final ManagePaymentService MANAGE_PAYMENT_SERVICE=new ManagePaymentService();
-
-    public void initialize(){
+    public void initialize() {
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("date"));
         tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("courseID"));
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("studentNIC"));
@@ -38,8 +32,12 @@ public class ManagePaymentFormController {
             public JFXButton getValue() {
                 JFXButton remove = new JFXButton("Delete");
                 remove.setOnAction(event -> {
-                    MANAGE_PAYMENT_SERVICE.remove(param.getValue());
-                    tblPayment.getItems().remove(param.getValue());
+                    Optional<ButtonType> buttonType = new Alert(Alert.AlertType.WARNING, "Are you sure you want to update this? \n[It can't be recover again]",
+                            ButtonType.YES, ButtonType.NO).showAndWait();
+                    if (buttonType.get().equals(ButtonType.YES)) {
+                        MANAGE_PAYMENT_SERVICE.remove(param.getValue());
+                        tblPayment.getItems().remove(param.getValue());
+                    }
                 });
                 return remove;
             }
@@ -49,28 +47,24 @@ public class ManagePaymentFormController {
 
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> loadAllPaymentDetails(newValue));
 
-        tblPayment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
-            if (newValue != null){
+        tblPayment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
                 txtCourseID.setText(newValue.getCourseID());
                 txtAmount.setText(String.valueOf(newValue.getAmount()));
-                txtStudent.setText(newValue.getStudentNIC());
             }
         });
     }
 
     private void loadAllPaymentDetails(String query) {
         tblPayment.getItems().clear();
-        for (ManagePaymentTM tm : MANAGE_PAYMENT_SERVICE.loadAllPayments(query)) {
-            tblPayment.getItems().add(new ManagePaymentTM(tm.getDate(),tm.getCourseID(),tm.getStudentNIC(),tm.getAmount(),tm.getName()));
-        }
+        tblPayment.getItems().addAll(MANAGE_PAYMENT_SERVICE.loadAllPayments(""));
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
         MANAGE_PAYMENT_SERVICE.loadPayment(tblPayment.getSelectionModel().selectedItemProperty().getValue().getStudentNIC(),
-                txtCourseID.getText(),txtStudent.getText(),txtAmount.getText());
+                txtCourseID.getText(), txtAmount.getText());
         loadAllPaymentDetails("");
         txtAmount.clear();
         txtCourseID.clear();
-        txtStudent.clear();
     }
 }
