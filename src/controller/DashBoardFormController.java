@@ -12,31 +12,47 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.tm.DashBoardTM;
+import service.DashBoardService;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
 public class DashBoardFormController {
     public AnchorPane dashBoard;
-    public TableColumn idCol;
-    public TableColumn registrationCol;
-    public TableColumn paymentCol;
-    public TableColumn incomeCol;
     public JFXHamburger btnMenu;
     public JFXDrawer dwrSideMenu;
     public Label lblDate;
-    public TableView tblDashBoard;
+    public TableView<DashBoardTM> tblDashBoard;
     public StackPane rootPane;
+    public Label lblNewRegistration;
+    public Label lblNumberOfPayment;
+    public Label lblTotalIncome;
+
+    private final DashBoardService DASHBOARD_SERVICE = new DashBoardService();
 
     public void initialize() {
         rootPane.setOpacity(0.5);
         makeFadeIn();
+
+        tblDashBoard.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));
+        tblDashBoard.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("paidFor"));
+        tblDashBoard.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("paidAmount"));
+        tblDashBoard.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("receivedBy"));
+
+        tblDashBoard.getItems().addAll(DASHBOARD_SERVICE.loadAll());
+
+        lblNewRegistration.setText(String.valueOf(DASHBOARD_SERVICE.getCardDetails().get(0)));
+        lblNumberOfPayment.setText(String.valueOf(DASHBOARD_SERVICE.getCardDetails().get(1)));
+        lblTotalIncome.setText(String.valueOf(DASHBOARD_SERVICE.getCardDetails().get(2)));
+
         try {
             Parent menuPane = FXMLLoader.load(this.getClass().getResource("/view/SideMenu.fxml"));
             dwrSideMenu.setSidePane(menuPane);

@@ -49,7 +49,7 @@
  .cell{
     -fx-wrap-text: true;
      -fx-text-fill: white;
-     -fx-cell-size: 25px;
+     -fx-cell-size: 30px;
 }
 
  .table-cell:empty{
