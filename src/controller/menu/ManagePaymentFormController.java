@@ -3,6 +3,7 @@ package controller.menu;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ObservableValueBase;
+import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -49,9 +50,11 @@ public class ManagePaymentFormController {
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> loadAllPaymentDetails(newValue));
 
         tblPayment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
-            txtCourseID.setText(newValue.getCourseID());
-            txtAmount.setText(String.valueOf(newValue.getAmount()));
-            txtStudent.setText(newValue.getStudentNIC());
+            if (newValue != null){
+                txtCourseID.setText(newValue.getCourseID());
+                txtAmount.setText(String.valueOf(newValue.getAmount()));
+                txtStudent.setText(newValue.getStudentNIC());
+            }
         });
     }
 
@@ -62,4 +65,12 @@ public class ManagePaymentFormController {
         }
     }
 
+    public void btnUpdateOnAction(ActionEvent actionEvent) {
+        MANAGE_PAYMENT_SERVICE.loadPayment(tblPayment.getSelectionModel().selectedItemProperty().getValue().getStudentNIC(),
+                txtCourseID.getText(),txtStudent.getText(),txtAmount.getText());
+        loadAllPaymentDetails("");
+        txtAmount.clear();
+        txtCourseID.clear();
+        txtStudent.clear();
+    }
 }

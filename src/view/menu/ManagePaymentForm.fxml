@@ -43,7 +43,7 @@
                   </JFXTextField>
                </children>
             </HBox>
-            <JFXButton fx:id="btnUpdate" text="Update" />
+            <JFXButton fx:id="btnUpdate" onAction="#btnUpdateOnAction" text="Update" />
          </children>
       </VBox>
       <TextField fx:id="txtSearch" layoutX="15.0" layoutY="15.0" promptText="Search  Payment" styleClass="search-course" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
