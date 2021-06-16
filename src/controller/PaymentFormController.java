@@ -218,12 +218,12 @@ public class PaymentFormController {
             txtEmail.requestFocus();
             return false;
 
-        } else if(amount.length() < 3 && isValid(amount,false,true,'.')){
+        } else if(!(amount.length() > 3 && isValid(amount,false,true,'.'))){
             new Alert(Alert.AlertType.ERROR, "Invalid Amount").show();
             txtAmount.requestFocus();
             return false;
         } else {
-            return false;
+            return true;
         }
     }
 }

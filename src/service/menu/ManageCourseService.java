@@ -20,7 +20,7 @@ public class ManageCourseService {
         list.add(c4);
     }
 
-    public void saveCourse(String type, int batch, int fee, int count) throws DuplicateEntryException {
+    public void saveCourse(String type, int batch, double fee, int count) throws DuplicateEntryException {
         String courseID=type+batch;
         for (Course course : list) {
             if(course.getCourseID().equals(courseID)){

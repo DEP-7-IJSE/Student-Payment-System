@@ -2,10 +2,10 @@ package model;
 
 public class Course {
     private String courseID;
-    private int courseFee;
+    private double courseFee;
     private int studentCount;
 
-    public Course(String courseID, int courseFee, int studentCount) {
+    public Course(String courseID, double courseFee, int studentCount) {
         this.courseID = courseID;
         this.courseFee = courseFee;
         this.studentCount = studentCount;
@@ -22,11 +22,11 @@ public class Course {
         this.courseID = courseID;
     }
 
-    public int getCourseFee() {
+    public double getCourseFee() {
         return courseFee;
     }
 
-    public void setCourseFee(int courseFee) {
+    public void setCourseFee(double courseFee) {
         this.courseFee = courseFee;
     }
 

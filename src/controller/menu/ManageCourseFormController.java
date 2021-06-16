@@ -13,7 +13,7 @@ import model.Course;
 import service.exception.DuplicateEntryException;
 import service.menu.ManageCourseService;
 
-import java.util.ArrayList;
+import static util.ValidationUtil.*;
 
 public class ManageCourseFormController {
     private final ManageCourseService MANAGE_COURSE_SERVICE = new ManageCourseService();
@@ -70,12 +70,16 @@ public class ManageCourseFormController {
     public void btnSaveOnAction(ActionEvent actionEvent) {
         if (btnSave.getText().equalsIgnoreCase("Save")) {
             try {
-                MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
+                if (!isValidated()) {
+                    return;
+                }
+
+                MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Double.parseDouble(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
                 lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
                 loadAll("");
                 refreshForm();
             } catch (DuplicateEntryException e) {
-                new Alert(Alert.AlertType.ERROR,"Duplication courses",ButtonType.CLOSE).show();
+                new Alert(Alert.AlertType.ERROR, "Duplication courses", ButtonType.CLOSE).show();
                 txtBatchNb.requestFocus();
             }
         } else {
@@ -94,4 +98,27 @@ public class ManageCourseFormController {
         txtBatchNb.clear();
         txtStudentCount.clear();
     }
+
+    private boolean isValidated() {
+        String batch = txtBatchNb.getText();
+        String fee = txtCourseFee.getText();
+        String count = txtStudentCount.getText();
+
+        if (batch.trim().isEmpty() || !(isValid(batch, false, true) && isInteger(batch))) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Batch Number").show();
+            txtBatchNb.requestFocus();
+            return false;
+        } else if (!(fee.length() > 3 && isValid(fee,false,true,'.'))) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Fee").show();
+            txtCourseFee.requestFocus();
+            return false;
+        } else if (!(count.length() >= 2 && isValid(count, false, true) && isInteger(count))) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Student Count").show();
+            txtStudentCount.requestFocus();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }
