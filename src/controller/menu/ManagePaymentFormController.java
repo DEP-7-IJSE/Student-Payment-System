@@ -12,6 +12,8 @@ import service.menu.ManagePaymentService;
 
 import java.util.Optional;
 
+import static util.ValidationUtil.*;
+
 public class ManagePaymentFormController {
 
     private final ManagePaymentService MANAGE_PAYMENT_SERVICE = new ManagePaymentService();
@@ -63,6 +65,10 @@ public class ManagePaymentFormController {
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
         try {
+            if(!isValidated()){
+                return;
+            }
+
             MANAGE_PAYMENT_SERVICE.loadPayment(tblPayment.getSelectionModel().selectedItemProperty().getValue().getStudentNIC(),
                     txtCourseID.getText(), txtAmount.getText());
             loadAllPaymentDetails("");
@@ -72,5 +78,23 @@ public class ManagePaymentFormController {
             new Alert(Alert.AlertType.ERROR,"Duplication CourseID",ButtonType.CLOSE).show();
             txtCourseID.requestFocus();
         }
+    }
+
+    private boolean isValidated(){
+        String courseID = txtCourseID.getText();
+        String amount = txtAmount.getText();
+
+        if(!((courseID.startsWith("DEP") || courseID.startsWith("CMJD") || courseID.startsWith("GDSE")) && isInteger(courseID.startsWith("D") ? courseID.substring(3):courseID.substring(4)))){
+            new Alert(Alert.AlertType.ERROR, "Invalid CourseID").show();
+            txtCourseID.requestFocus();
+            return false;
+        } else if(!(amount.length() > 3 && isValid(amount,false,true,'.'))){
+            new Alert(Alert.AlertType.ERROR, "Invalid Amount").show();
+            txtAmount.requestFocus();
+            return false;
+        } else {
+            return true;
+        }
+
     }
 }
