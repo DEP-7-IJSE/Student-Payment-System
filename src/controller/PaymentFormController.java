@@ -25,6 +25,7 @@ import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
 import service.PaymentFormService;
+import service.exception.DuplicateEntryException;
 import service.menu.ManageCourseService;
 
 import java.io.IOException;
@@ -122,6 +123,14 @@ public class PaymentFormController {
     }
 
     public void btnSubmitOnAction(ActionEvent actionEvent) {
+        String whatForPayment="";
+        if(rdoFullPayment.isSelected()){
+            whatForPayment=rdoFullPayment.getText();
+        }else if(rdoRegistration.isSelected()){
+            whatForPayment=rdoRegistration.getText();
+        }else{
+            whatForPayment=rdoInstalment.getText();
+        }
         try{
             Student student = new Student(
                     txtnic.getText(),
@@ -135,25 +144,27 @@ public class PaymentFormController {
                     txtnic.getText(),
                     cmbPaymentMethod.getValue(),
                     Integer.parseInt(txtAmount.getText()),
-                    whatFor.getSelectedToggle().selectedProperty().getName(),
+                    whatForPayment,
                     lblDate.getText(),
                     "Logged"
             );
+            System.out.println(whatFor.selectedToggleProperty().getName());
             boolean saved = paymentFormService.savePayments(student, payment);
             if(saved) {
                 receiptNumber++;
                 txtReceipt.setText(String.format("R%04d",receiptNumber));
-                new Alert(Alert.AlertType.INFORMATION, "Saved Sccessfully", ButtonType.OK).show();
+                new Alert(Alert.AlertType.INFORMATION, "Saved Successfully", ButtonType.OK).show();
                 clearForm();
                 loadAllPayments();
             }
-        }catch (RuntimeException e){
-            new Alert(Alert.AlertType.ERROR,"Error",ButtonType.CLOSE).show();
-            clearForm();
+        }catch (DuplicateEntryException e) {
+            new Alert(Alert.AlertType.ERROR,"Duplication Entry",ButtonType.CLOSE).show();
+            txtnic.requestFocus();
         }
     }
 
     private void loadAllPayments() {
+        tblPayment.getItems().clear();
         ObservableList<PaymentFormTM> items = tblPayment.getItems();
         List<PaymentFormTM> all = paymentFormService.findAll();
         items.addAll(all);

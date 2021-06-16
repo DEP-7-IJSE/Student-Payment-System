@@ -1,6 +1,7 @@
 package service.menu;
 
 import model.Course;
+import service.exception.DuplicateEntryException;
 
 import java.util.ArrayList;
 
@@ -19,8 +20,13 @@ public class ManageCourseService {
         list.add(c4);
     }
 
-    public void saveCourse(String type, int batch, int fee, int count){
+    public void saveCourse(String type, int batch, int fee, int count) throws DuplicateEntryException {
         String courseID=type+batch;
+        for (Course course : list) {
+            if(course.getCourseID().equals(courseID)){
+                throw new DuplicateEntryException();
+            }
+        }
         Course courseTM = new Course(courseID, fee, count);
         list.add(courseTM);
     }

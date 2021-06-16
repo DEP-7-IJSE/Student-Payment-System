@@ -4,6 +4,7 @@ import model.Course;
 import model.Payment;
 import model.Student;
 import model.tm.ManagePaymentTM;
+import service.exception.DuplicateEntryException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +55,13 @@ public class ManagePaymentService {
         }
     }
 
-    public void loadPayment(String tableNIC,String ... update){
+    public void loadPayment(String tableNIC,String ... update) throws DuplicateEntryException {
         for (Payment payment : PAYMENT) {
             for (Student student : STUDENT) {
                 if(tableNIC.equals(student.getNic()) && tableNIC.equals(payment.getNic())){
+                    if(student.getCourseID().equals(update[0])){
+                        throw new DuplicateEntryException();
+                    }
                     student.setCourseID(update[0]);
                     payment.setAmount(Integer.parseInt(update[1]));
                 }

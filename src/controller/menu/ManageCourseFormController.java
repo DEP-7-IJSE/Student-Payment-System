@@ -6,13 +6,11 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ObservableValueBase;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
+import service.exception.DuplicateEntryException;
 import service.menu.ManageCourseService;
 
 import java.util.ArrayList;
@@ -71,12 +69,17 @@ public class ManageCourseFormController {
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
         if (btnSave.getText().equalsIgnoreCase("Save")) {
-            MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
-            lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
-            loadAll("");
-            refreshForm();
+            try {
+                MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Integer.parseInt(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
+                lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
+                loadAll("");
+                refreshForm();
+            } catch (DuplicateEntryException e) {
+                new Alert(Alert.AlertType.ERROR,"Duplication courses",ButtonType.CLOSE).show();
+                txtBatchNb.requestFocus();
+            }
         } else {
-
+            //Todo: update course
         }
     }
 
