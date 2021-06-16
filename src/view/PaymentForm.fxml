@@ -57,7 +57,7 @@
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="txtContact" layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="189.0" promptText="Contact">
+                        <TextField fx:id="txtContact" layoutX="110.0" layoutY="10.0" prefHeight="31.0" prefWidth="189.0" promptText="Contact 0XX-XXXXXXX">
                            <font>
                               <Font size="15.0" />
                            </font>

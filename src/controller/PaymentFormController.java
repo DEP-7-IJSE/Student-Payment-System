@@ -33,6 +33,8 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import static util.ValidationUtil.*;
+
 public class PaymentFormController {
 
     private final PaymentFormService paymentFormService = new PaymentFormService();
@@ -132,6 +134,11 @@ public class PaymentFormController {
             whatForPayment=rdoInstalment.getText();
         }
         try{
+
+            if(!isValidated()){
+                return;
+            }
+
             Student student = new Student(
                     txtnic.getText(),
                     txtName.getText(),
@@ -179,5 +186,44 @@ public class PaymentFormController {
         txtDescription.clear();
         txtnic.clear();
         txtAmount.clear();
+    }
+
+    private  boolean isValidated(){
+        String nic = txtnic.getText();
+        String name = txtName.getText();
+        String address= txtAddress.getText();
+        String contact= txtContact.getText();
+        String email = txtEmail.getText();
+        String amount = txtAmount.getText();
+
+        if (!((nic.length() == 10 && (nic.endsWith("V") || nic.endsWith("v")) && isInteger(nic.substring(0, 9)))
+                || (nic.length() == 12 && isInteger(nic)))) {
+            new Alert(Alert.AlertType.ERROR, "Invalid NIC").show();
+            txtnic.requestFocus();
+            return false;
+        } else if (!(isValid(name, true, false) && name.trim().length() >= 3)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Name. Name should contain at least 3 letters and can contain only alphabetic letters and spaces").show();
+            txtName.requestFocus();
+            return false;
+        } else if (!(address.trim().length() >= 4 && isValid(address, true, true, ':', '.', ',', '-', '/', '\\'))) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Address. Address should be at least 4 digits and can contain only alphabetic letters, spaces and - , . / \\").show();
+            txtAddress.requestFocus();
+            return false;
+        }else if (!(contact.length() == 11 && isInteger(contact.substring(0, 3)) && isInteger(contact.substring(4, 11)))) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Contact Number").show();
+            txtContact.requestFocus();
+            return false;
+        } else if (!isValidEmail(email)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Email. Email can contain only letters, digits, periods and underscore.").show();
+            txtEmail.requestFocus();
+            return false;
+
+        } else if(amount.length() < 3 && isValid(amount,false,true,'.')){
+            new Alert(Alert.AlertType.ERROR, "Invalid Amount").show();
+            txtAmount.requestFocus();
+            return false;
+        } else {
+            return false;
+        }
     }
 }
