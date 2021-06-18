@@ -36,6 +36,14 @@ public class ValidationUtil {
         return courseID.matches("[A-Z]{3,4}\\d{1,3}");
     }
 
+    public static boolean isValidBatchNb(String batch){
+        return batch.matches("\\d{1,2}");
+    }
+
+    public static boolean isValidStudentCount(String count){
+        return count.matches("\\d{1,2}");
+    }
+
     /*public static boolean isInteger(String input) {
         if (input.startsWith("+") || input.startsWith("-")) {
             return false;

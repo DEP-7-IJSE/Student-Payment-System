@@ -104,15 +104,15 @@ public class ManageCourseFormController {
         String fee = txtCourseFee.getText();
         String count = txtStudentCount.getText();
 
-        if (batch.trim().isEmpty() || !(isValid(batch, false, true) && isInteger(batch))) {
+        if (batch.trim().isEmpty() || !isValidBatchNb(batch)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Batch Number").show();
             txtBatchNb.requestFocus();
             return false;
-        } else if (!(fee.length() > 3 && isValid(fee,false,true,'.'))) {
+        } else if (!isValidAmount(fee)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Fee").show();
             txtCourseFee.requestFocus();
             return false;
-        } else if (!(count.length() >= 2 && isValid(count, false, true) && isInteger(count))) {
+        } else if (!isValidStudentCount(count)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Student Count").show();
             txtStudentCount.requestFocus();
             return false;
