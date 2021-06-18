@@ -1,8 +1,19 @@
 package util;
 
-import java.time.LocalDate;
-
 public class ValidationUtil {
+
+    public static boolean isValidNIC(String nic){
+        return nic.matches("(\\d{9}[vV])|(\\d{12})");
+    }
+
+    public static boolean isValidName(String name){
+        return name.matches("[A-Za-z ]+");
+    }
+
+    public static boolean isValidAddress(String address){
+        return address.matches("([A-Za-z\\d][ ,.:]*)+");
+    }
+
 
     public static boolean isInteger(String input) {
         if (input.startsWith("+") || input.startsWith("-")) {

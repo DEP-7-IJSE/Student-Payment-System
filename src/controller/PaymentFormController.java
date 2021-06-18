@@ -196,12 +196,11 @@ public class PaymentFormController {
         String email = txtEmail.getText();
         String amount = txtAmount.getText();
 
-        if (!((nic.length() == 10 && (nic.endsWith("V") || nic.endsWith("v")) && isInteger(nic.substring(0, 9)))
-                || (nic.length() == 12 && isInteger(nic)))) {
+        if (!isValidNIC(nic)) {
             new Alert(Alert.AlertType.ERROR, "Invalid NIC").show();
             txtnic.requestFocus();
             return false;
-        } else if (!(isValid(name, true, false) && name.trim().length() >= 3)) {
+        } else if (!(isValidName(name)) && name.trim().length() >= 3) {
             new Alert(Alert.AlertType.ERROR, "Invalid Name. Name should contain at least 3 letters and can contain only alphabetic letters and spaces").show();
             txtName.requestFocus();
             return false;
