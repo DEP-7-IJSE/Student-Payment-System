@@ -5,7 +5,7 @@ import util.ValidationUtil;
 public class PaymentFormControllerTest {
 
     public static void main(String[] args) {
-        isValid("123456789v","pethum Jeewantha","Habarakada west, Tawalama,",
+        isValid("123456789v","20857","Habarakada west, Tawalama,",
                 "0767919355","500000", "pethumjeewantha1@gmail.com","GDSE700");
     }
 

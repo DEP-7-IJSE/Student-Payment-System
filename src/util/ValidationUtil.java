@@ -37,11 +37,11 @@ public class ValidationUtil {
     }
 
     public static boolean isValidBatchNb(String batch){
-        return batch.matches("\\d{1,2}");
+        return batch.matches("\\d{1,3}");
     }
 
     public static boolean isValidStudentCount(String count){
-        return count.matches("\\d{1,2}");
+        return count.matches("\\d{1,3}");
     }
 
     /*public static boolean isInteger(String input) {
