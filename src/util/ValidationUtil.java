@@ -11,9 +11,16 @@ public class ValidationUtil {
     }
 
     public static boolean isValidAddress(String address){
-        return address.matches("([A-Za-z\\d][ ,.:]*)+");
+        return address.matches("([A-Za-z\\d][ ,.:]*)+"); //Todo : Add - / marks
     }
 
+    public static boolean isValidContact(String contact){
+        return contact.matches("(\\d{3})-?\\d{7}");
+    }
+
+    public static boolean isValidAmount(String amount){
+        return amount.matches("\\d{3,}(.(\\d{2}))?");
+    }
 
     public static boolean isInteger(String input) {
         if (input.startsWith("+") || input.startsWith("-")) {

@@ -204,11 +204,11 @@ public class PaymentFormController {
             new Alert(Alert.AlertType.ERROR, "Invalid Name. Name should contain at least 3 letters and can contain only alphabetic letters and spaces").show();
             txtName.requestFocus();
             return false;
-        } else if (!(address.trim().length() >= 4 && isValid(address, true, true, ':', '.', ',', '-', '/', '\\'))) {
+        } else if (!(address.trim().length() >= 4 && isValidAddress(address))) {
             new Alert(Alert.AlertType.ERROR, "Invalid Address. Address should be at least 4 digits and can contain only alphabetic letters, spaces and - , . / \\").show();
             txtAddress.requestFocus();
             return false;
-        }else if (!(contact.length() == 11 && isInteger(contact.substring(0, 3)) && isInteger(contact.substring(4, 11)))) {
+        }else if (!isValidContact(contact)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Contact Number").show();
             txtContact.requestFocus();
             return false;
@@ -217,7 +217,7 @@ public class PaymentFormController {
             txtEmail.requestFocus();
             return false;
 
-        } else if(!(amount.length() > 3 && isValid(amount,false,true,'.'))){
+        } else if(!isValidAmount(amount)){
             new Alert(Alert.AlertType.ERROR, "Invalid Amount").show();
             txtAmount.requestFocus();
             return false;
