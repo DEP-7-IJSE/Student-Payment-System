@@ -84,11 +84,11 @@ public class ManagePaymentFormController {
         String courseID = txtCourseID.getText();
         String amount = txtAmount.getText();
 
-        if(!((courseID.startsWith("DEP") || courseID.startsWith("CMJD") || courseID.startsWith("GDSE")) && isInteger(courseID.startsWith("D") ? courseID.substring(3):courseID.substring(4)))){
+        if(!isValidCourseID(courseID)){
             new Alert(Alert.AlertType.ERROR, "Invalid CourseID").show();
             txtCourseID.requestFocus();
             return false;
-        } else if(!(amount.length() > 3 && isValid(amount,false,true,'.'))){
+        } else if(!isValidAmount(amount)){
             new Alert(Alert.AlertType.ERROR, "Invalid Amount").show();
             txtAmount.requestFocus();
             return false;
