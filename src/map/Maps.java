@@ -1,5 +1,6 @@
-package maps;
+package map;
 
+import model.Course;
 import model.Payment;
 import model.Student;
 import model.tm.DashBoardTM;
@@ -27,7 +28,7 @@ public class Maps {
     }
 
 
-    public static PaymentFormTM fromMap(String nic, Map<String, String> data) {
+    public static PaymentFormTM fromPaymentMap(String nic, Map<String, String> data) {
         return new PaymentFormTM(
                 nic,
                 data.get("courseID"),
@@ -41,6 +42,21 @@ public class Maps {
                 data.get("what"),
                 data.get("amount"),
                 data.get("login")
+        );
+    }
+
+    public static Map<String, String> toManageCourseMap(double fee, int count) {
+        HashMap<String, String> courseMap = new HashMap<>();
+        courseMap.put("fee", String.valueOf(fee));
+        courseMap.put("count", String.valueOf(count));
+        return courseMap;
+    }
+
+    public static Course fromManageCourseMap(String courseID, Map<String, String> data) {
+        return new Course(
+                courseID,
+                Double.parseDouble(data.get("fee")),
+                Integer.parseInt(data.get("count"))
         );
     }
 }

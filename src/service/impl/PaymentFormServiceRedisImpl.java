@@ -1,6 +1,6 @@
 package service.impl;
 
-import maps.Maps;
+import map.Maps;
 import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
@@ -23,6 +23,11 @@ public class PaymentFormServiceRedisImpl {
         if (client.exists(student.getNic())) {
             throw new DuplicateEntryException();
         }
+        /*if (student.getNic().equals(student1.getNic()) && student.getCourseID().equals(student1.getCourseID())) {
+                    if(payment1.getPaymentRadio().equals(payment.getPaymentRadio()) && !payment.getPaymentRadio().equals("Installment")) {
+                        throw new DuplicateEntryException();
+                    }
+                }*/ //Todo: validation
         client.hset(student.getNic(), Maps.toMap(student, payment));
 
         return true;
@@ -32,7 +37,7 @@ public class PaymentFormServiceRedisImpl {
         List<PaymentFormTM> paymentFormTMList = new ArrayList<>();
         Set<String> nicList = client.keys("*");
         for (String nic : nicList) {
-            paymentFormTMList.add(Maps.fromMap(nic, client.hgetAll(nic)));
+            paymentFormTMList.add(Maps.fromPaymentMap(nic, client.hgetAll(nic)));
         }
         return paymentFormTMList;
     }

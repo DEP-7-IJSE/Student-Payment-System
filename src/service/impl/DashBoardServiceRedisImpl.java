@@ -1,6 +1,6 @@
 package service.impl;
 
-import maps.Maps;
+import map.Maps;
 import model.tm.DashBoardTM;
 import redis.clients.jedis.Jedis;
 
@@ -21,6 +21,7 @@ public class DashBoardServiceRedisImpl {
         List<DashBoardTM> tm = new ArrayList<>();
         Set<String> nicList = client.keys("*");
         for (String nic : nicList) {
+            if (!Character.isDigit(nic.charAt(0))) continue;
             tm.add(Maps.fromDashBoardMap(client.hgetAll(nic)));
         }
         return tm;
@@ -33,6 +34,7 @@ public class DashBoardServiceRedisImpl {
         int payments = 0;
         Set<String> keys = client.keys("*");
         for (String nic : keys) {
+            if (!Character.isDigit(nic.charAt(0))) continue;
             Map<String, String> data = client.hgetAll(nic);
             sum += Integer.parseInt(data.get("amount"));
             if (data.get("what").equals("Registration")) {

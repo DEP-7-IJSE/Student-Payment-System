@@ -26,7 +26,6 @@ import model.Student;
 import model.tm.PaymentFormTM;
 import service.exception.DuplicateEntryException;
 import service.impl.PaymentFormServiceRedisImpl;
-import service.menu.ManageCourseService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -38,7 +37,6 @@ import static util.ValidationUtil.*;
 public class PaymentFormController {
 
     private final PaymentFormServiceRedisImpl paymentFormService = new PaymentFormServiceRedisImpl();
-    private final ManageCourseService manageCourseService = new ManageCourseService();
     public ImageView imgBack;
     public Label lblDate;
     public JFXComboBox<String> cmbPaymentMethod;
@@ -157,7 +155,6 @@ public class PaymentFormController {
                     lblDate.getText(),
                     "Logged"
             );
-            System.out.println(whatFor.selectedToggleProperty().getName());
             boolean saved = paymentFormService.savePayments(student, payment);
             if (saved) {
                 receiptNumber++;

@@ -11,12 +11,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import service.exception.DuplicateEntryException;
-import service.menu.ManageCourseService;
+import service.impl.menu.ManageCourseServiceRedisImpl;
 
 import static util.ValidationUtil.*;
 
 public class ManageCourseFormController {
-    private final ManageCourseService MANAGE_COURSE_SERVICE = new ManageCourseService();
+    private final ManageCourseServiceRedisImpl MANAGE_COURSE_SERVICE = new ManageCourseServiceRedisImpl();
     public AnchorPane ManageCoursePane;
     public JFXComboBox<String> cmbProgramType;
     public JFXTextField txtBatchNb;
