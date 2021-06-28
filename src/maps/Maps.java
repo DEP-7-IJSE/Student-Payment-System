@@ -2,6 +2,7 @@ package maps;
 
 import model.Payment;
 import model.Student;
+import model.tm.DashBoardTM;
 import model.tm.PaymentFormTM;
 
 import java.util.HashMap;
@@ -31,6 +32,15 @@ public class Maps {
                 nic,
                 data.get("courseID"),
                 Integer.parseInt(data.get("amount"))
+        );
+    }
+
+    public static DashBoardTM fromDashBoardMap(Map<String, String> data) {
+        return new DashBoardTM(
+                data.get("courseID"),
+                data.get("what"),
+                data.get("amount"),
+                data.get("login")
         );
     }
 }

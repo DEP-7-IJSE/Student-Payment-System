@@ -66,6 +66,8 @@ public class PaymentFormController {
         tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("nic"));
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("amount"));
 
+        loadAllPayments();
+
         lblDate.setText(String.valueOf(LocalDate.now()));
         Timeline t1 = new Timeline(new KeyFrame(Duration.millis(900), event -> {
             String time = String.format("%tT", new Date());

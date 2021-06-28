@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class PaymentFormServiceRedisImpl {
 
-    final Jedis client;
+    private final Jedis client;
 
     public PaymentFormServiceRedisImpl() {
         client = new Jedis("localhost", 9090);

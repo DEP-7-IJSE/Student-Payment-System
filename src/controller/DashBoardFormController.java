@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCharacterCombination;
@@ -20,12 +19,13 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.tm.DashBoardTM;
-import service.DashBoardService;
+import service.impl.DashBoardServiceRedisImpl;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
 public class DashBoardFormController {
+    private final DashBoardServiceRedisImpl DASHBOARD_SERVICE = new DashBoardServiceRedisImpl();
     public AnchorPane dashBoard;
     public JFXHamburger btnMenu;
     public JFXDrawer dwrSideMenu;
@@ -35,8 +35,6 @@ public class DashBoardFormController {
     public Label lblNewRegistration;
     public Label lblNumberOfPayment;
     public Label lblTotalIncome;
-
-    private final DashBoardService DASHBOARD_SERVICE = new DashBoardService();
 
     public void initialize() {
         rootPane.setOpacity(0.5);
@@ -85,7 +83,7 @@ public class DashBoardFormController {
     }
 
     private void makeFadeIn() {
-        FadeTransition ft = new FadeTransition(Duration.millis(500),rootPane);
+        FadeTransition ft = new FadeTransition(Duration.millis(500), rootPane);
         ft.setFromValue(0.5);
         ft.setToValue(1);
         ft.play();
