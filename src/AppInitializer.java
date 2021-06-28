@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
 
@@ -11,6 +12,7 @@ public class AppInitializer extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        new Jedis("localhost", 9090).shutdown();
     }
 
     @Override

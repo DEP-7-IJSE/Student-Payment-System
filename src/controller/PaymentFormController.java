@@ -24,8 +24,8 @@ import javafx.util.Duration;
 import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
-import service.PaymentFormService;
 import service.exception.DuplicateEntryException;
+import service.impl.PaymentFormServiceRedisImpl;
 import service.menu.ManageCourseService;
 
 import java.io.IOException;
@@ -37,7 +37,7 @@ import static util.ValidationUtil.*;
 
 public class PaymentFormController {
 
-    private final PaymentFormService paymentFormService = new PaymentFormService();
+    private final PaymentFormServiceRedisImpl paymentFormService = new PaymentFormServiceRedisImpl();
     private final ManageCourseService manageCourseService = new ManageCourseService();
     public ImageView imgBack;
     public Label lblDate;
@@ -59,7 +59,7 @@ public class PaymentFormController {
     public TableView<PaymentFormTM> tblPayment;
     public Label lblTime;
 
-    private int receiptNumber=1;
+    private int receiptNumber = 1;
 
     public void initialize() {
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));
@@ -74,7 +74,7 @@ public class PaymentFormController {
         t1.setCycleCount(Animation.INDEFINITE);
         t1.play();
 
-        txtReceipt.setText(String.format("R%04d",receiptNumber));
+        txtReceipt.setText(String.format("R%04d", receiptNumber));
 
         setCourseID();
 
@@ -125,17 +125,17 @@ public class PaymentFormController {
     }
 
     public void btnSubmitOnAction(ActionEvent actionEvent) {
-        String whatForPayment="";
-        if(rdoFullPayment.isSelected()){
-            whatForPayment=rdoFullPayment.getText();
-        }else if(rdoRegistration.isSelected()){
-            whatForPayment=rdoRegistration.getText();
-        }else{
-            whatForPayment=rdoInstalment.getText();
+        String whatForPayment = "";
+        if (rdoFullPayment.isSelected()) {
+            whatForPayment = rdoFullPayment.getText();
+        } else if (rdoRegistration.isSelected()) {
+            whatForPayment = rdoRegistration.getText();
+        } else {
+            whatForPayment = rdoInstalment.getText();
         }
-        try{
+        try {
 
-            if(!isValidated()){
+            if (!isValidated()) {
                 return;
             }
 
@@ -157,15 +157,15 @@ public class PaymentFormController {
             );
             System.out.println(whatFor.selectedToggleProperty().getName());
             boolean saved = paymentFormService.savePayments(student, payment);
-            if(saved) {
+            if (saved) {
                 receiptNumber++;
-                txtReceipt.setText(String.format("R%04d",receiptNumber));
+                txtReceipt.setText(String.format("R%04d", receiptNumber));
                 new Alert(Alert.AlertType.INFORMATION, "Saved Successfully", ButtonType.OK).show();
                 clearForm();
                 loadAllPayments();
             }
-        }catch (DuplicateEntryException e) {
-            new Alert(Alert.AlertType.ERROR,"Duplication Entry",ButtonType.CLOSE).show();
+        } catch (DuplicateEntryException e) {
+            new Alert(Alert.AlertType.ERROR, "Duplication Entry", ButtonType.CLOSE).show();
             txtnic.requestFocus();
         }
     }
@@ -188,11 +188,11 @@ public class PaymentFormController {
         txtAmount.clear();
     }
 
-    private  boolean isValidated(){
+    private boolean isValidated() {
         String nic = txtnic.getText();
         String name = txtName.getText();
-        String address= txtAddress.getText();
-        String contact= txtContact.getText();
+        String address = txtAddress.getText();
+        String contact = txtContact.getText();
         String email = txtEmail.getText();
         String amount = txtAmount.getText();
 
@@ -208,7 +208,7 @@ public class PaymentFormController {
             new Alert(Alert.AlertType.ERROR, "Invalid Address. Address should be at least 4 digits and can contain only alphabetic letters, spaces and - , . / \\").show();
             txtAddress.requestFocus();
             return false;
-        }else if (!isValidContact(contact)) {
+        } else if (!isValidContact(contact)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Contact Number").show();
             txtContact.requestFocus();
             return false;
@@ -217,7 +217,7 @@ public class PaymentFormController {
             txtEmail.requestFocus();
             return false;
 
-        } else if(!isValidAmount(amount)){
+        } else if (!isValidAmount(amount)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Amount").show();
             txtAmount.requestFocus();
             return false;
