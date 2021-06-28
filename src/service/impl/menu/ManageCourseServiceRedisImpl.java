@@ -27,9 +27,10 @@ public class ManageCourseServiceRedisImpl {
 
     public ArrayList<Course> getAll(String query) {
         ArrayList<Course> getCourse = new ArrayList<>();
-        Set<String> data = client.keys("C");
+        Set<String> data = client.keys("*");
 
         for (String course : data) {
+            if (Character.isDigit(course.charAt(0))) continue;
             if (course.contains(query)) {
                 getCourse.add(Maps.fromManageCourseMap(course, client.hgetAll(course)));
             } else {
@@ -42,16 +43,10 @@ public class ManageCourseServiceRedisImpl {
                 }
             }
         }
-        /*for (Course course : list) {
-            if(course.getCourseID().contains(query) || String.valueOf(course.getCourseFee()).contains(query)
-                    || String.valueOf(course.getStudentCount()).contains(query)){
-                getCourse.add(course);
-            }
-        }*/
         return getCourse;
     }
 
     public void deleteCourse(String id) {
-        //list.removeIf(course -> id.equals(course.getCourseID()));
+        client.del(id);
     }
 }
