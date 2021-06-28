@@ -26,9 +26,9 @@
 
 2. Once cloned, open the repository from the IntelliJ IDEA
 
-3. Go to the File > Project Structure and create a library for the **jFoenix**
+3. Go to the File > Project Structure and create a library for the **jFoenix** & **jedis**
 
-4. Then add jFoenix to the module
+4. Then add jFoenix & jedis to the module
 
 5. Build and Run!
 
