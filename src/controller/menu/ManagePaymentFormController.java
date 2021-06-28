@@ -8,15 +8,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.tm.ManagePaymentTM;
 import service.exception.DuplicateEntryException;
-import service.menu.ManagePaymentService;
+import service.impl.menu.ManagePaymentServiceRedisImpl;
 
 import java.util.Optional;
 
-import static util.ValidationUtil.*;
+import static util.ValidationUtil.isValidAmount;
+import static util.ValidationUtil.isValidCourseID;
 
 public class ManagePaymentFormController {
 
-    private final ManagePaymentService MANAGE_PAYMENT_SERVICE = new ManagePaymentService();
+    private final ManagePaymentServiceRedisImpl MANAGE_PAYMENT_SERVICE = new ManagePaymentServiceRedisImpl();
     public TableView<ManagePaymentTM> tblPayment;
     public JFXTextField txtCourseID;
     public JFXTextField txtAmount;
@@ -60,12 +61,12 @@ public class ManagePaymentFormController {
 
     private void loadAllPaymentDetails(String query) {
         tblPayment.getItems().clear();
-        tblPayment.getItems().addAll(MANAGE_PAYMENT_SERVICE.loadAllPayments(""));
+        tblPayment.getItems().addAll(MANAGE_PAYMENT_SERVICE.loadAllPayments(query));
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
         try {
-            if(!isValidated()){
+            if (!isValidated()) {
                 return;
             }
 
@@ -75,20 +76,20 @@ public class ManagePaymentFormController {
             txtAmount.clear();
             txtCourseID.clear();
         } catch (DuplicateEntryException e) {
-            new Alert(Alert.AlertType.ERROR,"Duplication CourseID",ButtonType.CLOSE).show();
+            new Alert(Alert.AlertType.ERROR, "Duplication CourseID", ButtonType.CLOSE).show();
             txtCourseID.requestFocus();
         }
     }
 
-    private boolean isValidated(){
+    private boolean isValidated() {
         String courseID = txtCourseID.getText();
         String amount = txtAmount.getText();
 
-        if(!isValidCourseID(courseID)){
+        if (!isValidCourseID(courseID)) {
             new Alert(Alert.AlertType.ERROR, "Invalid CourseID").show();
             txtCourseID.requestFocus();
             return false;
-        } else if(!isValidAmount(amount)){
+        } else if (!isValidAmount(amount)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Amount").show();
             txtAmount.requestFocus();
             return false;
