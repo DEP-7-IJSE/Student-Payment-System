@@ -37,6 +37,7 @@ public class PaymentFormServiceRedisImpl {
         List<PaymentFormTM> paymentFormTMList = new ArrayList<>();
         Set<String> nicList = client.keys("*");
         for (String nic : nicList) {
+            if (!Character.isDigit(nic.charAt(0))) continue;
             paymentFormTMList.add(Maps.fromPaymentMap(nic, client.hgetAll(nic)));
         }
         return paymentFormTMList;

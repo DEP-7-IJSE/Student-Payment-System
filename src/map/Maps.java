@@ -5,6 +5,7 @@ import model.Payment;
 import model.Student;
 import model.tm.DashBoardTM;
 import model.tm.ManagePaymentTM;
+import model.tm.ManageStudentTM;
 import model.tm.PaymentFormTM;
 
 import java.util.HashMap;
@@ -68,6 +69,17 @@ public class Maps {
                 nic,
                 Integer.parseInt(data.get("amount")),
                 data.get("login")
+        );
+    }
+
+    public static ManageStudentTM fromManageStudentMap(String nic, Map<String, String> data) {
+        return new ManageStudentTM(
+                data.get("courseID"),
+                nic,
+                data.get("name"),
+                data.get("contact"),
+                data.get("address"),
+                data.get("email")
         );
     }
 }
