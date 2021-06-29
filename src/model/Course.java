@@ -17,7 +17,7 @@ public class Course {
     public Course() {
     }
 
-    public static Course fromManageCourseMap(String courseID, Map<String, String> data) {
+    public static Course fromMap(String courseID, Map<String, String> data) {
         return new Course(
                 courseID.replace("c#", ""),
                 Double.parseDouble(data.get("fee")),

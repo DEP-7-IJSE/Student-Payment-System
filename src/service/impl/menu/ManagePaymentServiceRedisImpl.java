@@ -1,6 +1,5 @@
 package service.impl.menu;
 
-import map.Maps;
 import model.tm.ManagePaymentTM;
 import redis.clients.jedis.Jedis;
 import service.exception.DuplicateEntryException;
@@ -12,6 +11,7 @@ import java.util.Set;
 public class ManagePaymentServiceRedisImpl {
 
     private final Jedis client;
+    private static final String PAYMENT_PREFIX = "p#";
 
     public ManagePaymentServiceRedisImpl() {
         client = new Jedis("localhost", 9090);
@@ -19,17 +19,16 @@ public class ManagePaymentServiceRedisImpl {
 
     public ArrayList<ManagePaymentTM> loadAllPayments(String query) {
         ArrayList<ManagePaymentTM> getPayments = new ArrayList<>();
-        Set<String> data = client.keys("*");
+        Set<String> data = client.keys(PAYMENT_PREFIX + "*");
 
         for (String nic : data) {
-            if (!Character.isDigit(nic.charAt(0))) continue;
             if (nic.contains(query)) {
-                getPayments.add(Maps.fromManagePaymentMap(nic, client.hgetAll(nic)));
+                getPayments.add(ManagePaymentTM.fromMap(nic, client.hgetAll(nic)));
             } else {
                 List<String> hvals = client.hvals(nic);
                 for (String hval : hvals) {
                     if (hval.contains(query)) {
-                        getPayments.add(Maps.fromManagePaymentMap(nic, client.hgetAll(nic)));
+                        getPayments.add(ManagePaymentTM.fromMap(nic, client.hgetAll(nic)));
                         break;
                     }
                 }
@@ -39,7 +38,7 @@ public class ManagePaymentServiceRedisImpl {
     }
 
     public void remove(ManagePaymentTM managePaymentTM) {
-        client.del(managePaymentTM.getStudentNIC());
+        client.del(PAYMENT_PREFIX + managePaymentTM.getStudentNIC());
     }
 
     public void loadPayment(String tableNIC, String... update) throws DuplicateEntryException {

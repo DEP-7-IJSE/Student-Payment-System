@@ -1,8 +1,8 @@
 package model.tm;
 
-import com.jfoenix.controls.JFXButton;
+import java.util.Map;
 
-public class ManagePaymentTM{
+public class ManagePaymentTM {
     private String date;
     private String courseID;
     private String studentNIC;
@@ -18,6 +18,16 @@ public class ManagePaymentTM{
     }
 
     public ManagePaymentTM() {
+    }
+
+    public static ManagePaymentTM fromMap(String nic, Map<String, String> data) {
+        return new ManagePaymentTM(
+                data.get("date"),
+                data.get("courseID"),
+                nic.replace("p#", ""),
+                Integer.parseInt(data.get("amount")),
+                data.get("login")
+        );
     }
 
     public String getDate() {

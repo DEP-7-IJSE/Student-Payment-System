@@ -30,12 +30,12 @@ public class ManageCourseServiceRedisImpl {
 
         for (String course : data) {
             if (course.contains(query)) {
-                getCourse.add(Course.fromManageCourseMap(course, client.hgetAll(course)));
+                getCourse.add(Course.fromMap(course, client.hgetAll(course)));
             } else {
                 List<String> hvals = client.hvals(course);
                 for (String hval : hvals) {
                     if (hval.contains(query)) {
-                        getCourse.add(Course.fromManageCourseMap(course, client.hgetAll(course)));
+                        getCourse.add(Course.fromMap(course, client.hgetAll(course)));
                         break;
                     }
                 }
