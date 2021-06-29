@@ -1,5 +1,8 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Payment {
     private String nic;
     private String paymentMethod;
@@ -7,14 +10,16 @@ public class Payment {
     private String paymentRadio;
     private String date;
     private String login;
+    private String courseID;
 
-    public Payment(String nic, String paymentMethod, int amount, String paymentRadio, String date, String login) {
+    public Payment(String nic, String paymentMethod, int amount, String paymentRadio, String date, String login, String courseID) {
         this.nic = nic;
         this.paymentMethod = paymentMethod;
         this.amount = amount;
         this.paymentRadio = paymentRadio;
         this.date = date;
         this.login = login;
+        this.courseID = courseID;
     }
 
     public Payment() {
@@ -68,6 +73,25 @@ public class Payment {
         this.login = login;
     }
 
+    public String getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
+    public Map<String, String> toMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("paymentMethod", paymentMethod);
+        map.put("amount", String.valueOf(amount));
+        map.put("what", paymentRadio);
+        map.put("date", date);
+        map.put("login", login);
+        map.put("courseID", courseID);
+        return map;
+    }
+
     @Override
     public String toString() {
         return "Payment{" +
@@ -77,6 +101,7 @@ public class Payment {
                 ", paymentRadio='" + paymentRadio + '\'' +
                 ", date='" + date + '\'' +
                 ", login='" + login + '\'' +
+                ", courseID='" + courseID + '\'' +
                 '}';
     }
 }

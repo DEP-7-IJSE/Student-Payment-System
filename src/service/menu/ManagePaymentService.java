@@ -1,6 +1,5 @@
 package service.menu;
 
-import model.Course;
 import model.Payment;
 import model.Student;
 import model.tm.ManagePaymentTM;
@@ -14,12 +13,12 @@ public class ManagePaymentService {
     private static final List<Student> STUDENT= new ArrayList<>();
 
     static {
-        Payment p1 = new Payment("468464684v","Card",525,"Registration","05-10","Sehansa");
+        /*Payment p1 = new Payment("468464684v","Card",525,"Registration","05-10","Sehansa");
         Payment p2 = new Payment("468462584v","Card",45,"Registration","05-10","Pethum");
         Payment p3 = new Payment("468465884v","Cash",265,"Installment","05-10","Kavindu");
         PAYMENT.add(p1);
         PAYMENT.add(p2);
-        PAYMENT.add(p3);
+        PAYMENT.add(p3);*/
 
         Student s1 = new Student("468464684v","Niroth","Panadura","055-5644045","fhcueif@gmail.com","Nothing","DEP7");
         Student s2 = new Student("468465884v","Jeewantha","Galle","055-5625045","2522@gmail.com","Nothing","DEP8");

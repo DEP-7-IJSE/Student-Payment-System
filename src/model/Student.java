@@ -1,5 +1,8 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Student {
     private String nic;
     private String name;
@@ -76,6 +79,17 @@ public class Student {
 
     public void setCourseID(String courseID) {
         this.courseID = courseID;
+    }
+
+    public Map<String, String> toMap() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", name);
+        map.put("address", address);
+        map.put("contact", contact);
+        map.put("email", email);
+        map.put("description", description);
+        map.put("courseID", courseID);
+        return map;
     }
 
     @Override

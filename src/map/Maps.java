@@ -1,8 +1,6 @@
 package map;
 
 import model.Course;
-import model.Payment;
-import model.Student;
 import model.tm.DashBoardTM;
 import model.tm.ManagePaymentTM;
 import model.tm.ManageStudentTM;
@@ -12,22 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Maps {
-
-    public static Map<String, String> toMap(Student student, Payment payment) {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("name", student.getName());
-        map.put("address", student.getAddress());
-        map.put("contact", student.getContact());
-        map.put("email", student.getEmail());
-        map.put("description", student.getDescription());
-        map.put("courseID", student.getCourseID());
-        map.put("paymentMethod", payment.getPaymentMethod());
-        map.put("amount", String.valueOf(payment.getAmount()));
-        map.put("what", payment.getPaymentRadio());
-        map.put("date", payment.getDate());
-        map.put("login", payment.getLogin());
-        return map;
-    }
 
 
     public static PaymentFormTM fromPaymentMap(String nic, Map<String, String> data) {

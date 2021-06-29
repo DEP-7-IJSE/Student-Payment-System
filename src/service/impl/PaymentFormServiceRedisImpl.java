@@ -1,6 +1,5 @@
 package service.impl;
 
-import map.Maps;
 import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
@@ -13,6 +12,8 @@ import java.util.Set;
 
 public class PaymentFormServiceRedisImpl {
 
+    private static final String STUDENT_PREFIX = "s#";
+    private static final String PAYMENT_PREFIX = "p#";
     private final Jedis client;
 
     public PaymentFormServiceRedisImpl() {
@@ -20,7 +21,7 @@ public class PaymentFormServiceRedisImpl {
     }
 
     public boolean savePayments(Student student, Payment payment) throws DuplicateEntryException {
-        if (client.exists(student.getNic())) {
+        if (client.exists(STUDENT_PREFIX + student.getNic())) {
             throw new DuplicateEntryException();
         }
         /*if (student.getNic().equals(student1.getNic()) && student.getCourseID().equals(student1.getCourseID())) {
@@ -28,17 +29,17 @@ public class PaymentFormServiceRedisImpl {
                         throw new DuplicateEntryException();
                     }
                 }*/ //Todo: validation
-        client.hset(student.getNic(), Maps.toMap(student, payment));
+        client.hset(STUDENT_PREFIX + student.getNic(), student.toMap());
+        client.hset(PAYMENT_PREFIX + payment.getNic(), payment.toMap());
 
         return true;
     }
 
     public List<PaymentFormTM> findAll() {
         List<PaymentFormTM> paymentFormTMList = new ArrayList<>();
-        Set<String> nicList = client.keys("*");
+        Set<String> nicList = client.keys(PAYMENT_PREFIX + "*");
         for (String nic : nicList) {
-            if (!Character.isDigit(nic.charAt(0))) continue;
-            paymentFormTMList.add(Maps.fromPaymentMap(nic, client.hgetAll(nic)));
+            paymentFormTMList.add(PaymentFormTM.fromMap(nic, client.hgetAll(nic)));
         }
         return paymentFormTMList;
     }

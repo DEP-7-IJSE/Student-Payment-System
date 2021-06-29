@@ -12,12 +12,12 @@ public class DashBoardService {
     private static final ArrayList<Payment> PAYMENT_LIST = new ArrayList<>();
 
     static {
-        Payment p1 = new Payment("468464684v","Card",525,"Registration","05-10","Sehansa");
+        /*Payment p1 = new Payment("468464684v","Card",525,"Registration","05-10","Sehansa");
         Payment p2 = new Payment("468462584v","Card",45,"Registration","05-10","Pethum");
         Payment p3 = new Payment("468465884v","Cash",265,"Installment","05-10","Kavindu");
         PAYMENT_LIST.add(p1);
         PAYMENT_LIST.add(p2);
-        PAYMENT_LIST.add(p3);
+        PAYMENT_LIST.add(p3);*/
 
         Student s1 = new Student("468464684v","Niroth","Panadura","055-5644045","fhcueif@gmail.com","Nothing","DEP7");
         Student s2 = new Student("468465884v","Jeewantha","Galle","055-5625045","2522@gmail.com","Nothing","DEP8");

@@ -1,11 +1,9 @@
 # Student Payment System
 
----
----
 
 ### Contents of this file
 * Introduction
-* User guide to use
+* User guide
 * Resources
 * License
 

@@ -1,5 +1,7 @@
 package model.tm;
 
+import java.util.Map;
+
 public class PaymentFormTM {
     private String courseID;
     private String nic;
@@ -36,6 +38,14 @@ public class PaymentFormTM {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public static PaymentFormTM fromMap(String nic, Map<String, String> data) {
+        return new PaymentFormTM(
+                data.get("courseID"),
+                nic.replace("p#", ""),
+                Integer.parseInt(data.get("amount"))
+        );
     }
 
     @Override
