@@ -153,7 +153,7 @@ public class PaymentFormController {
                     Integer.parseInt(txtAmount.getText()),
                     whatForPayment,
                     lblDate.getText(),
-                    "Logged",
+                    "Logged", //Todo: add login credential
                     cmbCourseID.getValue()
             );
             boolean saved = paymentFormService.savePayments(student, payment);

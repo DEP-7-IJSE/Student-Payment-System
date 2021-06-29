@@ -74,7 +74,13 @@ public class ManageCourseFormController {
                     return;
                 }
 
-                MANAGE_COURSE_SERVICE.saveCourse(cmbProgramType.getValue(), Integer.parseInt(txtBatchNb.getText()), Double.parseDouble(txtCourseFee.getText()), Integer.parseInt(txtStudentCount.getText()));
+                Course course = new Course(
+                        cmbProgramType.getValue() + txtBatchNb.getText(),
+                        Double.parseDouble(txtCourseFee.getText()),
+                        Integer.parseInt(txtStudentCount.getText())
+                );
+
+                MANAGE_COURSE_SERVICE.saveCourse(course);
                 lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
                 loadAll("");
                 refreshForm();
