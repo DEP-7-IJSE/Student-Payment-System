@@ -88,10 +88,21 @@
     -fx-background-color: transparent;
 }
 
-.exit-button{
+.exit-button {
     -fx-background-color: red;
     -fx-text-fill: white;
 }
-.exit-button:hover{
+
+.exit-button:hover {
     -fx-background-color: #c0392b;
+}
+
+.list-cell {
+    -fx-background-color: #7f8c8d;
+    -fx-text-fill: white;
+
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #778182;
 }

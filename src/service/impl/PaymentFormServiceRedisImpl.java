@@ -15,6 +15,7 @@ public class PaymentFormServiceRedisImpl {
 
     private static final String STUDENT_PREFIX = "s#";
     private static final String PAYMENT_PREFIX = "p#";
+    private static final String COURSE_PREFIX = "c#";
     private final Jedis client;
 
     public PaymentFormServiceRedisImpl() {
@@ -43,5 +44,14 @@ public class PaymentFormServiceRedisImpl {
             paymentFormTMList.add(PaymentFormTM.fromMap(nic, client.hgetAll(nic)));
         }
         return paymentFormTMList;
+    }
+
+    public List<String> getAllCourses() {
+        List<String> courses = new ArrayList<>();
+        Set<String> coursSet = client.keys(COURSE_PREFIX + "*");
+        for (String course : coursSet) {
+            courses.add(course.replace("c#", ""));
+        }
+        return courses;
     }
 }

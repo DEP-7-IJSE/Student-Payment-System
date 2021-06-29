@@ -97,11 +97,8 @@ public class PaymentFormController {
 
     private void setCourseID() {
         ObservableList<String> courseID = cmbCourseID.getItems();
-        /*ArrayList<CourseTM> all = manageCourseService.getAll();
-        for (CourseTM course : all) {
-            courseID.add(course.getCourseID());
-        }*/
-        courseID.add("DEP7");
+        List<String> allCourses = paymentFormService.getAllCourses();
+        courseID.addAll(allCourses);
     }
 
     private void makeFadeIn() {
