@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.tm.ManagePaymentTM;
-import service.exception.DuplicateEntryException;
+import service.exception.NotFoundException;
 import service.impl.menu.ManagePaymentServiceRedisImpl;
 
 import java.util.Optional;
@@ -65,18 +65,20 @@ public class ManagePaymentFormController {
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
-        try {
-            if (!isValidated()) {
-                return;
-            }
+        if (!isValidated()) {
+            return;
+        }
 
-            MANAGE_PAYMENT_SERVICE.loadPayment(tblPayment.getSelectionModel().selectedItemProperty().getValue().getStudentNIC(),
+        try {
+            boolean updated = MANAGE_PAYMENT_SERVICE.loadPayment(tblPayment.getSelectionModel().selectedItemProperty().getValue().getStudentNIC(),
                     txtCourseID.getText(), txtAmount.getText());
+            if (updated) new Alert(Alert.AlertType.INFORMATION, "Updated", ButtonType.OK).show();
+            if (!updated) new Alert(Alert.AlertType.ERROR, "Wrong Entered", ButtonType.CLOSE).show();
             loadAllPaymentDetails("");
             txtAmount.clear();
             txtCourseID.clear();
-        } catch (DuplicateEntryException e) {
-            new Alert(Alert.AlertType.ERROR, "Duplication CourseID", ButtonType.CLOSE).show();
+        } catch (NotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, "Not a valid courseID", ButtonType.CLOSE).show();
             txtCourseID.requestFocus();
         }
     }

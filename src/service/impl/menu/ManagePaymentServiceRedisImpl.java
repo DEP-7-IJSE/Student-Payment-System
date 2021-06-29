@@ -2,7 +2,7 @@ package service.impl.menu;
 
 import model.tm.ManagePaymentTM;
 import redis.clients.jedis.Jedis;
-import service.exception.DuplicateEntryException;
+import service.exception.NotFoundException;
 import util.JedisClient;
 
 import java.util.ArrayList;
@@ -11,8 +11,10 @@ import java.util.Set;
 
 public class ManagePaymentServiceRedisImpl {
 
-    private final Jedis client;
     private static final String PAYMENT_PREFIX = "p#";
+    private static final String STUDENT_PREFIX = "s#";
+    private static final String COURSE_PREFIX = "c#";
+    private final Jedis client;
 
     public ManagePaymentServiceRedisImpl() {
         client = JedisClient.getInstance().getClient();
@@ -42,22 +44,15 @@ public class ManagePaymentServiceRedisImpl {
         client.del(PAYMENT_PREFIX + managePaymentTM.getStudentNIC());
     }
 
-    public void loadPayment(String tableNIC, String... update) throws DuplicateEntryException {
-        if (client.exists(tableNIC) && client.exists(update[0])) throw new DuplicateEntryException();
+    public boolean loadPayment(String tableNIC, String updateCourse, String updateAmount) throws NotFoundException {
+        if (!client.exists(COURSE_PREFIX + updateCourse)) throw new NotFoundException();
 
-        //client.hset(client.geta, )
+        client.hset(PAYMENT_PREFIX + tableNIC, "courseID", updateCourse);
+        client.hset(STUDENT_PREFIX + tableNIC, "courseID", updateCourse);
+        client.hset(PAYMENT_PREFIX + tableNIC, "amount", updateAmount);
 
-        /*for (Payment payment : PAYMENT) {
-            for (Student student : STUDENT) {
-                if(tableNIC.equals(student.getNic()) && tableNIC.equals(payment.getNic())){
-                    if(student.getCourseID().equals(update[0])){
-                        throw new DuplicateEntryException();
-                    }
-                    student.setCourseID(update[0]);
-                    payment.setAmount(Integer.parseInt(update[1])); //Todo: update
-                }
-            }
-        }*/
         loadAllPayments("");
+
+        return true;
     }
 }
