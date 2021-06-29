@@ -10,8 +10,7 @@ import model.User;
 import service.exception.DuplicateEntryException;
 import service.impl.menu.ManageUserServiceRedisImpl;
 
-import static util.ValidationUtil.isValidName;
-import static util.ValidationUtil.isValidPassword;
+import static util.ValidationUtil.*;
 
 public class ManageUserFormController {
     private final ManageUserServiceRedisImpl MANAGE_USER_SERVICE = new ManageUserServiceRedisImpl();
@@ -21,6 +20,7 @@ public class ManageUserFormController {
     public JFXPasswordField txtPassword;
     public JFXPasswordField txtPasswordAgain;
     public TextField txtSearch;
+    public JFXTextField txtContact;
 
     public void btnSave_OnAction(ActionEvent actionEvent) {
 
@@ -37,6 +37,7 @@ public class ManageUserFormController {
 
             User user = new User(
                     userType,
+                    txtContact.getText(),
                     txtUserName.getText(),
                     txtPassword.getText()
             );
@@ -50,6 +51,7 @@ public class ManageUserFormController {
 
     private boolean isValidated() {
         String userName = txtUserName.getText();
+        String contact = txtContact.getText();
         String password = txtPassword.getText();
         String passwordAgain = txtPasswordAgain.getText();
 
@@ -57,9 +59,17 @@ public class ManageUserFormController {
             new Alert(Alert.AlertType.ERROR, "Invalid UserName").show();
             txtUserName.requestFocus();
             return false;
-        } else if (!password.equals(passwordAgain) || !isValidPassword(password)) {
+        } else if (contact.trim().isEmpty() || !isValidContact(contact)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Contact").show();
+            txtContact.requestFocus();
+            return false;
+        } else if (!isValidPassword(password)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Password").show();
             txtPassword.requestFocus();
+            return false;
+        } else if (!password.equals(passwordAgain)) {
+            new Alert(Alert.AlertType.ERROR, "Password doesn't match").show();
+            txtPasswordAgain.requestFocus();
             return false;
         }
         return true;

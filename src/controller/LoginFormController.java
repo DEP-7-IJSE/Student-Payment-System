@@ -25,27 +25,37 @@ public class LoginFormController {
     }
 
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
-        String credentials = LOGIN_FORM_SERVICE.getCredentials(cmbUsers.getValue().toString());
-        if (!txtPassword.getText().equals(credentials)) {
-            new Alert(Alert.AlertType.ERROR, "Wrong Password", ButtonType.OK).show();
+
+        if (!cmbUsers.getItems().isEmpty()) {
+            String credentials = LOGIN_FORM_SERVICE.getCredentials(cmbUsers.getValue().toString());
+            if (!txtPassword.getText().equals(credentials)) {
+                new Alert(Alert.AlertType.ERROR, "Wrong Password", ButtonType.OK).show();
+                txtPassword.requestFocus();
+            } else {
+                navigateToDashboard();
+            }
         } else {
-            Stage stage = new Stage();
-            stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/DashBoardForm.fxml"))));
-            stage.setMinWidth(1024);
-            stage.setMinHeight(768);
-            stage.setTitle("DashBoard");
-            stage.setResizable(true);
-            stage.centerOnScreen();
-            ((Stage) loginForm.getScene().getWindow()).close();
-            stage.show();
+            navigateToDashboard();
         }
     }
 
-    public void resetPaswordOnAction(ActionEvent actionEvent) throws IOException {
+    public void resetPasswordOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/ResetPasswordForm.fxml"))));
         stage.setTitle("Reset Password");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    private void navigateToDashboard() throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/DashBoardForm.fxml"))));
+        stage.setMinWidth(1024);
+        stage.setMinHeight(768);
+        stage.setTitle("DashBoard");
+        stage.setResizable(true);
+        stage.centerOnScreen();
+        ((Stage) loginForm.getScene().getWindow()).close();
         stage.show();
     }
 }
