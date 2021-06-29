@@ -1,5 +1,7 @@
 package model.tm;
 
+import java.util.Map;
+
 public class ManageStudentTM {
 
     private String courseID;
@@ -67,6 +69,17 @@ public class ManageStudentTM {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public static ManageStudentTM fromMap(String nic, Map<String, String> data) {
+        return new ManageStudentTM(
+                data.get("courseID"),
+                nic.replace("s#", ""),
+                data.get("name"),
+                data.get("contact"),
+                data.get("address"),
+                data.get("email")
+        );
     }
 
     @Override

@@ -1,6 +1,5 @@
 package service.impl;
 
-import map.Maps;
 import model.tm.DashBoardTM;
 import redis.clients.jedis.Jedis;
 
@@ -12,6 +11,7 @@ import java.util.Set;
 public class DashBoardServiceRedisImpl {
 
     private final Jedis client;
+    private static final String PAYMENT_PREFIX = "p#";
 
     public DashBoardServiceRedisImpl() {
         client = new Jedis("localhost", 9090);
@@ -19,10 +19,9 @@ public class DashBoardServiceRedisImpl {
 
     public List<DashBoardTM> loadAll() {
         List<DashBoardTM> tm = new ArrayList<>();
-        Set<String> nicList = client.keys("*");
+        Set<String> nicList = client.keys(PAYMENT_PREFIX + "*");
         for (String nic : nicList) {
-            if (!Character.isDigit(nic.charAt(0))) continue;
-            tm.add(Maps.fromDashBoardMap(client.hgetAll(nic)));
+            tm.add(DashBoardTM.fromMap(client.hgetAll(nic)));
         }
         return tm;
     }
@@ -32,9 +31,8 @@ public class DashBoardServiceRedisImpl {
         int sum = 0;
         int registrations = 0;
         int payments = 0;
-        Set<String> keys = client.keys("*");
+        Set<String> keys = client.keys(PAYMENT_PREFIX + "*");
         for (String nic : keys) {
-            if (!Character.isDigit(nic.charAt(0))) continue;
             Map<String, String> data = client.hgetAll(nic);
             sum += Integer.parseInt(data.get("amount"));
             if (data.get("what").equals("Registration")) {

@@ -1,5 +1,7 @@
 package model.tm;
 
+import java.util.Map;
+
 public class DashBoardTM {
     private String courseID;
     private String paidFor;
@@ -46,6 +48,15 @@ public class DashBoardTM {
 
     public void setReceivedBy(String receivedBy) {
         this.receivedBy = receivedBy;
+    }
+
+    public static DashBoardTM fromMap(Map<String, String> data) {
+        return new DashBoardTM(
+                data.get("courseID"),
+                data.get("what"),
+                data.get("amount"),
+                data.get("login")
+        );
     }
 
     @Override
