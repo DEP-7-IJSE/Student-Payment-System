@@ -3,6 +3,7 @@ package service.impl.menu;
 import model.tm.ManagePaymentTM;
 import redis.clients.jedis.Jedis;
 import service.exception.DuplicateEntryException;
+import util.JedisClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class ManagePaymentServiceRedisImpl {
     private static final String PAYMENT_PREFIX = "p#";
 
     public ManagePaymentServiceRedisImpl() {
-        client = new Jedis("localhost", 9090);
+        client = JedisClient.getInstance().getClient();
     }
 
     public ArrayList<ManagePaymentTM> loadAllPayments(String query) {

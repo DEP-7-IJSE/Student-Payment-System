@@ -2,6 +2,7 @@ package service.impl.menu;
 
 import model.tm.ManageStudentTM;
 import redis.clients.jedis.Jedis;
+import util.JedisClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class ManageStudentServiceRedisImpl {
     private static final String STUDENT_PREFIX = "s#";
 
     public ManageStudentServiceRedisImpl() {
-        client = new Jedis("localhost", 9090);
+        client = JedisClient.getInstance().getClient();
     }
 
     public List<ManageStudentTM> getAllStudent(String query) {

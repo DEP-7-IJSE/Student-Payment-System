@@ -5,6 +5,7 @@ import model.Student;
 import model.tm.PaymentFormTM;
 import redis.clients.jedis.Jedis;
 import service.exception.DuplicateEntryException;
+import util.JedisClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class PaymentFormServiceRedisImpl {
     private final Jedis client;
 
     public PaymentFormServiceRedisImpl() {
-        client = new Jedis("localhost", 9090);
+        client = JedisClient.getInstance().getClient();
     }
 
     public boolean savePayments(Student student, Payment payment) throws DuplicateEntryException {

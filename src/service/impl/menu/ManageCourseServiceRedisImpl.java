@@ -3,6 +3,7 @@ package service.impl.menu;
 import model.Course;
 import redis.clients.jedis.Jedis;
 import service.exception.DuplicateEntryException;
+import util.JedisClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class ManageCourseServiceRedisImpl {
     private final Jedis client;
 
     public ManageCourseServiceRedisImpl() {
-        client = new Jedis("localhost", 9090);
+        client = JedisClient.getInstance().getClient();
     }
 
     public void saveCourse(Course course) throws DuplicateEntryException {

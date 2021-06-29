@@ -2,6 +2,7 @@ package service.impl;
 
 import model.tm.DashBoardTM;
 import redis.clients.jedis.Jedis;
+import util.JedisClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class DashBoardServiceRedisImpl {
     private static final String PAYMENT_PREFIX = "p#";
 
     public DashBoardServiceRedisImpl() {
-        client = new Jedis("localhost", 9090);
+        client = JedisClient.getInstance().getClient();
     }
 
     public List<DashBoardTM> loadAll() {
