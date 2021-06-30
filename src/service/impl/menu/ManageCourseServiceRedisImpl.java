@@ -25,6 +25,11 @@ public class ManageCourseServiceRedisImpl {
         client.hset(COURSE_PREFIX + course.getCourseID(), course.toManageCourseMap());
     }
 
+    public void updateCourse(Course course) {
+        client.del(COURSE_PREFIX + course.getCourseID());
+        client.hset(COURSE_PREFIX + course.getCourseID(), course.toManageCourseMap());
+    }
+
     public ArrayList<Course> getAll(String query) {
         ArrayList<Course> getCourse = new ArrayList<>();
         Set<String> data = client.keys(COURSE_PREFIX + "*");

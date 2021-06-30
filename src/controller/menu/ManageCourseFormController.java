@@ -48,10 +48,12 @@ public class ManageCourseFormController {
 
         tblCourses.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                if (newValue.getCourseID().charAt(3) == 'P') {
+                if (newValue.getCourseID().charAt(2) == 'P') {
                     txtBatchNb.setText(newValue.getCourseID().substring(3));
+                    cmbProgramType.setValue(newValue.getCourseID().substring(0, 3));
                 } else {
                     txtBatchNb.setText(newValue.getCourseID().substring(4));
+                    cmbProgramType.setValue(newValue.getCourseID().substring(0, 4));
                 }
                 txtCourseFee.setText(String.valueOf(newValue.getCourseFee()));
                 txtStudentCount.setText(String.valueOf(newValue.getStudentCount()));
@@ -82,6 +84,7 @@ public class ManageCourseFormController {
 
                 MANAGE_COURSE_SERVICE.saveCourse(course);
                 lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
+                new Alert(Alert.AlertType.INFORMATION, "Saved", ButtonType.OK).show();
                 loadAll("");
                 refreshForm();
             } catch (DuplicateEntryException e) {
@@ -89,7 +92,21 @@ public class ManageCourseFormController {
                 txtBatchNb.requestFocus();
             }
         } else {
-            //Todo: update course
+
+            if (!isValidated()) {
+                return;
+            }
+
+            Course course = new Course(
+                    cmbProgramType.getValue() + txtBatchNb.getText(),
+                    Double.parseDouble(txtCourseFee.getText()),
+                    Integer.parseInt(txtStudentCount.getText())
+            );
+
+            MANAGE_COURSE_SERVICE.updateCourse(course);
+            new Alert(Alert.AlertType.INFORMATION, "Saved", ButtonType.OK).show();
+            loadAll("");
+            refreshForm(); //Todo: course fee data type
         }
     }
 
