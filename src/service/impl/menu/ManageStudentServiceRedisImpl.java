@@ -37,6 +37,6 @@ public class ManageStudentServiceRedisImpl {
     }
 
     public void removeStudent(ManageStudentTM tm) {
-        //client.
+        //client.del(STUDENT_PREFIX+tm.getNIC());
     }
 }
