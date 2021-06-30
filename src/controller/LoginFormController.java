@@ -24,7 +24,7 @@ public class LoginFormController {
         cmbUsers.getItems().addAll(LOGIN_FORM_SERVICE.getUsers());
     }
 
-    public void loginOnAction(ActionEvent actionEvent) throws IOException {
+    public void loginOnAction(ActionEvent actionEvent) throws IOException { //Todo: resolve null exception
 
         if (!cmbUsers.getItems().isEmpty()) {
             String credentials = LOGIN_FORM_SERVICE.getCredentials(cmbUsers.getValue().toString());
@@ -32,6 +32,8 @@ public class LoginFormController {
                 new Alert(Alert.AlertType.ERROR, "Wrong Password", ButtonType.OK).show();
                 txtPassword.requestFocus();
             } else {
+                System.setProperty("app.user", cmbUsers.getValue().toString());
+                System.setProperty("app.userType", LOGIN_FORM_SERVICE.getUserType(cmbUsers.getValue().toString()));
                 navigateToDashboard();
             }
         } else {

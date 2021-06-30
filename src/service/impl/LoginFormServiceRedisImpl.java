@@ -25,7 +25,10 @@ public class LoginFormServiceRedisImpl {
     }
 
     public String getCredentials(String user) {
-        Set<String> mapUsers = client.keys(USER_PREFIX + user);
         return client.hget(USER_PREFIX + user, "password");
+    }
+
+    public String getUserType(String user) {
+        return client.hget(USER_PREFIX + user, "type");
     }
 }

@@ -55,7 +55,7 @@ public class ManageUserFormController {
         String password = txtPassword.getText();
         String passwordAgain = txtPasswordAgain.getText();
 
-        if (userName.trim().isEmpty() || !isValidName(userName)) {
+        if (userName.trim().isEmpty() || !isValidName(userName)) { //Todo: change validation to username
             new Alert(Alert.AlertType.ERROR, "Invalid UserName").show();
             txtUserName.requestFocus();
             return false;

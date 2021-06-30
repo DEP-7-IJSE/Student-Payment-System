@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/SideMenu.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SideMenuController">
    <children>
       <VBox prefHeight="670.0" prefWidth="200.0" spacing="30.0">
@@ -38,15 +36,27 @@
                   <Font size="15.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Label>
-            <Label fx:id="lblGetReport" alignment="CENTER" onMouseClicked="#getReportClicked" prefHeight="36.0" prefWidth="201.0" stylesheets="@css/SideMenu.css" text="Get Report" textFill="#2c3e50">
+                  <Cursor fx:constant="HAND"/>
+               </cursor>
+            </Label>
+            <Label fx:id="lblGetReport" alignment="CENTER" onMouseClicked="#getReportClicked" prefHeight="36.0"
+                   prefWidth="201.0" stylesheets="@css/SideMenu.css" text="Get Report" textFill="#2c3e50">
                <font>
-                  <Font size="15.0" />
+                  <Font size="15.0"/>
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Label>
+                  <Cursor fx:constant="HAND"/>
+               </cursor>
+            </Label>
+            <Label fx:id="lblUser" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="200.0"
+                   text="User" textFill="#2c3e50" wrapText="true">
+               <VBox.margin>
+                  <Insets top="300.0"/>
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0"/>
+               </font>
+            </Label>
          </children>
       </VBox>
       <StackPane fx:id="sideMenuContainer" layoutX="200.0" prefHeight="670.0" prefWidth="829.0">

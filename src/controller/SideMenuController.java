@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -25,9 +24,17 @@ public class SideMenuController {
     public Label lblManagePayment;
     public Label lblManageUsers;
     public Label lblGetReport;
+    public Label lblUser;
 
     public void initialize() {
         manageStudentClicked(null);
+        lblUser.setText(System.getProperty("app.user"));
+        if (!System.getProperty("app.userType").equals("Admin")) {
+            lblGetReport.setDisable(true);
+            lblManageCourse.setDisable(true);
+            lblManagePayment.setDisable(true);
+            lblManageUsers.setDisable(true);
+        }
     }
 
     public void manageStudentClicked(MouseEvent mouseEvent) {
