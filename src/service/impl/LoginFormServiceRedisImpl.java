@@ -1,5 +1,6 @@
 package service.impl;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import redis.clients.jedis.Jedis;
 import util.JedisClient;
 
@@ -24,8 +25,10 @@ public class LoginFormServiceRedisImpl {
         return users;
     }
 
-    public String getCredentials(String user) {
-        return client.hget(USER_PREFIX + user, "password");
+    public boolean authentication(String user) {
+        String savedPassword = client.hget(USER_PREFIX + user, "password");
+        String addedPassword = DigestUtils.sha256Hex(user);
+        return addedPassword.equals(savedPassword);
     }
 
     public String getUserType(String user) {

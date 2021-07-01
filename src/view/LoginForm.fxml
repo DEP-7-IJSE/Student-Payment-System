@@ -6,36 +6,47 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane fx:id="loginForm" prefHeight="247.0" prefWidth="300.0" styleClass="anchor-color" stylesheets="@css/DashBoardStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
-   <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="6.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <image>
-            <Image url="@../assets/ijse.png"/>
-         </image>
-      </ImageView>
-      <JFXComboBox id="userName" fx:id="cmbUsers" labelFloat="true" layoutX="43.0" layoutY="78.0" prefHeight="26.0"
-                   prefWidth="246.0" promptText="User Name" styleClass="combo-box-base"/>
-      <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="44.0" layoutY="128.0" prefHeight="34.0"
-                        prefWidth="246.0" promptText="Password"/>
-      <JFXButton buttonType="RAISED" defaultButton="true" layoutX="10.0" layoutY="183.0" onAction="#loginOnAction"
-                 prefHeight="26.0" prefWidth="280.0" styleClass="primaryColor" text="Login">
-         <cursor>
-            <Cursor fx:constant="HAND"/>
-         </cursor>
-      </JFXButton>
-      <Hyperlink layoutX="9.0" layoutY="217.0" onAction="#resetPasswordOnAction" text="Forgot Password?"/>
-      <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="11.0" layoutY="78.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <image>
-            <Image url="@../assets/User.png"/>
-         </image>
-      </ImageView>
-      <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="8.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/Key.png" />
-         </image>
-      </ImageView>
-   </children>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="loginForm" prefHeight="253.0" prefWidth="300.0"
+            style="-fx-background-radius: 10;" styleClass="anchor-color" stylesheets="@css/DashBoardStyles.css"
+            xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.LoginFormController">
+    <children>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="6.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../assets/ijse.png"/>
+            </image>
+        </ImageView>
+        <JFXComboBox id="userName" fx:id="cmbUsers" labelFloat="true" layoutX="43.0" layoutY="78.0" prefHeight="26.0"
+                     prefWidth="246.0" promptText="User Name" styleClass="combo-box-base" AnchorPane.leftAnchor="40.0"
+                     AnchorPane.rightAnchor="10.0"/>
+        <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="44.0" layoutY="128.0" prefHeight="34.0"
+                          prefWidth="246.0" promptText="Password" AnchorPane.leftAnchor="40.0"
+                          AnchorPane.rightAnchor="10.0"/>
+        <JFXButton buttonType="RAISED" defaultButton="true" layoutX="10.0" layoutY="175.0" onAction="#loginOnAction"
+                   prefHeight="34.0" prefWidth="280.0" styleClass="primaryColor" text="Login">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <Hyperlink layoutX="9.0" layoutY="217.0" onAction="#resetPasswordOnAction" text="Forgot Password?"/>
+        <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="11.0" layoutY="78.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../assets/User.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="8.0" layoutY="141.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../assets/Key.png"/>
+            </image>
+        </ImageView>
+        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="241.0" layoutY="216.0"
+                   style="-fx-border-color: #34495e; -fx-border-radius: 10; -fx-background-radius: 10;" text="EXIT">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+    </children>
 </AnchorPane>

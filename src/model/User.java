@@ -1,5 +1,7 @@
 package model;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +58,7 @@ public class User implements Serializable {
         Map<String, String> map = new HashMap<>();
         map.put("type", userType);
         map.put("contact", contact);
-        map.put("password", password);
+        map.put("password", DigestUtils.sha256Hex(password));
         return map;
     }
 

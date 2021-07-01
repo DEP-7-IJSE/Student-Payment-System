@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -48,7 +49,9 @@ public class SplashFormController {
 
     private void initializeUI() throws IOException {
         Stage primaryStage = (Stage) pgb.getScene().getWindow();
-        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/LoginForm.fxml"))));
+        Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/view/LoginForm.fxml")));
+        scene.setFill(Color.TRANSPARENT);
+        primaryStage.setScene(scene);
         primaryStage.setTitle("Login");
         primaryStage.centerOnScreen();
         primaryStage.setResizable(false);
