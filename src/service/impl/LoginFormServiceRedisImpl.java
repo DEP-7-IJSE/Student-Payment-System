@@ -25,9 +25,9 @@ public class LoginFormServiceRedisImpl {
         return users;
     }
 
-    public boolean authentication(String user) {
+    public boolean authentication(String user, String password) {
         String savedPassword = client.hget(USER_PREFIX + user, "password");
-        String addedPassword = DigestUtils.sha256Hex(user);
+        String addedPassword = DigestUtils.sha256Hex(password);
         return addedPassword.equals(savedPassword);
     }
 

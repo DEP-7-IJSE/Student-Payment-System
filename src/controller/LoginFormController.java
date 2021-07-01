@@ -27,7 +27,7 @@ public class LoginFormController {
     public void loginOnAction(ActionEvent actionEvent) throws IOException { //Todo: resolve null exception
 
         if (!cmbUsers.getItems().isEmpty()) {
-            if (!LOGIN_FORM_SERVICE.authentication(cmbUsers.getValue().toString())) {
+            if (!LOGIN_FORM_SERVICE.authentication(cmbUsers.getValue().toString(), txtPassword.getText())) {
                 new Alert(Alert.AlertType.ERROR, "Wrong Password", ButtonType.OK).show();
                 txtPassword.requestFocus();
             } else {

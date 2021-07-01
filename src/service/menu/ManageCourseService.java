@@ -9,7 +9,7 @@ public class ManageCourseService {
     private static final ArrayList<Course> list= new ArrayList();
 
     static {
-        Course c1 = new Course("DEP7",45000,25);
+       /* Course c1 = new Course("DEP7",45000,25);
         Course c2 = new Course("DEP6",40000,20);
         Course c3 = new Course("DEP9",45000,25);
         Course c4 = new Course("DEP8",60000,30);
@@ -17,18 +17,18 @@ public class ManageCourseService {
         list.add(c1);
         list.add(c2);
         list.add(c3);
-        list.add(c4);
+        list.add(c4);*/
     }
 
     public void saveCourse(String type, int batch, double fee, int count) throws DuplicateEntryException {
-        String courseID=type+batch;
+        String courseID = type + batch;
         for (Course course : list) {
-            if(course.getCourseID().equals(courseID)){
+            if (course.getCourseID().equals(courseID)) {
                 throw new DuplicateEntryException();
             }
         }
-        Course courseTM = new Course(courseID, fee, count);
-        list.add(courseTM);
+        // Course courseTM = new Course(courseID, fee, count);
+        //list.add(courseTM);
     }
 
     public ArrayList<Course> getAll(String query){

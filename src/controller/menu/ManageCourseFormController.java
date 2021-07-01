@@ -26,12 +26,14 @@ public class ManageCourseFormController {
     public TextField txtSearch;
     public TableView<Course> tblCourses;
     public JFXButton btnSave;
+    public JFXTextField txtRegistrationFee;
 
     public void initialize() {
         tblCourses.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("CourseID"));
-        tblCourses.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("courseFee"));
-        tblCourses.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("studentCount"));
-        TableColumn<Course, JFXButton> lastCol = (TableColumn<Course, JFXButton>) tblCourses.getColumns().get(3);
+        tblCourses.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("registrationFee"));
+        tblCourses.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("courseFee"));
+        tblCourses.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("studentCount"));
+        TableColumn<Course, JFXButton> lastCol = (TableColumn<Course, JFXButton>) tblCourses.getColumns().get(4);
         lastCol.setCellValueFactory(param -> new ObservableValueBase<JFXButton>() {
             @Override
             public JFXButton getValue() {
@@ -78,6 +80,7 @@ public class ManageCourseFormController {
 
                 Course course = new Course(
                         cmbProgramType.getValue() + txtBatchNb.getText(),
+                        Double.parseDouble(txtRegistrationFee.getText()),
                         Double.parseDouble(txtCourseFee.getText()),
                         Integer.parseInt(txtStudentCount.getText())
                 );
@@ -99,6 +102,7 @@ public class ManageCourseFormController {
 
             Course course = new Course(
                     cmbProgramType.getValue() + txtBatchNb.getText(),
+                    Double.parseDouble(txtRegistrationFee.getText()),
                     Double.parseDouble(txtCourseFee.getText()),
                     Integer.parseInt(txtStudentCount.getText())
             );
@@ -120,10 +124,12 @@ public class ManageCourseFormController {
         txtCourseFee.clear();
         txtBatchNb.clear();
         txtStudentCount.clear();
+        txtRegistrationFee.clear();
     }
 
     private boolean isValidated() {
         String batch = txtBatchNb.getText();
+        String registration = txtRegistrationFee.getText();
         String fee = txtCourseFee.getText();
         String count = txtStudentCount.getText();
 
@@ -131,9 +137,10 @@ public class ManageCourseFormController {
             new Alert(Alert.AlertType.ERROR, "Invalid Batch Number").show();
             txtBatchNb.requestFocus();
             return false;
-        } else if (!isValidAmount(fee)) {
+        } else if (!(isValidAmount(fee) || isValidAmount(registration))) {
             new Alert(Alert.AlertType.ERROR, "Invalid Fee").show();
-            txtCourseFee.requestFocus();
+            if (!isValidAmount(fee)) txtCourseFee.requestFocus();
+            if (!isValidAmount(registration)) txtRegistrationFee.requestFocus();
             return false;
         } else if (!isValidStudentCount(count)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Student Count").show();

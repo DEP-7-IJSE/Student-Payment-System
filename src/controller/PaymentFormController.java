@@ -21,14 +21,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Course;
 import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
 import service.exception.DuplicateEntryException;
 import service.impl.PaymentFormServiceRedisImpl;
+import service.impl.menu.ManageCourseServiceRedisImpl;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +40,7 @@ import static util.ValidationUtil.*;
 public class PaymentFormController {
 
     private final PaymentFormServiceRedisImpl paymentFormService = new PaymentFormServiceRedisImpl();
+    private final ManageCourseServiceRedisImpl manageCourseService = new ManageCourseServiceRedisImpl();
     public ImageView imgBack;
     public Label lblDate;
     public JFXComboBox<String> cmbPaymentMethod;
@@ -66,6 +70,25 @@ public class PaymentFormController {
 
         loadAllPayments();
 
+        setCourseID();
+
+        cmbCourseID.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            setAmount(rdoFullPayment, FeeType.COURSE_FEE);
+            setAmount(rdoRegistration, FeeType.REGISTRATION_FEE);
+        });
+
+        whatFor.getToggles().get(0).selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) setAmount(rdoRegistration, FeeType.REGISTRATION_FEE);
+        });
+
+        whatFor.getToggles().get(1).selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) setAmount(rdoFullPayment, FeeType.COURSE_FEE);
+        });
+
+        whatFor.getToggles().get(2).selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) txtAmount.clear();
+        });
+
         lblDate.setText(String.valueOf(LocalDate.now()));
         Timeline t1 = new Timeline(new KeyFrame(Duration.millis(900), event -> {
             String time = String.format("%tT", new Date());
@@ -75,8 +98,6 @@ public class PaymentFormController {
         t1.play();
 
         txtReceipt.setText(String.format("R%04d", receiptNumber));
-
-        setCourseID();
 
         secondPane.setOpacity(0.5);
         makeFadeIn();
@@ -93,6 +114,20 @@ public class PaymentFormController {
         items.add("Card Payment");
         items.add("Online Transfer");
         items.add("Cash");
+    }
+
+    private void setAmount(JFXRadioButton selected, FeeType feeType) {
+        ArrayList<Course> all = manageCourseService.getAll(cmbCourseID.getValue());
+        for (Course course : all) {
+            if (selected.isSelected()) {
+                if (feeType == FeeType.COURSE_FEE) txtAmount.setText(String.valueOf(course.getCourseFee()));
+                if (feeType == FeeType.REGISTRATION_FEE) txtAmount.setText(String.valueOf(course.getRegistrationFee()));
+            }
+        }
+    }
+
+    private enum FeeType {
+        COURSE_FEE, REGISTRATION_FEE
     }
 
     private void setCourseID() {

@@ -22,12 +22,12 @@ public class ManageCourseServiceRedisImpl {
         if (client.exists(course.getCourseID())) {
             throw new DuplicateEntryException();
         }
-        client.hset(COURSE_PREFIX + course.getCourseID(), course.toManageCourseMap());
+        client.hset(COURSE_PREFIX + course.getCourseID(), course.toMap());
     }
 
     public void updateCourse(Course course) {
         client.del(COURSE_PREFIX + course.getCourseID());
-        client.hset(COURSE_PREFIX + course.getCourseID(), course.toManageCourseMap());
+        client.hset(COURSE_PREFIX + course.getCourseID(), course.toMap());
     }
 
     public ArrayList<Course> getAll(String query) {
