@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
@@ -43,16 +44,23 @@
                   <Font size="15.0"/>
                </font>
             </JFXPasswordField>
-            <JFXButton onAction="#btnSave_OnAction" text="Save"/>
+            <JFXButton buttonType="RAISED" onAction="#btnSave_OnAction" text="Save"/>
          </children>
       </VBox>
-      <JFXListView layoutX="237.0" layoutY="383.0" prefHeight="205.0" prefWidth="370.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0" />
       <TextField fx:id="txtSearch" layoutX="40.0" layoutY="390.0" promptText="Search  Users" styleClass="search-course"
                  AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="15.0"/>
          </font>
       </TextField>
+      <JFXListView id="user" fx:id="lstUser" layoutX="189.0" layoutY="443.0" prefHeight="180.0" prefWidth="285.0"
+                   AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="356.0"/>
+      <JFXButton fx:id="btnDelete" layoutX="493.0" layoutY="520.0" onAction="#btnDelete_OnAction"
+                 style="-fx-background-color: red;" text="Delete" textAlignment="CENTER" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND"/>
+         </cursor>
+      </JFXButton>
    </children>
 
 </AnchorPane>

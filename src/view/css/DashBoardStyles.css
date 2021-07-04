@@ -106,3 +106,7 @@
 .list-cell:filled:hover {
     -fx-background-color: #778182;
 }
+
+.text-field {
+    -fx-text-fill: white;
+}

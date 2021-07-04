@@ -104,10 +104,18 @@
     -fx-background-color: transparent;
 }
 
-.list-cell:filled:hover{
+.list-cell:filled:hover {
     -fx-background-color: #778182;
 }
 
-#deleteButton{
+#deleteButton {
     -fx-background-color: red;
+}
+
+.radio-button {
+    -jfx-selected-color: white;
+}
+
+#user .list-cell:filled:selected {
+    -fx-background-color: #778182;
 }

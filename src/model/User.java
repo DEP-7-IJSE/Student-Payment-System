@@ -53,6 +53,10 @@ public class User implements Serializable {
         return map;
     }
 
+    public static String fromMap(String user) {
+        return user.replace("u#", "");
+    }
+
     @Override
     public String toString() {
         return "User{" +

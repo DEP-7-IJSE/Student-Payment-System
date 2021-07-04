@@ -17,6 +17,8 @@
                 <Image url="@../assets/ijse.png"/>
             </image>
         </ImageView>
+        <JFXTextField fx:id="txtUser" labelFloat="true" layoutX="40.0" layoutY="78.0" promptText="User Name"
+                      AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="10.0"/>
         <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="44.0" layoutY="128.0" prefHeight="34.0"
                           prefWidth="246.0" promptText="Password" AnchorPane.leftAnchor="40.0"
                           AnchorPane.rightAnchor="10.0"/>
@@ -45,7 +47,5 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </JFXButton>
-        <JFXTextField fx:id="txtUser" layoutX="40.0" layoutY="78.0" promptText="User Name" AnchorPane.leftAnchor="40.0"
-                      AnchorPane.rightAnchor="10.0"/>
     </children>
 </AnchorPane>

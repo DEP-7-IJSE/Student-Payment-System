@@ -48,6 +48,7 @@ public class LoginFormController {
 
         if (!LOGIN_FORM_SERVICE.authentication(txtUser.getText(), txtPassword.getText())) {
             new Alert(Alert.AlertType.ERROR, "Wrong Password", ButtonType.OK).show();
+            txtPassword.clear();
             txtPassword.requestFocus();
         } else {
             System.setProperty("app.user", txtUser.getText());

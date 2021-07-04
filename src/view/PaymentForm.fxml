@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXRadioButton?>
-<?import java.lang.String?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.String?>
 <StackPane fx:id="secondPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/PaymentFormStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentFormController">
    <children>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="anchor-color" stylesheets="@css/PaymentFormStyle.css">
@@ -81,15 +70,30 @@
                   <HBox alignment="CENTER" prefHeight="99.0" prefWidth="980.0" spacing="130.0">
                      <children>
                         <VBox prefHeight="167.0" prefWidth="121.0" spacing="20.0">
-                           <children>
-                              <JFXRadioButton fx:id="rdoRegistration" accessibleText="Registration" text="Registration">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="whatFor" />
-                                 </toggleGroup>
-                              </JFXRadioButton>
-                              <JFXRadioButton fx:id="rdoFullPayment" accessibleText="Full Payment" layoutX="10.0" layoutY="10.0" selected="true" text="Full Payment" toggleGroup="$whatFor" />
-                              <JFXRadioButton fx:id="rdoInstalment" accessibleText="Installment" layoutX="10.0" layoutY="46.0" text="Installment" toggleGroup="$whatFor" />
-                           </children>
+                            <children>
+                                <JFXRadioButton fx:id="rdoRegistration" accessibleText="Registration"
+                                                text="Registration">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="whatFor"/>
+                                    </toggleGroup>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+                                </JFXRadioButton>
+                                <JFXRadioButton fx:id="rdoFullPayment" accessibleText="Full Payment" layoutX="10.0"
+                                                layoutY="10.0" selected="true" text="Full Payment"
+                                                toggleGroup="$whatFor">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+                                </JFXRadioButton>
+                                <JFXRadioButton fx:id="rdoInstalment" accessibleText="Installment" layoutX="10.0"
+                                                layoutY="46.0" text="Installment" toggleGroup="$whatFor">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+                                </JFXRadioButton>
+                            </children>
                         </VBox>
                         <JFXComboBox fx:id="cmbPaymentMethod" prefHeight="26.0" prefWidth="157.0" promptText="Payment Method" />
                         <TextField fx:id="txtAmount" prefHeight="31.0" prefWidth="197.0" promptText="Amount">

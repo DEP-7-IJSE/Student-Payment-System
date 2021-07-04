@@ -98,12 +98,16 @@
     -fx-background-color: #c0392b;
 }
 
-.list-cell{
+.list-cell {
     -fx-background-color: #7f8c8d;
     -fx-text-fill: white;
 
 }
 
-.list-cell:filled:hover{
+.list-cell:filled:hover {
     -fx-background-color: #778182;
+}
+
+.radio-button {
+    -jfx-selected-color: white;
 }

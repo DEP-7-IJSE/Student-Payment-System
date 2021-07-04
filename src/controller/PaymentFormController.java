@@ -77,17 +77,19 @@ public class PaymentFormController {
             setAmount(rdoRegistration, FeeType.REGISTRATION_FEE);
         });
 
-        whatFor.getToggles().get(0).selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) setAmount(rdoRegistration, FeeType.REGISTRATION_FEE);
-        });
+        if (cmbCourseID.isFocused()) {
+            whatFor.getToggles().get(0).selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) setAmount(rdoRegistration, FeeType.REGISTRATION_FEE);
+            });
 
-        whatFor.getToggles().get(1).selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) setAmount(rdoFullPayment, FeeType.COURSE_FEE);
-        });
+            whatFor.getToggles().get(1).selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) setAmount(rdoFullPayment, FeeType.COURSE_FEE);
+            });
 
-        whatFor.getToggles().get(2).selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) txtAmount.clear();
-        });
+            whatFor.getToggles().get(2).selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) txtAmount.clear();
+            });
+        }
 
         lblDate.setText(String.valueOf(LocalDate.now()));
         Timeline t1 = new Timeline(new KeyFrame(Duration.millis(900), event -> {
@@ -105,8 +107,8 @@ public class PaymentFormController {
             lblDate.getScene().getAccelerators().put(new KeyCharacterCombination("b", KeyCombination.CONTROL_ANY), () -> {
                 try {
                     imgBackClicked(null);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (IOException ignored) {
+
                 }
             });
         });
