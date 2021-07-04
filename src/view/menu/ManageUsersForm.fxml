@@ -23,15 +23,10 @@
             <Font size="15.0"/>
          </font>
       </JFXRadioButton>
-      <VBox alignment="TOP_RIGHT" layoutX="200.0" layoutY="89.0" prefHeight="259.0" prefWidth="430.0" spacing="30.0"
+      <VBox alignment="TOP_RIGHT" layoutX="200.0" layoutY="98.0" prefHeight="259.0" prefWidth="430.0" spacing="40.0"
             AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
          <children>
             <JFXTextField fx:id="txtUserName" labelFloat="true" promptText="User Name">
-               <font>
-                  <Font size="15.0"/>
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Contact">
                <font>
                   <Font size="15.0"/>
                </font>

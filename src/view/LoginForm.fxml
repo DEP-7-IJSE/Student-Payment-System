@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.image.*?>
@@ -17,9 +17,6 @@
                 <Image url="@../assets/ijse.png"/>
             </image>
         </ImageView>
-        <JFXComboBox id="userName" fx:id="cmbUsers" labelFloat="true" layoutX="43.0" layoutY="78.0" prefHeight="26.0"
-                     prefWidth="246.0" promptText="User Name" styleClass="combo-box-base" AnchorPane.leftAnchor="40.0"
-                     AnchorPane.rightAnchor="10.0"/>
         <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="44.0" layoutY="128.0" prefHeight="34.0"
                           prefWidth="246.0" promptText="Password" AnchorPane.leftAnchor="40.0"
                           AnchorPane.rightAnchor="10.0"/>
@@ -48,5 +45,7 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </JFXButton>
+        <JFXTextField fx:id="txtUser" layoutX="40.0" layoutY="78.0" promptText="User Name" AnchorPane.leftAnchor="40.0"
+                      AnchorPane.rightAnchor="10.0"/>
     </children>
 </AnchorPane>

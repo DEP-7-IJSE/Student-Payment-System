@@ -37,7 +37,6 @@ public class ManageUserFormController {
 
             User user = new User(
                     userType,
-                    txtContact.getText(),
                     txtUserName.getText(),
                     txtPassword.getText()
             );
