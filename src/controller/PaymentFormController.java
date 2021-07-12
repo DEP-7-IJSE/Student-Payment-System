@@ -27,6 +27,7 @@ import model.Student;
 import model.tm.PaymentFormTM;
 import service.exception.DuplicateEntryException;
 import service.impl.PaymentFormServiceRedisImpl;
+import service.impl.menu.GetReportServiceRedisImpl;
 import service.impl.menu.ManageCourseServiceRedisImpl;
 
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class PaymentFormController {
 
     private final PaymentFormServiceRedisImpl paymentFormService = new PaymentFormServiceRedisImpl();
     private final ManageCourseServiceRedisImpl manageCourseService = new ManageCourseServiceRedisImpl();
+    private final GetReportServiceRedisImpl getReportService = new GetReportServiceRedisImpl();
     public ImageView imgBack;
     public Label lblDate;
     public JFXComboBox<String> cmbPaymentMethod;
@@ -61,13 +63,13 @@ public class PaymentFormController {
     public TableView<PaymentFormTM> tblPayment;
     public Label lblTime;
 
-    private int receiptNumber = 1;
+    private int receiptNumber = getReportService.getLastReceiptNb() + 1;
 
     public void initialize() {
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));
         tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("nic"));
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("amount"));
-
+//Todo: amount data type, address regex
         loadAllPayments();
 
         setCourseID();
