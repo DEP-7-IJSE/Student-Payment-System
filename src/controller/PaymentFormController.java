@@ -77,19 +77,17 @@ public class PaymentFormController {
             setAmount(rdoRegistration, FeeType.REGISTRATION_FEE);
         });
 
-        if (cmbCourseID.isFocused()) {
-            whatFor.getToggles().get(0).selectedProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue) setAmount(rdoRegistration, FeeType.REGISTRATION_FEE);
-            });
+        whatFor.getToggles().get(0).selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) setAmount(rdoRegistration, FeeType.REGISTRATION_FEE);
+        });
 
-            whatFor.getToggles().get(1).selectedProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue) setAmount(rdoFullPayment, FeeType.COURSE_FEE);
-            });
+        whatFor.getToggles().get(1).selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) setAmount(rdoFullPayment, FeeType.COURSE_FEE);
+        });
 
-            whatFor.getToggles().get(2).selectedProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue) txtAmount.clear();
-            });
-        }
+        whatFor.getToggles().get(2).selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) txtAmount.clear();
+        });
 
         lblDate.setText(String.valueOf(LocalDate.now()));
         Timeline t1 = new Timeline(new KeyFrame(Duration.millis(900), event -> {
@@ -126,10 +124,6 @@ public class PaymentFormController {
                 if (feeType == FeeType.REGISTRATION_FEE) txtAmount.setText(String.valueOf(course.getRegistrationFee()));
             }
         }
-    }
-
-    private enum FeeType {
-        COURSE_FEE, REGISTRATION_FEE
     }
 
     private void setCourseID() {
@@ -182,6 +176,7 @@ public class PaymentFormController {
                     txtDescription.getText(),
                     cmbCourseID.getValue());
             Payment payment = new Payment(
+                    txtReceipt.getText(),
                     txtnic.getText(),
                     cmbPaymentMethod.getValue(),
                     Integer.parseInt(txtAmount.getText()),
@@ -258,5 +253,9 @@ public class PaymentFormController {
         } else {
             return true;
         }
+    }
+
+    private enum FeeType {
+        COURSE_FEE, REGISTRATION_FEE
     }
 }

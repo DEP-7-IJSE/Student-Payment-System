@@ -2,23 +2,27 @@ package util;
 
 public class ValidationUtil {
 
-    public static boolean isValidNIC(String nic){
+    public static boolean isValidNIC(String nic) {
         return nic.matches("(\\d{9}[vV])|(\\d{12})");
     }
 
-    public static boolean isValidName(String name){
+    public static boolean isValidName(String name) {
         return name.matches("[A-Za-z ]+");
     }
 
-    public static boolean isValidAddress(String address){
+    public static boolean isValidUser(String user) {
+        return user.matches("[A-Za-z]+-?[A-Za-z]+");
+    }
+
+    public static boolean isValidAddress(String address) {
         return address.matches("([A-Za-z\\d][ ,.:]*)+"); //Todo : Add - / marks
     }
 
-    public static boolean isValidContact(String contact){
+    public static boolean isValidContact(String contact) {
         return contact.matches("(\\d{3})-?\\d{7}");
     }
 
-    public static boolean isValidAmount(String amount){
+    public static boolean isValidAmount(String amount) {
         return amount.matches("\\d{3,}(.(\\d{2}))?");
     }
 

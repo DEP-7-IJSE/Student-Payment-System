@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Payment {
+    private String receiptNb;
     private String nic;
     private String paymentMethod;
     private int amount;
@@ -12,7 +13,8 @@ public class Payment {
     private String login;
     private String courseID;
 
-    public Payment(String nic, String paymentMethod, int amount, String paymentRadio, String date, String login, String courseID) {
+    public Payment(String receiptNb, String nic, String paymentMethod, int amount, String paymentRadio, String date, String login, String courseID) {
+        this.receiptNb = receiptNb;
         this.nic = nic;
         this.paymentMethod = paymentMethod;
         this.amount = amount;
@@ -23,6 +25,14 @@ public class Payment {
     }
 
     public Payment() {
+    }
+
+    public String getReceiptNb() {
+        return receiptNb;
+    }
+
+    public void setReceiptNb(String receiptNb) {
+        this.receiptNb = receiptNb;
     }
 
     public String getNic() {
@@ -83,6 +93,7 @@ public class Payment {
 
     public Map<String, String> toMap() {
         Map<String, String> map = new HashMap<>();
+        map.put("receiptNb", receiptNb);
         map.put("paymentMethod", paymentMethod);
         map.put("amount", String.valueOf(amount));
         map.put("what", paymentRadio);
@@ -95,7 +106,8 @@ public class Payment {
     @Override
     public String toString() {
         return "Payment{" +
-                "nic='" + nic + '\'' +
+                "receiptNb='" + receiptNb + '\'' +
+                ", nic='" + nic + '\'' +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", amount=" + amount +
                 ", paymentRadio='" + paymentRadio + '\'' +

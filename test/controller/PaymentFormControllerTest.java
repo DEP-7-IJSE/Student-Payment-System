@@ -5,8 +5,8 @@ import util.ValidationUtil;
 public class PaymentFormControllerTest {
 
     public static void main(String[] args) {
-        isValid("123456789v","20857","Habarakada west, Tawalama,",
-                "0767919355","500000", "pethumjeewantha1@gmail.com","GDSE700");
+        isValid("123456789v", "pethum", "Habarakada west, Tawalama",
+                "0767919355", "500000", "pethumjeewantha1@gmail.com", "GDSE700");
     }
 
     public static void isValid(String nic,String name, String address, String contact, String amount, String email, String courseID){

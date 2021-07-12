@@ -12,8 +12,8 @@ import service.impl.menu.ManageUserServiceRedisImpl;
 import java.util.List;
 import java.util.Optional;
 
-import static util.ValidationUtil.isValidName;
 import static util.ValidationUtil.isValidPassword;
+import static util.ValidationUtil.isValidUser;
 
 public class ManageUserFormController {
     private final ManageUserServiceRedisImpl MANAGE_USER_SERVICE = new ManageUserServiceRedisImpl();
@@ -82,7 +82,7 @@ public class ManageUserFormController {
         String password = txtPassword.getText();
         String passwordAgain = txtPasswordAgain.getText();
 
-        if (userName.trim().isEmpty() || !isValidName(userName)) { //Todo: change validation to username
+        if (userName.trim().isEmpty() || !isValidUser(userName)) {
             new Alert(Alert.AlertType.ERROR, "Invalid UserName").show();
             txtUserName.requestFocus();
             return false;
