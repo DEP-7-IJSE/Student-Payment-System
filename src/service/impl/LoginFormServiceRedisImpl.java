@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2021 - present Pethum Jeewantha. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
 package service.impl;
 
 import org.apache.commons.codec.digest.DigestUtils;

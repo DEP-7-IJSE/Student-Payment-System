@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2021 - present Pethum Jeewantha. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
 package service;
 
 import model.Payment;
@@ -22,9 +27,9 @@ public class PaymentFormService {
                 }
             }
         }
-            boolean addedStudent = STUDENT_LIST.add(student);
-            boolean addedPayment = PAYMENTS.add(payment);
-            return addedPayment && addedStudent;
+        boolean addedStudent = STUDENT_LIST.add(student);
+        boolean addedPayment = PAYMENTS.add(payment);
+        return addedPayment && addedStudent;
     }
 
     public List<PaymentFormTM> findAll() {

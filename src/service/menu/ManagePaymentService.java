@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2021 - present Pethum Jeewantha. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
 package service.menu;
 
 import model.Payment;
@@ -34,7 +39,7 @@ public class ManagePaymentService {
             for (Student student : STUDENT) {
                 if (payment.getNic().contains(query) || String.valueOf(payment.getAmount()).contains(query) ||
                         payment.getDate().contains(query) || payment.getLogin().contains(query) ||
-                student.getCourseID().contains(query)) {
+                        student.getCourseID().contains(query)) {
                     if (payment.getNic().equals(student.getNic())) {
                         getPayments.add(new ManagePaymentTM(payment.getDate(), student.getCourseID(), student.getNic(), payment.getAmount(), payment.getLogin()));
                         break;

@@ -1,8 +1,13 @@
-.anchor-color{
+/*
+ * Copyright (c) 2021 - present Pethum Jeewantha. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
+.anchor-color {
     -fx-background-color: #7f8c8d;
 }
 
-.button{
+.button {
     -fx-background-color: #576574;
     -fx-text-fill: white;
 }

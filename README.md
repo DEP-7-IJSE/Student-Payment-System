@@ -42,4 +42,4 @@ Prototype can be found in [Figma](https://www.figma.com/file/LG08E0rxC88M16rWpdb
 
 Copyright &copy; 2021 - present Pethum Jeewantha. All rights reserved.
 
-Licensed under the [MIT](LICENSE) license.
+Licensed under the [MIT](LICENSE.txt) license.

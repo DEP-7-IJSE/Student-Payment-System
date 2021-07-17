@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2021 - present Pethum Jeewantha. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
 package service.menu;
 
 import model.Student;
@@ -25,8 +30,8 @@ public class ManageStudentFormService {
         List<ManageStudentTM> tm = new ArrayList<>();
         for (Student student : STUDENT_LIST) {
             if(student.getNic().contains(query) || student.getName().contains(query) || student.getAddress().contains(query) ||
-            student.getContact().contains(query) || student.getEmail().contains(query) ||
-            student.getDescription().contains(query) || student.getCourseID().contains(query)) {
+                    student.getContact().contains(query) || student.getEmail().contains(query) ||
+                    student.getDescription().contains(query) || student.getCourseID().contains(query)) {
                 tm.add(new ManageStudentTM(student.getCourseID(), student.getNic(), student.getName(), student.getContact(), student.getAddress(), student.getEmail()));
             }
         }

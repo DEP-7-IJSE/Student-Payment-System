@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2021 - present Pethum Jeewantha. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
 package model;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -35,7 +40,6 @@ public class User implements Serializable {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
 
 
     public String getPassword() {

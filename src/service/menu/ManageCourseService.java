@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2021 - present Pethum Jeewantha. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
 package service.menu;
 
 import model.Course;
@@ -6,7 +11,7 @@ import service.exception.DuplicateEntryException;
 import java.util.ArrayList;
 
 public class ManageCourseService {
-    private static final ArrayList<Course> list= new ArrayList();
+    private static final ArrayList<Course> list = new ArrayList();
 
     static {
        /* Course c1 = new Course("DEP7",45000,25);
@@ -35,7 +40,7 @@ public class ManageCourseService {
         ArrayList<Course> getCourse = new ArrayList<>();
         for (Course course : list) {
             if(course.getCourseID().contains(query) || String.valueOf(course.getCourseFee()).contains(query)
-            || String.valueOf(course.getStudentCount()).contains(query)){
+                    || String.valueOf(course.getStudentCount()).contains(query)){
                 getCourse.add(course);
             }
         }

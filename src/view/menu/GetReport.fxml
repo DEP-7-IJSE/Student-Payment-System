@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  ~ Copyright (c) 2021 - present Pethum Jeewantha. All rights reserved.
+  ~  Licensed under the MIT License. See License.txt in the project root for license information.
+  -->
+
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.*?>

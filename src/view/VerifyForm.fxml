@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  ~ Copyright (c) 2021 - present Pethum Jeewantha. All rights reserved.
+  ~  Licensed under the MIT License. See License.txt in the project root for license information.
+  -->
+
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane fx:id="verify" prefHeight="247.0" prefWidth="300.0" styleClass="anchor-color" stylesheets="@css/DashBoardStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VerifyFormController">
    <children>
       <JFXPasswordField labelFloat="true" layoutX="9.0" layoutY="142.0" prefHeight="34.0" prefWidth="284.0" promptText="Password" />
