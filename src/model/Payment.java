@@ -1,6 +1,8 @@
 package model;
 
-public class Payment {
+import java.io.Serializable;
+
+public class Payment implements Serializable {
     private String nic;
     private String paymentMethod;
     private int amount;

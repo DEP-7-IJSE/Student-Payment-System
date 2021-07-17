@@ -74,7 +74,9 @@ public class PaymentFormController {
         t1.setCycleCount(Animation.INDEFINITE);
         t1.play();
 
-        txtReceipt.setText(String.format("R%04d",receiptNumber));
+        txtReceipt.setText(String.format("R%04d", receiptNumber));
+
+        loadAllPayments();
 
         setCourseID();
 
