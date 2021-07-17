@@ -4,27 +4,39 @@ import model.Payment;
 import model.Student;
 import model.tm.DashBoardTM;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DashBoardService {
-    private static final ArrayList<Student> STUDENT_LIST = new ArrayList<>();
-    private static final ArrayList<Payment> PAYMENT_LIST = new ArrayList<>();
+
+    private static final File studentDB = new File("student-db.dep7");
+    private static final File paymentDB = new File("payment-db.dep7");
+
+    private static ArrayList<Student> STUDENT_LIST = new ArrayList<>();
+    private static ArrayList<Payment> PAYMENT_LIST = new ArrayList<>();
 
     static {
-        Payment p1 = new Payment("468464684v","Card",525,"Registration","05-10","Sehansa");
-        Payment p2 = new Payment("468462584v","Card",45,"Registration","05-10","Pethum");
-        Payment p3 = new Payment("468465884v","Cash",265,"Installment","05-10","Kavindu");
-        PAYMENT_LIST.add(p1);
-        PAYMENT_LIST.add(p2);
-        PAYMENT_LIST.add(p3);
+        readDataFromFile();
+    }
 
-        Student s1 = new Student("468464684v","Niroth","Panadura","055-5644045","fhcueif@gmail.com","Nothing","DEP7");
-        Student s2 = new Student("468465884v","Jeewantha","Galle","055-5625045","2522@gmail.com","Nothing","DEP8");
-        Student s3 = new Student("468462584v","Aruni","Panadura","055-5644045","fh2857cueif@gmail.com","Nothing","DEP17");
-        STUDENT_LIST.add(s1);
-        STUDENT_LIST.add(s2);
-        STUDENT_LIST.add(s3);
+    private static void readDataFromFile() {
+        if (!(studentDB.exists() || paymentDB.exists())) return;
+
+        try (FileInputStream fosStudent = new FileInputStream(studentDB);
+             FileInputStream fosPayment = new FileInputStream(paymentDB);
+             ObjectInputStream oosStudent = new ObjectInputStream(fosStudent);
+             ObjectInputStream oosPayment = new ObjectInputStream(fosPayment)) {
+
+            STUDENT_LIST = (ArrayList<Student>) oosStudent.readObject();
+            PAYMENT_LIST = (ArrayList<Payment>) oosPayment.readObject();
+
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<DashBoardTM> loadAll() {

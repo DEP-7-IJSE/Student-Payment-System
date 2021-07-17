@@ -3,46 +3,69 @@ package service.menu;
 import model.Course;
 import service.exception.DuplicateEntryException;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class ManageCourseService {
-    private static final ArrayList<Course> list= new ArrayList();
+    private static final File courseDB = new File("course-db.dep7");
+
+    private static ArrayList<Course> list = new ArrayList();
 
     static {
-        Course c1 = new Course("DEP7",45000,25);
-        Course c2 = new Course("DEP6",40000,20);
-        Course c3 = new Course("DEP9",45000,25);
-        Course c4 = new Course("DEP8",60000,30);
+        readDataFromFile();
+    }
 
-        list.add(c1);
-        list.add(c2);
-        list.add(c3);
-        list.add(c4);
+    private static void readDataFromFile() {
+        if (!courseDB.exists()) return;
+
+        try (FileInputStream fosStudent = new FileInputStream(courseDB);
+             ObjectInputStream oosStudent = new ObjectInputStream(fosStudent)) {
+
+            list = (ArrayList<Course>) oosStudent.readObject();
+
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void saveCourse(String type, int batch, double fee, int count) throws DuplicateEntryException {
-        String courseID=type+batch;
+        String courseID = type + batch;
         for (Course course : list) {
-            if(course.getCourseID().equals(courseID)){
+            if (course.getCourseID().equals(courseID)) {
                 throw new DuplicateEntryException();
             }
         }
         Course courseTM = new Course(courseID, fee, count);
         list.add(courseTM);
+        boolean saved = writeDataFile();
+        if (!saved) list.remove(courseTM);
     }
 
-    public ArrayList<Course> getAll(String query){
+    public ArrayList<Course> getAll(String query) {
         ArrayList<Course> getCourse = new ArrayList<>();
         for (Course course : list) {
-            if(course.getCourseID().contains(query) || String.valueOf(course.getCourseFee()).contains(query)
-            || String.valueOf(course.getStudentCount()).contains(query)){
+            if (course.getCourseID().contains(query) || String.valueOf(course.getCourseFee()).contains(query)
+                    || String.valueOf(course.getStudentCount()).contains(query)) {
                 getCourse.add(course);
             }
         }
         return getCourse;
     }
 
-    public void deleteCourse(String id){
-        list.removeIf(course -> id.equals(course.getCourseID()));
+    public void deleteCourse(Course course) {
+        list.remove(course);
+        if (!writeDataFile()) list.add(course);
+    }
+
+    private boolean writeDataFile() {
+        try (FileOutputStream fosStudent = new FileOutputStream(courseDB);
+             ObjectOutputStream oosStudent = new ObjectOutputStream(fosStudent)) {
+
+            oosStudent.writeObject(list);
+
+        } catch (Throwable e) {
+            return false;
+        }
+        return true;
     }
 }

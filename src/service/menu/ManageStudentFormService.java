@@ -3,22 +3,29 @@ package service.menu;
 import model.Student;
 import model.tm.ManageStudentTM;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManageStudentFormService {
-    private static final List<Student> STUDENT_LIST = new ArrayList<>();
+    private static final File studentDB = new File("student-db.dep7");
+    private static List<Student> STUDENT_LIST = new ArrayList<>();
 
-    static{
-        Student s1=new Student("505460068v","Pethum","Panadura","011-444044","dffcews@gmail.com","","DEP7");
-        Student s2=new Student("505443068v","Jeewantha","Panadura","011-445044","dffcws@gmail.com","","DEP8");
-        Student s3=new Student("505456068v","Kalhara","Panadura","011-444544","dff5ews@gmail.com","","GDSE7");
-        Student s4=new Student("505476068v","Kavindu","Panadura","011-444644","dfcews@gmail.com","","DEP10");
+    static {
+        readDataFromFile();
+    }
 
-        STUDENT_LIST.add(s1);
-        STUDENT_LIST.add(s2);
-        STUDENT_LIST.add(s3);
-        STUDENT_LIST.add(s4);
+    private static void readDataFromFile() {
+        if (!studentDB.exists()) return;
+
+        try (FileInputStream fosStudent = new FileInputStream(studentDB);
+             ObjectInputStream oosStudent = new ObjectInputStream(fosStudent)) {
+
+            STUDENT_LIST = (ArrayList<Student>) oosStudent.readObject();
+
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<ManageStudentTM> getAllStudent(String query){
@@ -33,12 +40,25 @@ public class ManageStudentFormService {
         return tm;
     }
 
-    public void removeStudent(ManageStudentTM tm){
+    public void removeStudent(ManageStudentTM tm) {
         for (Student student : STUDENT_LIST) {
-            if(tm.getNIC().equals(student.getNic())){
+            if (tm.getNIC().equals(student.getNic())) {
                 STUDENT_LIST.remove(student);
+                if (!writeDataFile()) STUDENT_LIST.add(student);
                 break;
             }
         }
+    }
+
+    private boolean writeDataFile() {
+        try (FileOutputStream fosStudent = new FileOutputStream(studentDB);
+             ObjectOutputStream oosStudent = new ObjectOutputStream(fosStudent)) {
+
+            oosStudent.writeObject(STUDENT_LIST);
+
+        } catch (Throwable e) {
+            return false;
+        }
+        return true;
     }
 }

@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import model.Course;
 import service.exception.DuplicateEntryException;
 import service.menu.ManageCourseService;
@@ -17,7 +16,6 @@ import static util.ValidationUtil.*;
 
 public class ManageCourseFormController {
     private final ManageCourseService MANAGE_COURSE_SERVICE = new ManageCourseService();
-    public AnchorPane ManageCoursePane;
     public JFXComboBox<String> cmbProgramType;
     public JFXTextField txtBatchNb;
     public JFXTextField txtCourseFee;
@@ -37,7 +35,7 @@ public class ManageCourseFormController {
             public JFXButton getValue() {
                 JFXButton remove = new JFXButton("Delete");
                 remove.setOnAction(event -> {
-                    MANAGE_COURSE_SERVICE.deleteCourse(param.getValue().getCourseID());
+                    MANAGE_COURSE_SERVICE.deleteCourse(param.getValue());
                     tblCourses.getItems().remove(param.getValue());
                 });
                 return remove;

@@ -12,6 +12,7 @@ import java.util.List;
 public class PaymentFormService {
     private static final File studentDB = new File("student-db.dep7");
     private static final File paymentDB = new File("payment-db.dep7");
+
     private static ArrayList<Student> STUDENT_LIST = new ArrayList<>();
     private static ArrayList<Payment> PAYMENTS = new ArrayList<>();
 
