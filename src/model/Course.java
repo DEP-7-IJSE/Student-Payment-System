@@ -5,16 +5,17 @@
 
 package model;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Course {
     private String courseID;
-    private double registrationFee;
-    private double courseFee;
+    private BigDecimal registrationFee;
+    private BigDecimal courseFee;
     private int studentCount;
 
-    public Course(String courseID, double registrationFee, double courseFee, int studentCount) {
+    public Course(String courseID, BigDecimal registrationFee, BigDecimal courseFee, int studentCount) {
         this.courseID = courseID;
         this.registrationFee = registrationFee;
         this.courseFee = courseFee;
@@ -27,8 +28,8 @@ public class Course {
     public static Course fromMap(String courseID, Map<String, String> data) {
         return new Course(
                 courseID.replace("c#", ""),
-                Double.parseDouble(data.get("Registration")),
-                Double.parseDouble(data.get("fee")),
+                new BigDecimal(data.get("Registration")),
+                new BigDecimal(data.get("fee")),
                 Integer.parseInt(data.get("count"))
         );
     }
@@ -41,19 +42,19 @@ public class Course {
         this.courseID = courseID;
     }
 
-    public double getRegistrationFee() {
+    public BigDecimal getRegistrationFee() {
         return registrationFee;
     }
 
-    public void setRegistrationFee(double registrationFee) {
+    public void setRegistrationFee(BigDecimal registrationFee) {
         this.registrationFee = registrationFee;
     }
 
-    public double getCourseFee() {
+    public BigDecimal getCourseFee() {
         return courseFee;
     }
 
-    public void setCourseFee(double courseFee) {
+    public void setCourseFee(BigDecimal courseFee) {
         this.courseFee = courseFee;
     }
 

@@ -21,7 +21,9 @@ import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.tm.DashBoardTM;
 import service.impl.DashBoardServiceRedisImpl;
@@ -102,8 +104,11 @@ public class DashBoardFormController {
     public void btnLogoutOnAction(ActionEvent actionEvent) throws IOException {
         ((Stage) lblDate.getScene().getWindow()).close();
         Stage login = new Stage();
-        login.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/LoginForm.fxml"))));
+        Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/view/LoginForm.fxml")));
+        login.setScene(scene);
         login.sizeToScene();
+        login.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
         login.setTitle("Login Form");
         login.setResizable(false);
         login.centerOnScreen();

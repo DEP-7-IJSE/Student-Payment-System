@@ -6,7 +6,6 @@
   -->
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
@@ -17,7 +16,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-       <TableView fx:id="tblReport" layoutX="14.0" layoutY="56.0" prefHeight="351.0" prefWidth="800.0"
+       <TableView fx:id="tblReport" layoutX="14.0" layoutY="56.0" prefHeight="507.0" prefWidth="796.0"
                   AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
            <columns>
                <TableColumn prefWidth="99.0" text="Receipt"/>
@@ -28,8 +27,7 @@
                <TableColumn prefWidth="125.0" text="Received By"/>
            </columns>
        </TableView>
-      <JFXListView layoutX="277.0" layoutY="460.0" prefHeight="196.0" prefWidth="273.0" />
-       <JFXButton layoutX="371.0" layoutY="422.0" onAction="#getReportOnAction" text="Get Report"/>
+       <JFXButton layoutX="371.0" layoutY="578.0" onAction="#getReportOnAction" text="Get Report"/>
    </children>
 
 </AnchorPane>

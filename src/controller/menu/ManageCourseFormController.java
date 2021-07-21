@@ -18,6 +18,8 @@ import model.Course;
 import service.exception.DuplicateEntryException;
 import service.impl.menu.ManageCourseServiceRedisImpl;
 
+import java.math.BigDecimal;
+
 import static util.ValidationUtil.*;
 
 public class ManageCourseFormController {
@@ -85,8 +87,8 @@ public class ManageCourseFormController {
 
                 Course course = new Course(
                         cmbProgramType.getValue() + txtBatchNb.getText(),
-                        Double.parseDouble(txtRegistrationFee.getText()),
-                        Double.parseDouble(txtCourseFee.getText()),
+                        new BigDecimal(txtRegistrationFee.getText()),
+                        new BigDecimal(txtCourseFee.getText()),
                         Integer.parseInt(txtStudentCount.getText())
                 );
 
@@ -107,8 +109,8 @@ public class ManageCourseFormController {
 
             Course course = new Course(
                     cmbProgramType.getValue() + txtBatchNb.getText(),
-                    Double.parseDouble(txtRegistrationFee.getText()),
-                    Double.parseDouble(txtCourseFee.getText()),
+                    new BigDecimal(txtRegistrationFee.getText()),
+                    new BigDecimal(txtCourseFee.getText()),
                     Integer.parseInt(txtStudentCount.getText())
             );
 
