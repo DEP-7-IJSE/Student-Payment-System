@@ -50,7 +50,7 @@ public class DashBoardService {
         int registrations=0;
         int payments=0;
         for (Payment payment : PAYMENT_LIST) {
-            sum+=payment.getAmount();
+            sum += payment.getAmount().intValue();
             if(payment.getPaymentRadio().equals("Registration")){
                 registrations++;
             }

@@ -5,16 +5,17 @@
 
 package model.tm;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 public class ManagePaymentTM {
     private String date;
     private String courseID;
     private String studentNIC;
-    private int amount;
+    private BigDecimal amount;
     private String name;
 
-    public ManagePaymentTM(String date, String courseID, String studentNIC, int amount, String name) {
+    public ManagePaymentTM(String date, String courseID, String studentNIC, BigDecimal amount, String name) {
         this.date = date;
         this.courseID = courseID;
         this.studentNIC = studentNIC;
@@ -30,7 +31,7 @@ public class ManagePaymentTM {
                 data.get("date"),
                 data.get("courseID"),
                 nic.replace("p#", ""),
-                Integer.parseInt(data.get("amount")),
+                new BigDecimal(data.get("amount")),
                 data.get("login")
         );
     }
@@ -59,11 +60,11 @@ public class ManagePaymentTM {
         this.studentNIC = studentNIC;
     }
 
-    public int getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

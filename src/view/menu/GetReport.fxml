@@ -29,7 +29,7 @@
            </columns>
        </TableView>
       <JFXListView layoutX="277.0" layoutY="460.0" prefHeight="196.0" prefWidth="273.0" />
-      <JFXButton layoutX="371.0" layoutY="422.0" text="Get Report" />
+       <JFXButton layoutX="371.0" layoutY="422.0" onAction="#getReportOnAction" text="Get Report"/>
    </children>
 
 </AnchorPane>

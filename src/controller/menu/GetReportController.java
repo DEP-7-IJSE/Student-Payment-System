@@ -5,14 +5,21 @@
 
 package controller.menu;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.tm.GetReportTM;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import service.impl.menu.GetReportServiceRedisImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class GetReportController {
     public Label lblMonth;
@@ -34,4 +41,12 @@ public class GetReportController {
         lblMonth.setText(format);
     }
 
+    public void getReportOnAction(ActionEvent actionEvent) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load(this.getClass().getResourceAsStream("/report/ijse-monthlyReport.jrxml"));
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("date", lblMonth.getText());
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, new JRBeanCollectionDataSource(tblReport.getItems()));
+        JasperViewer.viewReport(jasperPrint, false);
+    }
 }

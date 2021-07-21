@@ -5,6 +5,7 @@
 
 package model;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,13 +13,13 @@ public class Payment {
     private String receiptNb;
     private String nic;
     private String paymentMethod;
-    private int amount;
+    private BigDecimal amount;
     private String paymentRadio;
     private String date;
     private String login;
     private String courseID;
 
-    public Payment(String receiptNb, String nic, String paymentMethod, int amount, String paymentRadio, String date, String login, String courseID) {
+    public Payment(String receiptNb, String nic, String paymentMethod, BigDecimal amount, String paymentRadio, String date, String login, String courseID) {
         this.receiptNb = receiptNb;
         this.nic = nic;
         this.paymentMethod = paymentMethod;
@@ -56,11 +57,11 @@ public class Payment {
         this.paymentMethod = paymentMethod;
     }
 
-    public int getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

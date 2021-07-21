@@ -36,6 +36,7 @@ import service.impl.menu.GetReportServiceRedisImpl;
 import service.impl.menu.ManageCourseServiceRedisImpl;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -186,7 +187,7 @@ public class PaymentFormController {
                     txtReceipt.getText(),
                     txtnic.getText(),
                     cmbPaymentMethod.getValue(),
-                    Integer.parseInt(txtAmount.getText()),
+                    new BigDecimal(txtAmount.getText()),
                     whatForPayment,
                     lblDate.getText(),
                     System.getProperty("app.user"),

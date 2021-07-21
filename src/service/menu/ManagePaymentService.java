@@ -10,6 +10,7 @@ import model.Student;
 import model.tm.ManagePaymentTM;
 import service.exception.DuplicateEntryException;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class ManagePaymentService {
                         throw new DuplicateEntryException();
                     }
                     student.setCourseID(update[0]);
-                    payment.setAmount(Integer.parseInt(update[1]));
+                    payment.setAmount(new BigDecimal(update[1]));
                 }
             }
         }

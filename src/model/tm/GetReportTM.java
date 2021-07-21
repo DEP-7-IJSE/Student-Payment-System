@@ -5,6 +5,7 @@
 
 package model.tm;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 public class GetReportTM {
@@ -12,13 +13,13 @@ public class GetReportTM {
     private String date;
     private String nic;
     private String courseID;
-    private int payment;
+    private BigDecimal payment;
     private String receivedBy;
 
     public GetReportTM() {
     }
 
-    public GetReportTM(String receiptNb, String date, String nic, String courseID, int payment, String receivedBy) {
+    public GetReportTM(String receiptNb, String date, String nic, String courseID, BigDecimal payment, String receivedBy) {
         this.receiptNb = receiptNb;
         this.date = date;
         this.nic = nic;
@@ -33,7 +34,7 @@ public class GetReportTM {
                 data.get("date"),
                 nic.replace("p#", ""),
                 data.get("courseID"),
-                Integer.parseInt(data.get("amount")),
+                new BigDecimal(data.get("amount")),
                 data.get("login")
         );
     }
@@ -70,11 +71,11 @@ public class GetReportTM {
         this.courseID = courseID;
     }
 
-    public int getPayment() {
+    public BigDecimal getPayment() {
         return payment;
     }
 
-    public void setPayment(int payment) {
+    public void setPayment(BigDecimal payment) {
         this.payment = payment;
     }
 
