@@ -17,8 +17,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.User;
 import service.exception.DuplicateEntryException;
-import service.impl2.LoginFormServiceMYSQLImpl;
-import service.impl2.menu.ManageUserServiceMYSQLImpl;
+import service.impl.LoginFormServiceMYSQLImpl;
+import service.impl.menu.ManageUserServiceMYSQLImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -81,5 +81,9 @@ public class LoginFormController {
         stage.centerOnScreen();
         ((Stage) loginForm.getScene().getWindow()).close();
         stage.show();
+    }
+
+    public void btnExit_OnAction(ActionEvent actionEvent) {
+        System.exit(0);
     }
 }

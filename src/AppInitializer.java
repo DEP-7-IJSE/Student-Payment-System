@@ -11,7 +11,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import util.JedisClient;
 
 import java.io.IOException;
 
@@ -19,7 +18,6 @@ public class AppInitializer extends Application {
 
     public static void main(String[] args) {
         Thread.setDefaultUncaughtExceptionHandler((t, e) -> new Alert(Alert.AlertType.ERROR, "An error fetching data. Contact DEPPO", ButtonType.CLOSE).showAndWait());
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> JedisClient.getInstance().getClient().shutdown()));
         launch(args);
     }
 

@@ -10,7 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.tm.ManageStudentTM;
-import service.impl2.menu.ManageStudentServiceMYSQLImpl;
+import service.impl.menu.ManageStudentServiceMYSQLImpl;
 
 import java.sql.SQLException;
 import java.util.Optional;

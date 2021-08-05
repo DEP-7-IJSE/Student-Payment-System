@@ -42,7 +42,6 @@ public class SplashFormController {
                     tl.stop();
                     initializeUI();
                 } else if (newValue.doubleValue() >= 0.95) {
-                    spinUpRedisServerInstance();
                     DBConnection.getInstance().getConnection();
                 }
 
@@ -63,16 +62,5 @@ public class SplashFormController {
         primaryStage.centerOnScreen();
         primaryStage.setResizable(false);
         primaryStage.show();
-    }
-
-    private void spinUpRedisServerInstance() throws Exception {
-        String[] commands = {"redis-server", "redis.conf", "--requirepass", "redis"};
-
-        Process redisServer = Runtime.getRuntime().exec(commands);
-        int exitCode = redisServer.waitFor();
-
-        if (exitCode != 0) {
-            throw new Exception("Failed to spin up the redis server instance");
-        }
     }
 }

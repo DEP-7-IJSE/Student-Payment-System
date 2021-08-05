@@ -31,9 +31,9 @@ import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
 import service.exception.DuplicateEntryException;
-import service.impl2.PaymentFormServiceMYSQLImpl;
-import service.impl2.menu.GetReportServiceMYSQLImpl;
-import service.impl2.menu.ManageCourseServiceMYSQLImpl;
+import service.impl.PaymentFormServiceMYSQLImpl;
+import service.impl.menu.GetReportServiceMYSQLImpl;
+import service.impl.menu.ManageCourseServiceMYSQLImpl;
 
 import java.io.IOException;
 import java.math.BigDecimal;

@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.tm.DashBoardTM;
-import service.impl2.DashBoardServiceMYSQLImpl;
+import service.impl.DashBoardServiceMYSQLImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-package service.impl2.menu;
+package service.impl.menu;
 
 import model.tm.ManageStudentTM;
 import util.DBConnection;

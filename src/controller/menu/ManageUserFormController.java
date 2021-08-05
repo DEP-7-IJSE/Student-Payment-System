@@ -12,7 +12,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import model.User;
 import service.exception.DuplicateEntryException;
-import service.impl2.menu.ManageUserServiceMYSQLImpl;
+import service.impl.menu.ManageUserServiceMYSQLImpl;
 
 import java.sql.SQLException;
 import java.util.List;

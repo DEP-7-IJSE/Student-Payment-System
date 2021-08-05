@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-package service.impl2;
+package service.impl;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import util.DBConnection;

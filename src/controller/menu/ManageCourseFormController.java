@@ -16,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import service.exception.DuplicateEntryException;
-import service.impl2.menu.ManageCourseServiceMYSQLImpl;
+import service.impl.menu.ManageCourseServiceMYSQLImpl;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;

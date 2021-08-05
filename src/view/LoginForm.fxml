@@ -47,6 +47,7 @@
             </image>
         </ImageView>
         <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="241.0" layoutY="216.0"
+                   onAction="#btnExit_OnAction"
                    style="-fx-border-color: #34495e; -fx-border-radius: 10; -fx-background-radius: 10;" text="EXIT">
             <cursor>
                 <Cursor fx:constant="HAND"/>

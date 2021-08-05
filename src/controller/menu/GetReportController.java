@@ -15,7 +15,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import service.impl2.menu.GetReportServiceMYSQLImpl;
+import service.impl.menu.GetReportServiceMYSQLImpl;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
