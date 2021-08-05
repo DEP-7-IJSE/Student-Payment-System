@@ -16,14 +16,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Course;
 import service.exception.DuplicateEntryException;
-import service.impl.menu.ManageCourseServiceRedisImpl;
+import service.impl2.menu.ManageCourseServiceMYSQLImpl;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
+import java.util.Optional;
 
 import static util.ValidationUtil.*;
 
 public class ManageCourseFormController {
-    private final ManageCourseServiceRedisImpl MANAGE_COURSE_SERVICE = new ManageCourseServiceRedisImpl();
+    private final ManageCourseServiceMYSQLImpl MANAGE_COURSE_SERVICE = new ManageCourseServiceMYSQLImpl();
     public AnchorPane ManageCoursePane;
     public JFXComboBox<String> cmbProgramType;
     public JFXTextField txtBatchNb;
@@ -46,8 +48,20 @@ public class ManageCourseFormController {
             public JFXButton getValue() {
                 JFXButton remove = new JFXButton("Delete");
                 remove.setOnAction(event -> {
-                    MANAGE_COURSE_SERVICE.deleteCourse(param.getValue().getCourseID());
-                    tblCourses.getItems().remove(param.getValue());
+                    Optional<ButtonType> confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete this contact?", ButtonType.YES, ButtonType.NO).showAndWait();
+                    if (confirmation.get().equals(ButtonType.YES)) {
+                        try {
+                            if (MANAGE_COURSE_SERVICE.deleteCourse(param.getValue().getCourseID())) {
+                                new Alert(Alert.AlertType.INFORMATION, "deleted").show();
+                            } else {
+                                new Alert(Alert.AlertType.ERROR, "Deletion Failed").show();
+                            }
+                        } catch (SQLException e) {
+                            new Alert(Alert.AlertType.ERROR, "Deletion Failed").show();
+                            e.printStackTrace();
+                        }
+                        tblCourses.getItems().remove(param.getValue());
+                    }
                 });
                 return remove;
             }
@@ -79,11 +93,11 @@ public class ManageCourseFormController {
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
-        if (btnSave.getText().equalsIgnoreCase("Save")) {
-            try {
-                if (!isValidated()) {
-                    return;
-                }
+        if (!isValidated()) {
+            return;
+        }
+        try {
+            if (btnSave.getText().equalsIgnoreCase("Save")) {
 
                 Course course = new Course(
                         cmbProgramType.getValue() + txtBatchNb.getText(),
@@ -92,39 +106,48 @@ public class ManageCourseFormController {
                         Integer.parseInt(txtStudentCount.getText())
                 );
 
-                MANAGE_COURSE_SERVICE.saveCourse(course);
-                lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
-                new Alert(Alert.AlertType.INFORMATION, "Saved", ButtonType.OK).show();
-                loadAll("");
-                refreshForm();
-            } catch (DuplicateEntryException e) {
-                new Alert(Alert.AlertType.ERROR, "Duplication courses", ButtonType.CLOSE).show();
-                txtBatchNb.requestFocus();
+                if (MANAGE_COURSE_SERVICE.saveCourse(course)) {
+                    lblCourseId.setText(cmbProgramType.getValue() + txtBatchNb.getText());
+                    new Alert(Alert.AlertType.INFORMATION, "Saved", ButtonType.OK).show();
+                    loadAll("");
+                    refreshForm();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Course didn't saved", ButtonType.CLOSE).show();
+                }
+
+            } else {
+
+                Course course = new Course(
+                        cmbProgramType.getValue() + txtBatchNb.getText(),
+                        new BigDecimal(txtRegistrationFee.getText()),
+                        new BigDecimal(txtCourseFee.getText()),
+                        Integer.parseInt(txtStudentCount.getText())
+                );
+
+                if (MANAGE_COURSE_SERVICE.updateCourse(course)) {
+                    new Alert(Alert.AlertType.INFORMATION, "Saved", ButtonType.OK).show();
+                    loadAll("");
+                    refreshForm();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Course didn't saved", ButtonType.CLOSE).show();
+                }
             }
-        } else {
-
-            if (!isValidated()) {
-                return;
-            }
-
-            Course course = new Course(
-                    cmbProgramType.getValue() + txtBatchNb.getText(),
-                    new BigDecimal(txtRegistrationFee.getText()),
-                    new BigDecimal(txtCourseFee.getText()),
-                    Integer.parseInt(txtStudentCount.getText())
-            );
-
-            MANAGE_COURSE_SERVICE.updateCourse(course);
-            new Alert(Alert.AlertType.INFORMATION, "Saved", ButtonType.OK).show();
-            loadAll("");
-            refreshForm(); //Todo: course fee data type
+        } catch (DuplicateEntryException e) {
+            new Alert(Alert.AlertType.ERROR, "Duplication courses", ButtonType.CLOSE).show();
+            txtBatchNb.requestFocus();
+        } catch (SQLException throwables) {
+            new Alert(Alert.AlertType.ERROR, "Course didn't saved", ButtonType.CLOSE).show();
         }
     }
 
     private void loadAll(String query) {
         tblCourses.getItems().clear();
         ObservableList<Course> items = tblCourses.getItems();
-        items.addAll(MANAGE_COURSE_SERVICE.getAll(query));
+        try {
+            items.addAll(MANAGE_COURSE_SERVICE.getAll(query));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void refreshForm() {

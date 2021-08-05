@@ -16,7 +16,17 @@ public class DBConnection {
     private DBConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/`payment-system`", "root", "mysql");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payment-system", "root", "mysql");
+
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                try {
+                    if (!connection.isClosed()) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }));
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

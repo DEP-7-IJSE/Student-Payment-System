@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import util.DBConnection;
 
 import java.io.IOException;
 
@@ -42,6 +43,7 @@ public class SplashFormController {
                     initializeUI();
                 } else if (newValue.doubleValue() >= 0.95) {
                     spinUpRedisServerInstance();
+                    DBConnection.getInstance().getConnection();
                 }
 
             } catch (Exception e) {
