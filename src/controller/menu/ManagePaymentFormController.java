@@ -13,8 +13,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.tm.ManagePaymentTM;
 import service.exception.NotFoundException;
-import service.impl.menu.ManagePaymentServiceRedisImpl;
+import service.impl2.menu.ManagePaymentServiceMYSQLImpl;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 import static util.ValidationUtil.isValidAmount;
@@ -22,14 +23,14 @@ import static util.ValidationUtil.isValidCourseID;
 
 public class ManagePaymentFormController {
 
-    private final ManagePaymentServiceRedisImpl MANAGE_PAYMENT_SERVICE = new ManagePaymentServiceRedisImpl();
+    private final ManagePaymentServiceMYSQLImpl MANAGE_PAYMENT_SERVICE = new ManagePaymentServiceMYSQLImpl();
     public TableView<ManagePaymentTM> tblPayment;
     public JFXTextField txtCourseID;
     public JFXTextField txtAmount;
     public JFXButton btnUpdate;
     public TextField txtSearch;
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("date"));
         tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("courseID"));
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("studentNIC"));
@@ -44,7 +45,11 @@ public class ManagePaymentFormController {
                     Optional<ButtonType> buttonType = new Alert(Alert.AlertType.WARNING, "Are you sure you want to update this? \n[It can't be recover again]",
                             ButtonType.YES, ButtonType.NO).showAndWait();
                     if (buttonType.get().equals(ButtonType.YES)) {
-                        MANAGE_PAYMENT_SERVICE.remove(param.getValue());
+                        try {
+                            MANAGE_PAYMENT_SERVICE.remove(param.getValue());
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                         tblPayment.getItems().remove(param.getValue());
                     }
                 });
@@ -54,7 +59,13 @@ public class ManagePaymentFormController {
 
         loadAllPaymentDetails("");
 
-        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> loadAllPaymentDetails(newValue));
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                loadAllPaymentDetails(newValue);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
 
         tblPayment.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -64,18 +75,18 @@ public class ManagePaymentFormController {
         });
     }
 
-    private void loadAllPaymentDetails(String query) {
+    private void loadAllPaymentDetails(String query) throws SQLException {
         tblPayment.getItems().clear();
         tblPayment.getItems().addAll(MANAGE_PAYMENT_SERVICE.loadAllPayments(query));
     }
 
-    public void btnUpdateOnAction(ActionEvent actionEvent) {
+    public void btnUpdateOnAction(ActionEvent actionEvent) throws SQLException {
         if (!isValidated()) {
             return;
         }
 
         try {
-            boolean updated = MANAGE_PAYMENT_SERVICE.loadPayment(tblPayment.getSelectionModel().selectedItemProperty().getValue().getStudentNIC(),
+            boolean updated = MANAGE_PAYMENT_SERVICE.updatePayment(tblPayment.getSelectionModel().selectedItemProperty().getValue().getStudentNIC(),
                     txtCourseID.getText(), txtAmount.getText());
             if (updated) new Alert(Alert.AlertType.INFORMATION, "Updated", ButtonType.OK).show();
             if (!updated) new Alert(Alert.AlertType.ERROR, "Wrong Entered", ButtonType.CLOSE).show();
