@@ -26,13 +26,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.tm.DashBoardTM;
-import service.impl.DashBoardServiceRedisImpl;
+import service.impl2.DashBoardServiceMYSQLImpl;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class DashBoardFormController {
-    private final DashBoardServiceRedisImpl DASHBOARD_SERVICE = new DashBoardServiceRedisImpl();
+    private final DashBoardServiceMYSQLImpl DASHBOARD_SERVICE = new DashBoardServiceMYSQLImpl();
     public AnchorPane dashBoard;
     public JFXHamburger btnMenu;
     public JFXDrawer dwrSideMenu;
@@ -43,7 +44,7 @@ public class DashBoardFormController {
     public Label lblNumberOfPayment;
     public Label lblTotalIncome;
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         rootPane.setOpacity(0.5);
         makeFadeIn();
 

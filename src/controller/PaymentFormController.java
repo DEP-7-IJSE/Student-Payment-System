@@ -79,7 +79,6 @@ public class PaymentFormController {
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));
         tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("nic"));
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("amount"));
-//Todo: amount data type, address regex
         loadAllPayments();
 
         setCourseID();
@@ -268,6 +267,10 @@ public class PaymentFormController {
         } else if (!isValidAmount(amount)) {
             new Alert(Alert.AlertType.ERROR, "Invalid Amount").show();
             txtAmount.requestFocus();
+            return false;
+        } else if (cmbPaymentMethod.getSelectionModel().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Select the payment method").show();
+            cmbPaymentMethod.requestFocus();
             return false;
         } else {
             return true;

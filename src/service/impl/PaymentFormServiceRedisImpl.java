@@ -35,7 +35,7 @@ public class PaymentFormServiceRedisImpl {
                     if(payment1.getPaymentRadio().equals(payment.getPaymentRadio()) && !payment.getPaymentRadio().equals("Installment")) {
                         throw new DuplicateEntryException();
                     }
-                }*/ //Todo: validation
+                }*/
         client.hset(STUDENT_PREFIX + student.getNic(), student.toMap());
         client.hset(PAYMENT_PREFIX + payment.getNic(), payment.toMap());
 

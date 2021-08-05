@@ -20,7 +20,7 @@ public class ValidationUtil {
     }
 
     public static boolean isValidAddress(String address) {
-        return address.matches("([A-Za-z\\d][ ,.:]*)+"); //Todo : Add - / marks
+        return address.matches("([A-Za-z\\d][-,/]*)+");
     }
 
     public static boolean isValidContact(String contact) {
@@ -28,7 +28,7 @@ public class ValidationUtil {
     }
 
     public static boolean isValidAmount(String amount) {
-        return amount.matches("\\d{3,}(.(\\d{2}))?");
+        return amount.matches("\\d+.\\d");
     }
 
     public static boolean isValidEmail(String email){
