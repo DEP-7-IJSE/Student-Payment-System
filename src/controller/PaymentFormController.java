@@ -31,8 +31,8 @@ import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
 import service.exception.DuplicateEntryException;
-import service.impl.menu.GetReportServiceRedisImpl;
 import service.impl2.PaymentFormServiceMYSQLImpl;
+import service.impl2.menu.GetReportServiceMYSQLImpl;
 import service.impl2.menu.ManageCourseServiceMYSQLImpl;
 
 import java.io.IOException;
@@ -49,7 +49,7 @@ public class PaymentFormController {
 
     private final PaymentFormServiceMYSQLImpl paymentFormService = new PaymentFormServiceMYSQLImpl();
     private final ManageCourseServiceMYSQLImpl manageCourseService = new ManageCourseServiceMYSQLImpl();
-    private final GetReportServiceRedisImpl getReportService = new GetReportServiceRedisImpl();
+    private final GetReportServiceMYSQLImpl getReportService = new GetReportServiceMYSQLImpl();
     public ImageView imgBack;
     public Label lblDate;
     public JFXComboBox<String> cmbPaymentMethod;
@@ -71,6 +71,9 @@ public class PaymentFormController {
     public Label lblTime;
 
     private int receiptNumber = getReportService.getLastReceiptNb() + 1;
+
+    public PaymentFormController() throws SQLException {
+    }
 
     public void initialize() throws SQLException {
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));

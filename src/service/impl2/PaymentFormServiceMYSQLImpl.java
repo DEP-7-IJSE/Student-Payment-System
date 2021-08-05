@@ -23,6 +23,7 @@ public class PaymentFormServiceMYSQLImpl {
     private PreparedStatement getPayment;
     private Statement getTM;
     private Statement getCourses;
+    private Statement getStudents;
 
     public PaymentFormServiceMYSQLImpl() {
         try {
@@ -30,10 +31,11 @@ public class PaymentFormServiceMYSQLImpl {
             saveStudent = connection.prepareStatement("INSERT INTO student " +
                     "VALUES (?,?,?,?,?,?,?);");
             savePayment = connection.prepareStatement("INSERT INTO payment " +
-                    "(recieptNb, nic, payment_method, amount, `reg/full/inst`, date, received_by, course_id) VALUES (?,?,?,?,?,?,?,?);");
+                    "(receipt_nb, nic, payment_method, amount, `reg/full/inst`, date, received_by, course_id) VALUES (?,?,?,?,?,?,?,?);");
             getPayment = connection.prepareStatement("SELECT `reg/full/inst` FROM payment WHERE course_id=? AND nic=?");
             getTM = connection.createStatement();
             getCourses = connection.createStatement();
+            getStudents = connection.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -75,8 +77,12 @@ public class PaymentFormServiceMYSQLImpl {
                 throw new RuntimeException("Payment Saving Failed");
             }
 
-            if (saveStudent.executeUpdate() != 1) {
-                throw new RuntimeException("Student Saving Failed");
+            ResultSet students = getStudents.executeQuery("SELECT nic FROM student WHERE nic='" + student.getNic() + "'");
+
+            if (!students.next()) {
+                if (saveStudent.executeUpdate() != 1) {
+                    throw new RuntimeException("Student Saving Failed");
+                }
             }
 
             return true;

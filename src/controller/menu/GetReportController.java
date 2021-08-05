@@ -15,18 +15,19 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import service.impl.menu.GetReportServiceRedisImpl;
+import service.impl2.menu.GetReportServiceMYSQLImpl;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
 public class GetReportController {
     public Label lblMonth;
-    private final GetReportServiceRedisImpl GET_REPORT_SERVICE = new GetReportServiceRedisImpl();
+    private final GetReportServiceMYSQLImpl GET_REPORT_SERVICE = new GetReportServiceMYSQLImpl();
     public TableView<GetReportTM> tblReport;
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         tblReport.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("receiptNb"));
         tblReport.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("date"));
         tblReport.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("nic"));
