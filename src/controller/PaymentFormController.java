@@ -31,12 +31,13 @@ import model.Payment;
 import model.Student;
 import model.tm.PaymentFormTM;
 import service.exception.DuplicateEntryException;
-import service.impl.PaymentFormServiceRedisImpl;
 import service.impl.menu.GetReportServiceRedisImpl;
-import service.impl.menu.ManageCourseServiceRedisImpl;
+import service.impl2.PaymentFormServiceMYSQLImpl;
+import service.impl2.menu.ManageCourseServiceMYSQLImpl;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,8 +47,8 @@ import static util.ValidationUtil.*;
 
 public class PaymentFormController {
 
-    private final PaymentFormServiceRedisImpl paymentFormService = new PaymentFormServiceRedisImpl();
-    private final ManageCourseServiceRedisImpl manageCourseService = new ManageCourseServiceRedisImpl();
+    private final PaymentFormServiceMYSQLImpl paymentFormService = new PaymentFormServiceMYSQLImpl();
+    private final ManageCourseServiceMYSQLImpl manageCourseService = new ManageCourseServiceMYSQLImpl();
     private final GetReportServiceRedisImpl getReportService = new GetReportServiceRedisImpl();
     public ImageView imgBack;
     public Label lblDate;
@@ -71,7 +72,7 @@ public class PaymentFormController {
 
     private int receiptNumber = getReportService.getLastReceiptNb() + 1;
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         tblPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("courseID"));
         tblPayment.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("nic"));
         tblPayment.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("amount"));
@@ -125,7 +126,12 @@ public class PaymentFormController {
     }
 
     private void setAmount(JFXRadioButton selected, FeeType feeType) {
-        ArrayList<Course> all = manageCourseService.getAll(cmbCourseID.getValue());
+        ArrayList<Course> all = null;
+        try {
+            all = manageCourseService.getAll(cmbCourseID.getValue());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         for (Course course : all) {
             if (selected.isSelected()) {
                 if (feeType == FeeType.COURSE_FEE) txtAmount.setText(String.valueOf(course.getCourseFee()));
@@ -134,7 +140,7 @@ public class PaymentFormController {
         }
     }
 
-    private void setCourseID() {
+    private void setCourseID() throws SQLException {
         ObservableList<String> courseID = cmbCourseID.getItems();
         List<String> allCourses = paymentFormService.getAllCourses();
         courseID.addAll(allCourses);
@@ -160,7 +166,7 @@ public class PaymentFormController {
         imgBack.setImage(new Image("assets/White Back.png"));
     }
 
-    public void btnSubmitOnAction(ActionEvent actionEvent) {
+    public void btnSubmitOnAction(ActionEvent actionEvent) throws SQLException {
         String whatForPayment = "";
         if (rdoFullPayment.isSelected()) {
             whatForPayment = rdoFullPayment.getText();
@@ -200,6 +206,8 @@ public class PaymentFormController {
                 new Alert(Alert.AlertType.INFORMATION, "Saved Successfully", ButtonType.OK).show();
                 clearForm();
                 loadAllPayments();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Saved Failed").show();
             }
         } catch (DuplicateEntryException e) {
             new Alert(Alert.AlertType.ERROR, "Duplication Entry", ButtonType.CLOSE).show();
@@ -207,7 +215,7 @@ public class PaymentFormController {
         }
     }
 
-    private void loadAllPayments() {
+    private void loadAllPayments() throws SQLException {
         tblPayment.getItems().clear();
         ObservableList<PaymentFormTM> items = tblPayment.getItems();
         List<PaymentFormTM> all = paymentFormService.findAll();

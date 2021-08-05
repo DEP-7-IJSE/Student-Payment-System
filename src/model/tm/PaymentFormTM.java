@@ -5,14 +5,14 @@
 
 package model.tm;
 
-import java.util.Map;
+import java.math.BigDecimal;
 
 public class PaymentFormTM {
     private String courseID;
     private String nic;
-    private int amount;
+    private BigDecimal amount;
 
-    public PaymentFormTM(String courseID, String nic, int amount) {
+    public PaymentFormTM(String courseID, String nic, BigDecimal amount) {
         this.courseID = courseID;
         this.nic = nic;
         this.amount = amount;
@@ -37,20 +37,12 @@ public class PaymentFormTM {
         this.nic = nic;
     }
 
-    public int getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
-    }
-
-    public static PaymentFormTM fromMap(String nic, Map<String, String> data) {
-        return new PaymentFormTM(
-                data.get("courseID"),
-                nic.replace("p#", ""),
-                Integer.parseInt(data.get("amount"))
-        );
     }
 
     @Override

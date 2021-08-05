@@ -36,7 +36,7 @@ public class PaymentFormService {
         List<PaymentFormTM> tm = new ArrayList<>();
         int count = 0;
         for (Student student : STUDENT_LIST) {
-            tm.add(new PaymentFormTM(student.getCourseID(), student.getNic(), PAYMENTS.get(count).getAmount().intValue()));
+            tm.add(new PaymentFormTM(student.getCourseID(), student.getNic(), PAYMENTS.get(count).getAmount()));
             count++;
         }
         return tm;

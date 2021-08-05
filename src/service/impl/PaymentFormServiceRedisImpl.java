@@ -46,7 +46,7 @@ public class PaymentFormServiceRedisImpl {
         List<PaymentFormTM> paymentFormTMList = new ArrayList<>();
         Set<String> nicList = client.keys(PAYMENT_PREFIX + "*");
         for (String nic : nicList) {
-            paymentFormTMList.add(PaymentFormTM.fromMap(nic, client.hgetAll(nic)));
+            //paymentFormTMList.add(PaymentFormTM.fromMap(nic, client.hgetAll(nic)));
         }
         return paymentFormTMList;
     }
