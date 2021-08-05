@@ -46,7 +46,11 @@ public class ManagePaymentFormController {
                             ButtonType.YES, ButtonType.NO).showAndWait();
                     if (buttonType.get().equals(ButtonType.YES)) {
                         try {
-                            MANAGE_PAYMENT_SERVICE.remove(param.getValue());
+                            if (MANAGE_PAYMENT_SERVICE.remove(param.getValue())) {
+                                new Alert(Alert.AlertType.INFORMATION, "Deleted").show();
+                            } else {
+                                new Alert(Alert.AlertType.INFORMATION, "Deletion Failed").show();
+                            }
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
