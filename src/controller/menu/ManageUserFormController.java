@@ -12,8 +12,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import model.User;
 import service.exception.DuplicateEntryException;
-import service.impl.menu.ManageUserServiceRedisImpl;
+import service.impl2.menu.ManageUserServiceMYSQLImpl;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +22,7 @@ import static util.ValidationUtil.isValidPassword;
 import static util.ValidationUtil.isValidUser;
 
 public class ManageUserFormController {
-    private final ManageUserServiceRedisImpl MANAGE_USER_SERVICE = new ManageUserServiceRedisImpl();
+    private final ManageUserServiceMYSQLImpl MANAGE_USER_SERVICE = new ManageUserServiceMYSQLImpl();
     public JFXRadioButton rdoAdmin;
     public JFXRadioButton rdoRegular;
     public JFXTextField txtUserName;
@@ -33,11 +34,15 @@ public class ManageUserFormController {
 
     private String user;
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         loadAll("");
 
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-            loadAll(newValue);
+            try {
+                loadAll(newValue);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
 
 
@@ -47,13 +52,13 @@ public class ManageUserFormController {
         });
     }
 
-    private void loadAll(String query) {
+    private void loadAll(String query) throws SQLException {
         lstUser.getItems().clear();
         List<String> user = MANAGE_USER_SERVICE.getUser(query);
         lstUser.getItems().addAll(user);
     }
 
-    public void btnSave_OnAction(ActionEvent actionEvent) {
+    public void btnSave_OnAction(ActionEvent actionEvent) throws SQLException {
         try {
             if (!isValidated()) {
                 return;
@@ -70,12 +75,15 @@ public class ManageUserFormController {
                     txtUserName.getText(),
                     txtPassword.getText()
             );
-            MANAGE_USER_SERVICE.saveUser(user);
-            loadAll("");
-            txtUserName.clear();
-            txtPassword.clear();
-            txtPasswordAgain.clear();
-            new Alert(Alert.AlertType.INFORMATION, "Saved").show();
+            if (MANAGE_USER_SERVICE.saveUser(user)) {
+                loadAll("");
+                txtUserName.clear();
+                txtPassword.clear();
+                txtPasswordAgain.clear();
+                new Alert(Alert.AlertType.INFORMATION, "Saved").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Save Failed").show();
+            }
         } catch (DuplicateEntryException e) {
             new Alert(Alert.AlertType.ERROR, "The userName is exists").show();
             txtUserName.requestFocus();
@@ -103,14 +111,18 @@ public class ManageUserFormController {
         return true;
     }
 
-    public void btnDelete_OnAction(ActionEvent actionEvent) {
+    public void btnDelete_OnAction(ActionEvent actionEvent) throws SQLException {
         if (user == null) {
             new Alert(Alert.AlertType.ERROR, "Select the user", ButtonType.CLOSE).show();
         } else {
             Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are sure you want to delete this user? \n" + user, ButtonType.YES, ButtonType.NO).showAndWait();
             if (buttonType.get() == ButtonType.YES) {
-                MANAGE_USER_SERVICE.deleteUser(user);
-                loadAll("");
+                if (MANAGE_USER_SERVICE.deleteUser(user)) {
+                    new Alert(Alert.AlertType.INFORMATION, "Deleted").show();
+                    loadAll("");
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Deletion Failed").show();
+                }
             }
         }
     }

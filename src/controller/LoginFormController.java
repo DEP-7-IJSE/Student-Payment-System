@@ -17,19 +17,20 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.User;
 import service.exception.DuplicateEntryException;
-import service.impl.LoginFormServiceRedisImpl;
-import service.impl.menu.ManageUserServiceRedisImpl;
+import service.impl2.LoginFormServiceMYSQLImpl;
+import service.impl2.menu.ManageUserServiceMYSQLImpl;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginFormController {
-    private final LoginFormServiceRedisImpl LOGIN_FORM_SERVICE = new LoginFormServiceRedisImpl();
-    private final ManageUserServiceRedisImpl USER_FORM_SERVICE = new ManageUserServiceRedisImpl();
+    private final LoginFormServiceMYSQLImpl LOGIN_FORM_SERVICE = new LoginFormServiceMYSQLImpl();
+    private final ManageUserServiceMYSQLImpl USER_FORM_SERVICE = new ManageUserServiceMYSQLImpl();
     public AnchorPane loginForm;
     public JFXPasswordField txtPassword;
     public JFXTextField txtUser;
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         if (LOGIN_FORM_SERVICE.getUsers().isEmpty()) {
             User user = new User(
                     "Admin",
@@ -44,7 +45,7 @@ public class LoginFormController {
         }
     }
 
-    public void loginOnAction(ActionEvent actionEvent) throws IOException {
+    public void loginOnAction(ActionEvent actionEvent) throws IOException, SQLException {
 
         if (txtUser.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Enter the user", ButtonType.OK).show();
